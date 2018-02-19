@@ -36,3 +36,4 @@
 *.map
 *.s19
 FEHRobot/fehproteusfirmware/
+*.user
