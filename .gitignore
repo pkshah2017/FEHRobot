@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+#Misc
+*.elf
+*.map
+*.s19
+FEHRobot/fehproteusfirmware/
