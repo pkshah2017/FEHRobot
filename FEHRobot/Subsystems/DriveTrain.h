@@ -24,7 +24,7 @@ private:
 public:
 	DriveTrain();
 
-	int driveTilBump();
+	int driveTilBump(int heading);
 	int drive(int heading, int power);
 	int stop();
 };

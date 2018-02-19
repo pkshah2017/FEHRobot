@@ -7,10 +7,12 @@ DriveTrain::DriveTrain()
 {
 }
 
-int DriveTrain::driveTilBump() {
-	drive(0, 50);
+int DriveTrain::driveTilBump(int heading){
+	drive(heading, 50);
 	while (!FrontLimit.Value());
 	stop();
+
+	return 0;
 }
 
 int DriveTrain::drive(int heading, int power) {
@@ -31,4 +33,6 @@ int DriveTrain::stop() {
 	FRMotor.Stop();
 	BLMotor.Stop();
 	BRMotor.Stop();
+
+	return 0;
 }
