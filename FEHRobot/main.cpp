@@ -1,25 +1,25 @@
-#include "Subsystems/DriveTrain.h"
+#include "Robot.h"
 #include <FEHLCD.h>
 
 int main(void)
 {
     LCD.WriteLine("Program Began");
-    DriveTrain robot;
+    Robot robot;
 
     LCD.WriteLine("Move out of start box");
-    robot.driveForTime(0, 1000);
+    robot.driveForTime(0, 50, 1000);
     LCD.WriteLine("Move to the corner");
-    robot.driveTilFrontBump(45);
+    robot.driveTilFrontBump(45, 50);
     LCD.WriteLine("Run to the corner");
-    robot.driveTilRightBump(90);//til right
+    robot.driveTilRightBump(90, 50);//til right
     LCD.WriteLine("Run into the switch");
-    robot.driveForTime(270, 2500);
+    robot.driveForTime(270, 50, 2500);
     LCD.WriteLine("Back towards the ramp");
-    robot.driveForTime(180, 5000);
+    robot.driveForTime(180, 50, 5000);
     LCD.WriteLine("Move towards the buttons");
-    robot.driveTilLeftBump(270);//til left
+    robot.driveTilLeftBump(270, 50);//til left
     LCD.WriteLine("Go up the ramp");
-    robot.driveForTime(180, 10000);
+    robot.driveForTime(180, 50, 10000);
     LCD.WriteLine("At the top of the ramp");
     /*
 

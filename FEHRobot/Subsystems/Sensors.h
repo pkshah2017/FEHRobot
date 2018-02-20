@@ -12,4 +12,3 @@ public:
     bool getLeftLimit();
     bool getRightLimit();
 };
-

@@ -1,13 +1,13 @@
 #include "DriveTrain.h"
 #include <math.h>
-#include <FEHUtility.h>
 #include <FEHLCD.h>
+
 
 #define MOTOR_VOLTAGE 7.2
 #define PI 3.14159265358
 
 
-DriveTrain::DriveTrain():
+DriveTrain::DriveTrain() :
     FLMotor(FEHMotor::Motor3, MOTOR_VOLTAGE),
     FRMotor(FEHMotor::Motor2, MOTOR_VOLTAGE),
     BLMotor(FEHMotor::Motor1, MOTOR_VOLTAGE),
@@ -16,36 +16,6 @@ DriveTrain::DriveTrain():
     LeftLimit(FEHIO::P0_4),
     RightLimit(FEHIO::P0_6)
 {
-}
-
-int DriveTrain::driveTilFrontBump(int heading){
-    drive(heading, 50);
-    while (FrontLimit.Value());
-    stop();
-
-    return 0;
-}
-
-int DriveTrain::driveTilLeftBump(int heading){
-    drive(heading, 50);
-    while (LeftLimit.Value());
-    stop();
-
-    return 0;
-}
-
-int DriveTrain::driveTilRightBump(int heading){
-    drive(heading, 50);
-    while (RightLimit.Value());
-    stop();
-
-    return 0;
-}
-
-int DriveTrain::driveForTime(int heading, int ms){
-    drive(heading, 50);
-    Sleep(ms);
-    stop();
 }
 
 int DriveTrain::drive(int heading, int power) {
