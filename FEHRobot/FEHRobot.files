@@ -5,3 +5,5 @@ Subsystems/Sensors.h
 Subsystems/Sensors.cpp
 Robot.h
 Robot.cpp
+Commands/Command.h
+Commands/Command.cpp
