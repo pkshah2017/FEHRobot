@@ -7,9 +7,12 @@ private:
     DigitalInputPin LeftLimit;
     DigitalInputPin RightLimit;
 
+    AnalogInputPin cdsCell;
+
     bool frontLimitState;
     bool leftLimitState;
     bool rightLimitState;
+    float cdsState;
 public:
     Sensors();
 
@@ -18,4 +21,5 @@ public:
     bool getFrontLimit();
     bool getLeftLimit();
     bool getRightLimit();
+    float getCDSState();
 };
