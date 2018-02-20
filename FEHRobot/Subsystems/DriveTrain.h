@@ -1,31 +1,24 @@
-#pragma once
-#include "FEHMotor.h"
-#include "FEHIO.h"
-
+#include <FEHMotor.h>
+#include <FEHIO.h>
 class DriveTrain
 {
 private:
-	int const MOTOR_VOLTAGE = 7.2;
-	int const PI = 3.14159265358;
+    FEHMotor FLMotor;
+    FEHMotor FRMotor;
+    FEHMotor BLMotor;
+    FEHMotor BRMotor;
 
-	FEHMotor::FEHMotorPort FLMotorPort = FEHMotor::FEHMotorPort::Motor0;
-	FEHMotor::FEHMotorPort FRMotorPort = FEHMotor::FEHMotorPort::Motor1;
-	FEHMotor::FEHMotorPort BLMotorPort = FEHMotor::FEHMotorPort::Motor2;
-	FEHMotor::FEHMotorPort BRMotorPort = FEHMotor::FEHMotorPort::Motor3;
-
-	FEHIO::FEHIOPin FrontLimitPort = FEHIO::FEHIOPin::P0_4;
-
-	FEHMotor FLMotor = FEHMotor(FLMotorPort, MOTOR_VOLTAGE);
-	FEHMotor FRMotor = FEHMotor(FRMotorPort, MOTOR_VOLTAGE);
-	FEHMotor BLMotor = FEHMotor(BLMotorPort, MOTOR_VOLTAGE);
-	FEHMotor BRMotor = FEHMotor(BRMotorPort, MOTOR_VOLTAGE);
-
-	DigitalInputPin FrontLimit = DigitalInputPin(FrontLimitPort);
+    DigitalInputPin FrontLimit;
+    DigitalInputPin LeftLimit;
+    DigitalInputPin RightLimit;
 public:
-	DriveTrain();
+    DriveTrain();
 
-	int driveTilBump(int heading);
-	int drive(int heading, int power);
-	int stop();
+    int driveTilFrontBump(int heading);
+    int driveTilLeftBump(int heading);
+    int driveTilRightBump(int heading);
+    int driveForTime(int heading, int ms);
+    int drive(int heading, int power);
+    int stop();
 };
 

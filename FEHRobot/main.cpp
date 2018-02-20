@@ -1,22 +1,37 @@
+#include "Subsystems/DriveTrain.h"
 #include <FEHLCD.h>
-#include <FEHIO.h>
-#include <FEHUtility.h>
 
 int main(void)
 {
+    LCD.WriteLine("Program Began");
+    DriveTrain robot;
 
-    float x,y;
+    LCD.WriteLine("Move out of start box");
+    robot.driveForTime(0, 1000);
+    LCD.WriteLine("Move to the corner");
+    robot.driveTilFrontBump(45);
+    LCD.WriteLine("Run to the corner");
+    robot.driveTilRightBump(90);//til right
+    LCD.WriteLine("Run into the switch");
+    robot.driveForTime(270, 2500);
+    LCD.WriteLine("Back towards the ramp");
+    robot.driveForTime(180, 5000);
+    LCD.WriteLine("Move towards the buttons");
+    robot.driveTilLeftBump(270);//til left
+    LCD.WriteLine("Go up the ramp");
+    robot.driveForTime(180, 10000);
+    LCD.WriteLine("At the top of the ramp");
+    /*
 
-    LCD.Clear( FEHLCD::Black );
-    LCD.SetFontColor( FEHLCD::White );
+    LCD.WriteLine("Move Forward");
+    robot.driveForTime(0, 5000);
+    LCD.WriteLine("Move Backward");
+    robot.driveForTime(180, 5000);
+    LCD.WriteLine("Move Right");
+    robot.driveForTime(90, 5000);
+    LCD.WriteLine("Move Left");
+    robot.driveForTime(270, 5000);
+     */
 
-    while( true )
-    {
-        if( LCD.Touch(&x,&y) )
-        {
-            LCD.WriteLine( "Hello World!" );
-            Sleep( 100 );
-        }
-    }
     return 0;
 }
