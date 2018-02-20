@@ -42,3 +42,7 @@ int Robot::driveForTime(int heading, int power, int ms) {
     Sleep(ms);
     driveTrain.stop();
 }
+
+int Robot::driveForTime(int heading, int power, float sec) {
+    driveForTime(heading, power, sec*1000);
+}
