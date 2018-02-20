@@ -1,6 +1,5 @@
-#pragma once
-#include "DriveTrain.h"
-#include "Sensors.h"
+#include "Subsystems/DriveTrain.h"
+#include "Subsystems/Sensors.h"
 
 class Robot
 {

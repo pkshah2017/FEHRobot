@@ -7,14 +7,20 @@ Sensors::Sensors()
 {
 }
 
+int Sensors::updateSensorStates() {
+    frontLimitState = FrontLimit.Value();
+    leftLimitState = LeftLimit.Value();
+    rightLimitState = RightLimit.Value();
+}
+
 bool Sensors::getFrontLimit() {
-    return FrontLimit.Value();
+    return frontLimitState;
 }
 
 bool Sensors::getLeftLimit() {
-    return LeftLimit.Value();
+    return leftLimitState;
 }
 
 bool Sensors::getRightLimit() {
-    return RightLimit.Value();
+    return rightLimitState;
 }
