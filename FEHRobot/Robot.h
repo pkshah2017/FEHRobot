@@ -13,5 +13,6 @@ public:
 	int driveTilRightBump(int heading, int power);
 	int driveForTime(int heading, int power, int ms);
     int driveForTime(int heading, int power, float sec);
+    int waitTilStartLight();
 };
 

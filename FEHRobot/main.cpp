@@ -5,7 +5,8 @@ int main(void)
 {
     LCD.WriteLine("Program Began");
     Robot robot;
-
+    LCD.WriteLine("Wait for the starting light");
+    robot.waitTilStartLight();
     LCD.WriteLine("Move out of start box");
     robot.driveForTime(0, 50, 1000);
     LCD.WriteLine("Move to the corner");
