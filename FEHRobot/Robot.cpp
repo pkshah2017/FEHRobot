@@ -54,3 +54,36 @@ int Robot::waitTilStartLight(){
         sensors.updateSensorStates();
     } while(sensors.getCDSState() < 1.2);
 }
+
+int Robot::updateSensorStates() {
+    sensors.updateSensorStates();
+}
+
+bool Robot::getLimit(Direction direction) {
+    bool result = false;
+    switch(direction){
+    case Front:
+        result = sensors.getFrontLimit();
+        break;
+    case Left:
+        result = sensors.getLeftLimit();
+        break;
+    case Right:
+        result = sensors.getRightLimit();
+        break;
+    }
+
+    return result;
+}
+
+int Robot::drive(int heading, int power) {
+    driveTrain.drive(heading, power);
+
+    return 0;
+}
+
+int Robot::stop() {
+    driveTrain.stop();
+
+    return 0;
+}
