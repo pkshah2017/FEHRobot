@@ -11,10 +11,7 @@ DriveTrain::DriveTrain() :
     FLMotor(FEHMotor::Motor3, MOTOR_VOLTAGE),
     FRMotor(FEHMotor::Motor2, MOTOR_VOLTAGE),
     BLMotor(FEHMotor::Motor1, MOTOR_VOLTAGE),
-    BRMotor(FEHMotor::Motor0, MOTOR_VOLTAGE),
-    FrontLimit(FEHIO::P0_2),
-    LeftLimit(FEHIO::P0_4),
-    RightLimit(FEHIO::P0_6)
+    BRMotor(FEHMotor::Motor0, MOTOR_VOLTAGE)
 {
 }
 

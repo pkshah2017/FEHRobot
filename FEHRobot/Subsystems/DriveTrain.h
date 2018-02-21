@@ -8,10 +8,6 @@ private:
     FEHMotor FRMotor;
     FEHMotor BLMotor;
     FEHMotor BRMotor;
-
-    DigitalInputPin FrontLimit;
-    DigitalInputPin LeftLimit;
-    DigitalInputPin RightLimit;
 public:
     DriveTrain();
 
