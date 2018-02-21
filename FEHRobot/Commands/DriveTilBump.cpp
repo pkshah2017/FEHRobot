@@ -1,6 +1,7 @@
 #include "DriveTilBump.h"
+#include <FEHUtility.h>
 
-
+#define TIMEOUT 5.0
 
 DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Robot::Direction direction_)
 {
@@ -11,12 +12,23 @@ DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Robot::Direc
 }
 
 int DriveTilBump::initialize() {
+    startTime = TimeNow();
     robot.updateSensorStates();
 }
 
 int DriveTilBump::run() {
     robot.drive(heading, power);
     robot.updateSensorStates();
+    if(TimeNow() - startTime > TIMEOUT){
+        return 1;
+    }
+}
+
+int DriveTilBump::runFailureRecovery(int error){
+    if(error == 1){
+        robot.stop();
+    }
+    return error;
 }
 
 bool DriveTilBump::isFinished() {

@@ -8,10 +8,24 @@ Command::Command()
 }
 
 int Command::execute() {
-	initialize();
-	while (!isFinished()) {
-        run();
+    int errorCode = initialize();
+    if(errorCode != 0){
+        errorCode = initializeFailureRecovery(errorCode);
+    }
+    while (errorCode == 0 && !isFinished()) {
+        int errorCode = run();
+        if(errorCode != 0){
+            errorCode = runFailureRecovery(errorCode);
+        }
 		Sleep(REFRESH_RATE);
 	}
-	return 0;
+    return errorCode;
+}
+
+int Command::initializeFailureRecovery(int errorCode){
+    return errorCode;
+}
+
+int Command::runFailureRecovery(int errorCode){
+    return errorCode;
 }

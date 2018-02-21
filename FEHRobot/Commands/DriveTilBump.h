@@ -9,10 +9,12 @@ private:
     Robot robot;
     int heading;
     int power;
+    float startTime;
     Robot::Direction direction;
 
     virtual int initialize();
     virtual int run();
     virtual bool isFinished();
+    virtual int runFailureRecovery(int error);
 };
 
