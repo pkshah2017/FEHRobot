@@ -23,6 +23,7 @@ int DriveForTime::initialize() {
 }
 
 int DriveForTime::run() {
+    robot.drive(heading, power);
 }
 
 bool DriveForTime::isFinished() {

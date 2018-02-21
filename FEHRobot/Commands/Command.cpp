@@ -10,7 +10,7 @@ Command::Command()
 int Command::execute() {
 	initialize();
 	while (!isFinished()) {
-		execute();
+        run();
 		Sleep(REFRESH_RATE);
 	}
 	return 0;

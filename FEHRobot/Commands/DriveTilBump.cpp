@@ -11,11 +11,11 @@ DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Robot::Direc
 }
 
 int DriveTilBump::initialize() {
-    robot.drive(heading, power);
     robot.updateSensorStates();
 }
 
 int DriveTilBump::run() {
+    robot.drive(heading, power);
     robot.updateSensorStates();
 }
 
