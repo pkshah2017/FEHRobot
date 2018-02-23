@@ -1,23 +1,18 @@
 #include "Subprogram.h"
 
-Task::Task()
+Subprogram::Subprogram()
 {
 }
 
-int Task::execute() {
+int Subprogram  ::execute() {
     int errorCode = 0;
-    while(!commandStack.empty() && errorCode == 0){
-        Command* toRun = commandStack.pop();
+    while(!taskStack.empty() && errorCode == 0){
+        Task* toRun = taskStack.pop();
         errorCode = (*toRun).execute();
         if(errorCode != 0){
-            errorCode = commanFailureRecovery(errorCode);
+            errorCode = taskFailureRecovery(errorCode);
         }
     }
     return errorCode;
 }
 
-int Task::addCommand(Command* command){
-    commandStack.push(command);
-
-    return 0;
-}
