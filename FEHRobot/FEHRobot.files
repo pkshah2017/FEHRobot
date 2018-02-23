@@ -12,3 +12,5 @@ Commands/DriveTilBump.h
 Commands/DriveTilBump.cpp
 Commands/DriveForTime.h
 Commands/DriveForTime.cpp
+Tasks/Task.h
+Tasks/Task.cpp
