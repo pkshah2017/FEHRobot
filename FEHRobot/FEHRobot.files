@@ -1,4 +1,6 @@
 ErrorStatusCodes.txt
+SubPrograms/Subprogram.cpp
+SubPrograms/Subprogram.h
 main.cpp
 Subsystems/DriveTrain.cpp
 Subsystems/DriveTrain.h
