@@ -17,3 +17,8 @@ int Subprogram::execute() {
     return errorCode;
 }
 
+int Subprogram::addTask(Task* task){
+    taskStack.push(task);
+
+    return 0;
+}

@@ -13,16 +13,7 @@ private:
 public:
     Subprogram();
     int execute();
-
-    /*
-    In subclasses do something like this
-    DriveForTime *d = DriveForTime(2342342,234234);
-    addCommand(d);
-    */
-
-    //  Do this
-    //  DriveForTime d(2342342,234234);
-    //  addCommand(&d);
+    int Subprogram::addTask(Task* task);
 };
 
 #endif
