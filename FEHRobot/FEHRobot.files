@@ -20,3 +20,5 @@ Tasks/LiftJack.h
 Tasks/LiftJack.cpp
 SubPrograms/Subprogram.h
 SubPrograms/Subprogram.cpp
+SubPrograms/Jack.h
+SubPrograms/Jack.cpp

@@ -13,7 +13,7 @@ private:
 public:
     Subprogram();
     int execute();
-    int Subprogram::addTask(Task* task);
+    int addTask(Task* task);
 };
 
 #endif
