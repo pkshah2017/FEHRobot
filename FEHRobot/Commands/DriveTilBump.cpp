@@ -3,7 +3,7 @@
 
 #define TIMEOUT 5.0
 
-DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Robot::Direction direction_)
+DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Direction direction_)
 {
     robot = robot_;
     heading = heading_;

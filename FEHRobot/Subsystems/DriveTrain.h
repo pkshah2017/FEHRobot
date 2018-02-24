@@ -1,3 +1,6 @@
+#ifndef DRIVETRAIN
+#define DRIVETRAIN
+
 #include <FEHMotor.h>
 #include <FEHIO.h>
 
@@ -16,3 +19,4 @@ public:
     int stop();
 };
 
+#endif

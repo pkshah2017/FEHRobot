@@ -1,3 +1,6 @@
+#ifndef COMMAND
+#define COMMAND
+
 class Command
 {
 private:
@@ -11,3 +14,4 @@ public:
 	int execute();
 };
 
+#endif

@@ -1,3 +1,6 @@
+#ifndef TASK
+#define TASK
+
 #include "Commands/Command.h"
 #include <stack>
 
@@ -12,3 +15,5 @@ public:
 	int execute();
     int addCommand(Command* command);
 };
+
+#endif

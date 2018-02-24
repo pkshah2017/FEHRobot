@@ -1,3 +1,6 @@
+#ifndef SENSORS
+#define SENSORS
+
 #include <FEHIO.h>
 
 class Sensors
@@ -23,3 +26,5 @@ public:
     bool getRightLimit();
     float getCDSState();
 };
+
+#endif

@@ -1,14 +1,17 @@
-#include "Commands/Command.h"
+#ifndef SUBPROGRAM
+#define SUBPROGRAM
+
+#include "Tasks/Task.h"
 #include <stack>
 
-class Task
+class Subprogram
 {
 private:
     std::stack<Task*> taskStack;
 
     virtual int taskFailureRecovery(int error);
 public:
-    Task();
+    Subprogram();
     int execute();
 
     /*
@@ -21,3 +24,5 @@ public:
     //  DriveForTime d(2342342,234234);
     //  addCommand(&d);
 };
+
+#endif

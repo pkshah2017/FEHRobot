@@ -1,5 +1,12 @@
+#ifndef ROBOT
+#define ROBOT
+
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Sensors.h"
+
+typedef enum {
+    Front, Left, Right
+} Direction;
 
 class Robot
 {
@@ -7,9 +14,6 @@ private:
 	DriveTrain driveTrain;
 	Sensors sensors;
 public:
-    typedef enum {
-        Front, Left, Right
-    } Direction;
 
 	Robot();
 	int driveTilFrontBump(int heading, int power);
@@ -27,3 +31,4 @@ public:
     int stop();
 };
 
+#endif

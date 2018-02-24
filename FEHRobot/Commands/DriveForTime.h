@@ -1,3 +1,6 @@
+#ifndef DRIVEFORTIME
+#define DRIVEFORTIME
+
 #include "Command.h"
 #include "Robot.h"
 
@@ -21,3 +24,4 @@ private:
     int constructor(Robot &robot_, int heading_, int power_, float sec_);
 };
 
+#endif

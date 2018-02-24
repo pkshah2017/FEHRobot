@@ -1,6 +1,4 @@
 ErrorStatusCodes.txt
-SubPrograms/Subprogram.cpp
-SubPrograms/Subprogram.h
 main.cpp
 Subsystems/DriveTrain.cpp
 Subsystems/DriveTrain.h
@@ -16,3 +14,7 @@ Commands/DriveForTime.h
 Commands/DriveForTime.cpp
 Tasks/Task.h
 Tasks/Task.cpp
+Tasks/DriveToJack.h
+Tasks/DriveToJack.cpp
+SubPrograms/Subprogram.cpp
+SubPrograms/Subprogram.h
