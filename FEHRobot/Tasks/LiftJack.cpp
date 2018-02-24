@@ -1,6 +1,6 @@
-#include "DriveToJack.h"
+#include "LiftJack.h"
 
-DriveToJack::DriveToJack(Robot &robot_):
+LiftJack::LiftJack(Robot &robot_):
     runIntoJack(robot_, 270, 50, 2500)
 {
     robot = robot_;

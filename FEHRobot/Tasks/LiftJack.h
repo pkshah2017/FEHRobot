@@ -5,11 +5,11 @@
 #include "Robot.h"
 #include "Commands/DriveForTime.h"
 
-class DriveToJack :
+class LiftJack :
     public Task
 {
 public:
-    DriveToJack(Robot &robot_);
+    LiftJack(Robot &robot_);
 private:
     Robot robot;
 
