@@ -16,5 +16,7 @@ Tasks/Task.h
 Tasks/Task.cpp
 Tasks/DriveToJack.h
 Tasks/DriveToJack.cpp
+Tasks/LiftJack.h
+Tasks/LiftJack.cpp
 SubPrograms/Subprogram.cpp
 SubPrograms/Subprogram.h
