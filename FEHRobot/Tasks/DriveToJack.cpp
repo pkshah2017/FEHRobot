@@ -6,5 +6,8 @@ DriveToJack::DriveToJack(Robot &robot_):
     toRightWall(robot_, 90, 50, Right)
 {
     robot = robot_;
+    addCommand(&leaveBase);
+    addCommand(&toFrontWall);
+    addCommand(&toRightWall);
 }
 
