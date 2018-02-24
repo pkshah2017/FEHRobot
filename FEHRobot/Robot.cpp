@@ -39,7 +39,7 @@ int Robot::driveTilRightBump(int heading, int power) {
 }
 
 int Robot::driveForTime(int heading, int power, int ms) {
-    driveTrain.drive(heading, 50);
+    driveTrain.drive(heading, power);
     Sleep(ms);
     driveTrain.stop();
 }
