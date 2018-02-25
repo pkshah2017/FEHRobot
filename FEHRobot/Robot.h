@@ -22,6 +22,7 @@ public:
     int updateSensorStates();
 
     bool getLimit(Direction direction);
+    float getCDSState();
 
     int drive(int heading, int power);
     int stop();

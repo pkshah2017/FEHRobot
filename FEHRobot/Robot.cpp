@@ -76,6 +76,11 @@ bool Robot::getLimit(Direction direction) {
     return result;
 }
 
+
+float Robot::getCDSState(){
+    return sensors.getCDSState();
+}
+
 int Robot::drive(int heading, int power) {
     driveTrain.drive(heading, power);
 

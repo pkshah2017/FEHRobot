@@ -15,6 +15,8 @@ Commands/DriveTilBump.h
 Commands/DriveTilBump.cpp
 Commands/DriveForTime.h
 Commands/DriveForTime.cpp
+Commands/WaitForLight.h
+Commands/WaitForLight.cpp
 Tasks/Task.h
 Tasks/Task.cpp
 Tasks/DriveToJack.h
