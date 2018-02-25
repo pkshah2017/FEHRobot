@@ -1,2 +1,3 @@
 Code    Meaning
 1       Timeout
+2       Invalid Input

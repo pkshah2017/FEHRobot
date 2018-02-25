@@ -4,6 +4,8 @@ Subsystems/DriveTrain.cpp
 Subsystems/DriveTrain.h
 Subsystems/Sensors.h
 Subsystems/Sensors.cpp
+Subsystems/Arm.h
+Subsystems/Arm.cpp
 Robot.h
 Robot.cpp
 Commands/Command.h

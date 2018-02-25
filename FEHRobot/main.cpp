@@ -3,6 +3,9 @@
 
 int main(void)
 {
+
+
+    /*
     LCD.WriteLine("Program Began");
     Robot robot;
     LCD.WriteLine("Wait for the starting light");
@@ -22,6 +25,7 @@ int main(void)
     LCD.WriteLine("Go up the ramp");
     robot.driveForTime(180, 50, 10000);
     LCD.WriteLine("At the top of the ramp");
+    */
     /*
 
     LCD.WriteLine("Move Forward");
