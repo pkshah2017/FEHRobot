@@ -6,9 +6,9 @@ Task::Task()
 
 int Task::execute() {
     int errorCode = 0;
-    while(!commandStack.empty() && errorCode == 0){
-        Command* toRun = commandStack.top();
-        commandStack.pop();
+    while(!commandQueue.empty() && errorCode == 0){
+        Command* toRun = commandQueue.front();
+        commandQueue.pop();
         errorCode = (*toRun).execute();
         if(errorCode != 0){
             errorCode = commanFailureRecovery(errorCode);
@@ -18,7 +18,7 @@ int Task::execute() {
 }
 
 int Task::addCommand(Command* command){
-    commandStack.push(command);
+    commandQueue.push(command);
 
     return 0;
 }

@@ -2,12 +2,12 @@
 #define SUBPROGRAM
 
 #include "Tasks/Task.h"
-#include <stack>
+#include <queue>
 
 class Subprogram
 {
 private:
-    std::stack<Task*> taskStack;
+    std::queue<Task*> taskQueue;
 
     virtual int taskFailureRecovery(int error);
 public:
