@@ -4,10 +4,6 @@
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Sensors.h"
 
-typedef enum {
-    Front, Left, Right
-} Direction;
-
 class Robot
 {
 private:

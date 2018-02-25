@@ -2,11 +2,6 @@
 #include <math.h>
 #include <FEHLCD.h>
 
-
-#define MOTOR_VOLTAGE 7.2
-#define PI 3.14159265358
-
-
 DriveTrain::DriveTrain() :
     FLMotor(FEHMotor::Motor3, MOTOR_VOLTAGE),
     FRMotor(FEHMotor::Motor2, MOTOR_VOLTAGE),

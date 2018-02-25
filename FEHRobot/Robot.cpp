@@ -62,13 +62,13 @@ int Robot::updateSensorStates() {
 bool Robot::getLimit(Direction direction) {
     bool result = false;
     switch(direction){
-    case Front:
+    case RobotFront:
         result = sensors.getFrontLimit();
         break;
-    case Left:
+    case RobotLeft:
         result = sensors.getLeftLimit();
         break;
-    case Right:
+    case RobotRight:
         result = sensors.getRightLimit();
         break;
     }

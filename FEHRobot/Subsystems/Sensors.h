@@ -2,6 +2,7 @@
 #define SENSORS
 
 #include <FEHIO.h>
+#include "Constants.h"
 
 class Sensors
 {

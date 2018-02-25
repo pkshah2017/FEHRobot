@@ -1,10 +1,5 @@
 #include "Arm.h"
 
-
-#define ARM_LEFT_ANGLE 0
-#define ARM_RIGHT_ANGLE 180
-#define ARM_UP_ANGLE 90
-
 Arm::Arm()
     : arm(FEHServo::Servo0)
 {
@@ -12,15 +7,15 @@ Arm::Arm()
     arm.SetMax(0);
 }
 
-Arm::setArmPosition(ArmPosition armPosition){
+int Arm::setArmPosition(ArmPosition armPosition){
     switch (armPosition) {
-    case Right:
+    case ArmRight:
         arm.SetDegree(ARM_RIGHT_ANGLE);
         break;
-    case Left:
+    case ArmLeft:
         arm.SetDegree(ARM_LEFT_ANGLE);
         break;
-    case Up:
+    case ArmUp:
         arm.SetDegree(ARM_UP_ANGLE);
         break;
     default:

@@ -2,10 +2,7 @@
 #define ARM
 
 #include <FEHServo.h>
-
-typedef enum {
-    Left, Right, Up
-} ArmPosition;
+#include "Constants.h"
 
 class Arm
 {
