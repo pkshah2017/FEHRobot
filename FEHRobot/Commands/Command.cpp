@@ -1,8 +1,6 @@
 #include "Command.h"
 #include <FEHUtility.h>
 
-#define REFRESH_RATE 20
-
 Command::Command()
 {
 }

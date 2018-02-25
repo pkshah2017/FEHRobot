@@ -1,6 +1,8 @@
 #ifndef COMMAND
 #define COMMAND
 
+#include "Constants.h"
+
 class Command
 {
 private:

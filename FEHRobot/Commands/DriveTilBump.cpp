@@ -1,8 +1,6 @@
 #include "DriveTilBump.h"
 #include <FEHUtility.h>
 
-#define TIMEOUT 5.0
-
 DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Direction direction_)
 {
     robot = robot_;

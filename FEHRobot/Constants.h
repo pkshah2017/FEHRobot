@@ -19,5 +19,11 @@ typedef enum {
     RobotFront, RobotLeft, RobotRight
 } Direction;
 
+//COMMAND CONSTANTS
+#define REFRESH_RATE 20
+
+//DRIVE TIL BUMP CONSTANTS
+#define TIMEOUT 5.0
+
 
 #endif

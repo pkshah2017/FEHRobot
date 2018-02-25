@@ -1,8 +1,6 @@
 #include "WaitForLight.h"
 #include <FEHUtility.h>
 
-#define TIMEOUT 5.0
-
 WaitForLight::WaitForLight(Robot &robot_)
 {
     robot = robot_;
