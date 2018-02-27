@@ -2,14 +2,15 @@
 #define TASK
 
 #include "Commands/Command.h"
-#include <queue>
 
 class Task
 {
 private:
-    std::queue<Command*> commandQueue;
+    Command* commandArray[MAX_COMMANDS];
+    int addIndex;
+    int runIndex;
 
-    virtual int commanFailureRecovery(int error);
+    virtual int commandFailureRecovery(int error);
 public:
     Task();
 	int execute();

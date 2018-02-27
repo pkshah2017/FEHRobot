@@ -17,6 +17,7 @@ int Command::execute() {
         }
 		Sleep(REFRESH_RATE);
 	}
+    errorCode = completion();
     return errorCode;
 }
 

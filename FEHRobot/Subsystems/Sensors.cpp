@@ -2,8 +2,8 @@
 
 Sensors::Sensors()
     : FrontLimit(FEHIO::P0_2),
-      LeftLimit(FEHIO::P0_4),
-      RightLimit(FEHIO::P0_6),
+      LeftLimit(FEHIO::P0_6),
+      RightLimit(FEHIO::P0_4),
       cdsCell(FEHIO::P0_0)
 {
     updateSensorStates();

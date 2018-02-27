@@ -15,6 +15,7 @@ private:
     virtual int initialize();
     virtual int run();
     virtual bool isFinished();
+    virtual int completion();
 };
 
 

@@ -12,6 +12,8 @@ DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Direction di
 int DriveTilBump::initialize() {
     startTime = TimeNow();
     robot.updateSensorStates();
+
+    return 0;
 }
 
 int DriveTilBump::run() {
@@ -20,6 +22,7 @@ int DriveTilBump::run() {
     if(TimeNow() - startTime > TIMEOUT){
         return 1;
     }
+    return 0;
 }
 
 int DriveTilBump::runFailureRecovery(int error){
@@ -30,5 +33,12 @@ int DriveTilBump::runFailureRecovery(int error){
 }
 
 bool DriveTilBump::isFinished() {
-    return robot.getLimit(direction);
+    return !robot.getLimit(direction);
 }
+
+int DriveTilBump::completion(){
+    robot.stop();
+
+    return 0;
+}
+

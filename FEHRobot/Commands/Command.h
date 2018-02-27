@@ -11,6 +11,7 @@ private:
     virtual int run() = 0;
     virtual int runFailureRecovery(int error);
     virtual bool isFinished() = 0;
+    virtual int completion() = 0;
 public:
     Command();
 	int execute();

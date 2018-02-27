@@ -19,6 +19,7 @@ private:
     virtual int run();
     virtual bool isFinished();
     virtual int runFailureRecovery(int error);
+    virtual int completion();
 };
 
 

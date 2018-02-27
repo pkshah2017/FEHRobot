@@ -2,12 +2,13 @@
 #define SUBPROGRAM
 
 #include "Tasks/Task.h"
-#include <queue>
 
 class Subprogram
 {
 private:
-    std::queue<Task*> taskQueue;
+    Task* taskArray[MAX_TASKS];
+    int addIndex;
+    int runIndex;
 
     virtual int taskFailureRecovery(int error);
 public:

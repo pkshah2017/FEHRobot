@@ -8,7 +8,7 @@ DriveForTime::DriveForTime(Robot &robot_, int heading_, int power_, float sec_)
 
 DriveForTime::DriveForTime(Robot &robot_, int heading_, int power_, int ms)
 {
-     constructor(robot_, heading_, power_, ms/1000.0);
+    constructor(robot_, heading_, power_, ms/1000.0);
 }
 
 int DriveForTime::constructor(Robot &robot_, int heading_, int power_, float sec_){
@@ -20,12 +20,22 @@ int DriveForTime::constructor(Robot &robot_, int heading_, int power_, float sec
 
 int DriveForTime::initialize() {
     startTime = TimeNow();
+
+    return 0;
 }
 
 int DriveForTime::run() {
     robot.drive(heading, power);
+
+    return 0;
 }
 
 bool DriveForTime::isFinished() {
     return TimeNow() - startTime > timeToWait;
+}
+
+int DriveForTime::completion(){
+    robot.stop();
+
+    return 0;
 }

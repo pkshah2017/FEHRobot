@@ -20,6 +20,7 @@ private:
     virtual int initialize();
     virtual int run();
     virtual bool isFinished();
+    virtual int completion();
 
     int constructor(Robot &robot_, int heading_, int power_, float sec_);
 };

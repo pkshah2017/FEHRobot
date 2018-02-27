@@ -15,7 +15,7 @@ private:
 public:
     DriveTrain();
 
-    int driveForTime(int heading, int ms);
+    int driveAndTurn(int heading, int power, int turnSpeed);
     int drive(int heading, int power);
     int stop();
 };

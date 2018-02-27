@@ -23,7 +23,12 @@ typedef enum {
 #define REFRESH_RATE 20
 
 //DRIVE TIL BUMP CONSTANTS
-#define TIMEOUT 5.0
+#define TIMEOUT 5000.0
 
+//TASK CONSTANTS
+#define MAX_COMMANDS 20
+
+//SUBPROGRAM CONSTANTS
+#define MAX_TASKS 20
 
 #endif

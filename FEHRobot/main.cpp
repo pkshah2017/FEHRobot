@@ -1,10 +1,11 @@
 #include "Robot.h"
-#include <FEHLCD.h>
+#include "SubPrograms/Jack.h"
 
 int main(void)
 {
-
-
+    Robot robot;
+    Jack jack(robot);
+    jack.execute();
     /*
     LCD.WriteLine("Program Began");
     Robot robot;
