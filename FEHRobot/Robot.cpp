@@ -26,6 +26,23 @@ bool Robot::getLimit(Direction direction) {
     return result;
 }
 
+float Robot::getOpto(OptoSelection optoSelection) {
+    float result = -1;
+    switch(optoSelection){
+    case LeftOpto:
+        result = sensors.getLeftOpto();
+        break;
+    case CenterOpto:
+        result = sensors.getCenterOpto();
+        break;
+    case RightOpto:
+        result = sensors.getRightOpto();
+        break;
+    }
+
+    return result;
+}
+
 float Robot::getCDSState(){
     return sensors.getCDSState();
 }

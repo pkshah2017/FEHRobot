@@ -5,7 +5,7 @@
 
 int main(void)
 {
-    RPS.InitializeTouchMenu();
+   // RPS.InitializeTouchMenu();
     Robot robot;
     Buttons buttons(robot);
     buttons.execute();

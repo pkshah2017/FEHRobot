@@ -11,6 +11,8 @@ Robot.h
 Robot.cpp
 Commands/Command.h
 Commands/Command.cpp
+Commands/CenterOnLine.h
+Commands/CenterOnLine.cpp
 Commands/DriveToPosition.h
 Commands/DriveToPosition.cpp
 Commands/TurnForTime.h

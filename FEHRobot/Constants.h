@@ -19,6 +19,11 @@ typedef enum {
     RobotFront, RobotLeft, RobotRight
 } Direction;
 
+//SENSOR CONSTANTS
+typedef enum {
+    LeftOpto, CenterOpto, RightOpto
+} OptoSelection;
+
 //COMMAND CONSTANTS
 #define REFRESH_RATE 20
 

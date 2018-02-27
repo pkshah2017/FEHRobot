@@ -17,6 +17,7 @@ public:
 
     bool getLimit(Direction direction);
     float getCDSState();
+    float getOpto(OptoSelection optoSelection);
     float getX();
     float getY();
     float getHeading();

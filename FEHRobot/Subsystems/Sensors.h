@@ -12,11 +12,17 @@ private:
     DigitalInputPin RightLimit;
 
     AnalogInputPin cdsCell;
+    AnalogInputPin leftOpto;
+    AnalogInputPin centerOpto;
+    AnalogInputPin rightOpto;
 
     bool frontLimitState;
     bool leftLimitState;
     bool rightLimitState;
     float cdsState;
+    float leftOptoState;
+    float centerOptoState;
+    float rightOptoState;
 public:
     Sensors();
 
@@ -26,6 +32,9 @@ public:
     bool getLeftLimit();
     bool getRightLimit();
     float getCDSState();
+    float getLeftOpto();
+    float getCenterOpto();
+    float getRightOpto();
 
     int fuelType();
     int isDeadzoneActive();
