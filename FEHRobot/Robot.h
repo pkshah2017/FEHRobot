@@ -17,6 +17,11 @@ public:
 
     bool getLimit(Direction direction);
     float getCDSState();
+    float getX();
+    float getY();
+    float getHeading();
+    int getFuelType();
+    int getDeadzoneStatus();
 
     int drive(int heading, int power);
     int stop();

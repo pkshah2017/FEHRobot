@@ -34,21 +34,23 @@ float Sensors::getCDSState() {
 }
 
 int Sensors::fuelType(){
-    return RPS.FuelType();
+    //return RPS.FuelType();
+    return 0;
 }
 
 int Sensors::isDeadzoneActive(){
-    return RPS.IsDeadzoneActive();
+    //return RPS.IsDeadzoneActive();
+    return 0;
 }
 
-int Sensors::robotX(){
+float Sensors::robotX(){
     return RPS.X();
 }
 
-int Sensors::robotY(){
+float Sensors::robotY(){
     return RPS.Y();
 }
 
-int Sensors::robotHeading(){
+float Sensors::robotHeading(){
     return RPS.Heading();
 }

@@ -11,6 +11,8 @@ Robot.h
 Robot.cpp
 Commands/Command.h
 Commands/Command.cpp
+Commands/DriveToPosition.h
+Commands/DriveToPosition.cpp
 Commands/DriveTilBump.h
 Commands/DriveTilBump.cpp
 Commands/DriveForTime.h
@@ -19,6 +21,8 @@ Commands/WaitForLight.h
 Commands/WaitForLight.cpp
 Tasks/Task.h
 Tasks/Task.cpp
+Tasks/DriveToButtons.h
+Tasks/DriveToButtons.cpp
 Tasks/DriveToJack.h
 Tasks/DriveToJack.cpp
 Tasks/LiftJack.h
@@ -27,3 +31,5 @@ SubPrograms/Subprogram.h
 SubPrograms/Subprogram.cpp
 SubPrograms/Jack.h
 SubPrograms/Jack.cpp
+SubPrograms/Buttons.h
+SubPrograms/Buttons.cpp

@@ -30,6 +30,27 @@ float Robot::getCDSState(){
     return sensors.getCDSState();
 }
 
+float Robot::getX(){
+    return sensors.robotX();
+}
+
+float Robot::getY(){
+    return sensors.robotY();
+}
+
+float Robot::getHeading(){
+    return sensors.robotHeading();
+}
+
+int Robot::getFuelType(){
+    return sensors.fuelType();
+}
+
+int Robot::getDeadzoneStatus(){
+    return sensors.isDeadzoneActive();
+}
+
+
 int Robot::drive(int heading, int power) {
     driveTrain.drive(heading, power);
 
