@@ -16,6 +16,7 @@ public:
     DriveTrain();
 
     int driveAndTurn(int heading, int power, int turnSpeed);
+    int turn(int power);
     int drive(int heading, int power);
     int stop();
 };

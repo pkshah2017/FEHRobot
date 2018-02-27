@@ -23,6 +23,7 @@ public:
     int getFuelType();
     int getDeadzoneStatus();
 
+    int turn(int power);
     int drive(int heading, int power);
     int stop();
 };

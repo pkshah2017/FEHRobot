@@ -73,6 +73,16 @@ int DriveTrain::driveAndTurn(int heading, int power, int turnSpeed){
     return 0;
 }
 
+int DriveTrain::turn(int power) {
+    FRMotor.SetPercent(power);
+    FLMotor.SetPercent(power);
+    BLMotor.SetPercent(power);
+    BRMotor.SetPercent(power);
+
+    return 0;
+}
+
+
 int DriveTrain::drive(int heading, int power) {
 
     float x = cos((45 - heading)*PI / 180.0);

@@ -13,6 +13,8 @@ Commands/Command.h
 Commands/Command.cpp
 Commands/DriveToPosition.h
 Commands/DriveToPosition.cpp
+Commands/TurnForTime.h
+Commands/TurnForTime.cpp
 Commands/DriveTilBump.h
 Commands/DriveTilBump.cpp
 Commands/DriveForTime.h

@@ -50,6 +50,11 @@ int Robot::getDeadzoneStatus(){
     return sensors.isDeadzoneActive();
 }
 
+int Robot::turn(int power) {
+    driveTrain.turn(power);
+
+    return 0;
+}
 
 int Robot::drive(int heading, int power) {
     driveTrain.drive(heading, power);

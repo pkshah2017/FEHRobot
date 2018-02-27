@@ -1,13 +1,16 @@
 #include "Robot.h"
 #include "SubPrograms/Jack.h"
+#include "SubPrograms/Buttons.h"
 #include <FEHRPS.h>
 
 int main(void)
 {
     RPS.InitializeTouchMenu();
     Robot robot;
-    Jack jack(robot);
-    jack.execute();
+    Buttons buttons(robot);
+    buttons.execute();
+    //Jack jack(robot);
+    //jack.execute();
     /*
     LCD.WriteLine("Program Began");
     Robot robot;
