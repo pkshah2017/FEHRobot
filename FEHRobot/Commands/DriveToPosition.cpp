@@ -12,7 +12,7 @@ DriveToPosition::DriveToPosition(Robot &robot_, float x_, float y_)
 }
 
 int DriveToPosition::initialize() {
-    LCD.WriteLine("Initalizing Drive To Position");
+    LCD.WriteLine("Init Drive To Position");
     currentX = robot.getX();
     currentY = robot.getY();
 
@@ -36,6 +36,15 @@ int DriveToPosition::run() {
 
     float error = sqrt(deltaX * deltaX + deltaY * deltaY);
     float heading = atan(deltaY/deltaX) * 180 / PI;
+    if(deltaX < 0 && deltaY > 0){
+        heading = 180 + heading;
+    } else if(deltaX < 0 && deltaY < 0){
+        heading = 180 + heading;
+    } else if (deltaX > 0 && deltaY < 0){
+        heading += 360;
+    }
+    heading += 90;
+
 
     LCD.WriteLine("Heading is");
     LCD.WriteLine(heading);
@@ -45,7 +54,11 @@ int DriveToPosition::run() {
 }
 
 bool DriveToPosition::isFinished() {
-    float error = sqrt(currentX * currentX + currentY * currentY);
+    float deltaX = x - currentX;
+    float deltaY = y - currentY;
+
+    float error = sqrt(deltaX * deltaX + deltaY * deltaY);
+
     LCD.WriteLine("Checking end status");
     LCD.WriteLine(error);
     return abs(error) < POSITION_TOLERANCE;
