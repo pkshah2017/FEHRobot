@@ -1,4 +1,5 @@
 #include "Sensors.h"
+#include <FEHRPS.h>
 
 Sensors::Sensors()
     : FrontLimit(FEHIO::P0_2),
@@ -30,4 +31,24 @@ bool Sensors::getRightLimit() {
 
 float Sensors::getCDSState() {
     return cdsState;
+}
+
+int Sensors::fuelType(){
+    return RPS.FuelType();
+}
+
+int Sensors::isDeadzoneActive(){
+    return RPS.IsDeadzoneActive();
+}
+
+int Sensors::robotX(){
+    return RPS.X();
+}
+
+int Sensors::robotY(){
+    return RPS.Y();
+}
+
+int Sensors::robotHeading(){
+    return RPS.Heading();
 }

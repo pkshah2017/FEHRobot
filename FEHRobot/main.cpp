@@ -1,8 +1,10 @@
 #include "Robot.h"
 #include "SubPrograms/Jack.h"
+#include <FEHRPS.h>
 
 int main(void)
 {
+    RPS.InitializeTouchMenu();
     Robot robot;
     Jack jack(robot);
     jack.execute();

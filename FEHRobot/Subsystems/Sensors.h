@@ -26,6 +26,13 @@ public:
     bool getLeftLimit();
     bool getRightLimit();
     float getCDSState();
+
+    int fuelType();
+    int isDeadzoneActive();
+    float robotX();
+    float robotY();
+    float robotHeading();
+
 };
 
 #endif
