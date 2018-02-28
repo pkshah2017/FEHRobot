@@ -43,3 +43,11 @@ int DriveForTime::completion(){
 int DriveForTime::changeHeading(int newHeading){
     heading = newHeading;
 }
+
+int DriveForTime::changeDriveTime(int newTime){
+    timeToWait = newTime/1000.0;
+}
+
+int DriveForTime::changeDriveTime(float newTime){
+    timeToWait = newTime;
+}
