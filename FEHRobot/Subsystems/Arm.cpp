@@ -3,8 +3,8 @@
 Arm::Arm()
     : arm(FEHServo::Servo0)
 {
-    arm.SetMin(0);
-    arm.SetMax(0);
+    arm.SetMin(557);
+    arm.SetMax(2348);
 }
 
 int Arm::setArmPosition(ArmPosition armPosition){

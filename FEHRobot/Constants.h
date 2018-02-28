@@ -2,8 +2,8 @@
 #define CONSTANTS
 
 //ARM CONSTANTS
-#define ARM_LEFT_ANGLE 0
-#define ARM_RIGHT_ANGLE 180
+#define ARM_LEFT_ANGLE 180
+#define ARM_RIGHT_ANGLE 0
 #define ARM_UP_ANGLE 90
 
 typedef enum {
@@ -32,6 +32,10 @@ typedef enum {
 
 //DRIVE TO POSITION CONSTANTS
 #define POSITION_TOLERANCE 1.5
+
+//Move Arm Constants
+#define MOVE_ARM_WAIT 2.0
+
 
 //TASK CONSTANTS
 #define MAX_COMMANDS 20

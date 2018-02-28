@@ -3,7 +3,7 @@
 
 #include "Task.h"
 #include "Robot.h"
-#include "Commands/DriveToPosition.h"
+#include "Commands/DriveForTime.h"
 #include "Commands/CenterOnLine.h"
 
 class DriveToButtons :
@@ -14,8 +14,9 @@ public:
 private:
     Robot robot;
 
+    DriveForTime leaveStart;
+    DriveForTime goToButtons;
     CenterOnLine centerOnLine;
-    DriveToPosition leaveStart;
 };
 
 #endif

@@ -1,6 +1,8 @@
 #include "TurnForTime.h"
 #include <FEHUtility.h>
 
+//Positive Power is to the right
+
 TurnForTime::TurnForTime(Robot &robot_, int power_, float sec_)
 {
     constructor(robot_, power_, sec_);

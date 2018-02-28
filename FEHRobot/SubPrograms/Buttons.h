@@ -4,6 +4,7 @@
 #include "Subprogram.h"
 #include "Robot.h"
 #include "Tasks/DriveToButtons.h"
+#include "Tasks/PressButtons.h"
 
 class Buttons :
     public Subprogram
@@ -14,6 +15,7 @@ private:
     Robot robot;
 
     DriveToButtons driveToButtons;
+    PressButtons pressButtons;
 };
 
 #endif

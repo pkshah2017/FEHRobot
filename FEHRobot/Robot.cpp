@@ -84,3 +84,7 @@ int Robot::stop() {
 
     return 0;
 }
+
+int Robot::setArmPosition(ArmPosition armPosition){
+    arm.setArmPosition(armPosition);
+}

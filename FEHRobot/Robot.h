@@ -3,12 +3,14 @@
 
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Sensors.h"
+#include "Subsystems/Arm.h"
 
 class Robot
 {
 private:
 	DriveTrain driveTrain;
 	Sensors sensors;
+    Arm arm;
 public:
 
     Robot();
@@ -27,6 +29,8 @@ public:
     int turn(int power);
     int drive(int heading, int power);
     int stop();
+
+    int setArmPosition(ArmPosition armPosition);
 };
 
 #endif
