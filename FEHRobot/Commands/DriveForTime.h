@@ -10,6 +10,8 @@ class DriveForTime :
 public:
     DriveForTime(Robot &robot_, int heading_, int power_, int ms_);
     DriveForTime(Robot &robot_, int heading_, int power_, float sec);
+
+    int changeHeading(int newHeading);
 private:
     Robot robot;
     int heading;

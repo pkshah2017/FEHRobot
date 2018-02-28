@@ -39,3 +39,7 @@ int DriveForTime::completion(){
 
     return 0;
 }
+
+int DriveForTime::changeHeading(int newHeading){
+    heading = newHeading;
+}
