@@ -11,7 +11,7 @@ public:
     TurnForTime(Robot &robot_, int power_, int ms_);
     TurnForTime(Robot &robot_,  int power_, float sec);
 
-    int changePower(int newPower);s
+    int changePower(int newPower);
 private:
     Robot robot;
     int power;
