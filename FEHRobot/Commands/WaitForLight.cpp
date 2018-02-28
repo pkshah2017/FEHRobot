@@ -16,7 +16,7 @@ int WaitForLight::run() {
 }
 
 bool WaitForLight::isFinished() {
-    return robot.getCDSState() > 1.2;
+    return robot.getCDSState() < 1.2;
 }
 
 int WaitForLight::completion(){

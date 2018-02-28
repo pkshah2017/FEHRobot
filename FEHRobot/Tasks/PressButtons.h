@@ -22,6 +22,8 @@ private:
     DriveForTime touchButtons;
     TurnForTime turnIntoButtons;
     WaitForTime holdButtons;
+    DriveForTime backSlightyAwayFromButtons;
+    DriveForTime hitButtonsAgain;
     DriveForTime backAwayFromButtons;
     ChangeArmPosition raiseArm;
     DriveForTime moveToWrench;

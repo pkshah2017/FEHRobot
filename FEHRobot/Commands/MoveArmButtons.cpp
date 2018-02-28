@@ -6,26 +6,28 @@ MoveArmButtons::MoveArmButtons(Robot &robot_)
 {
     robot = robot_;
     timeToWait = MOVE_ARM_WAIT;
+    LightStatus = 5;
 }
 
 int MoveArmButtons::initialize() {
     robot.updateSensorStates();
 
-    LCD.WriteRC("CDS VALUE", 2 , 1);
-    LCD.WriteRC(robot.getCDSState(), 2 , 1);
+    LCD.WriteRC("CDS VALUE: ", 2 , 1);
+    LCD.WriteRC(robot.getCDSState(), 2 , 12);
 
     startTime = TimeNow();
 
-    int status = 5;
-    if(robot.getCDSState() < .85){
-        robot.setArmPosition(ArmRight);
-        status = 4;
-    } else if(robot.getCDSState() < 1.8){
+    if(robot.getCDSState() > .85){
         robot.setArmPosition(ArmLeft);
-        status = 3;
+        LCD.WriteRC("Blue", 3, 1);
+        LightStatus = 3;
+    } else {
+        robot.setArmPosition(ArmRight);
+        LCD.WriteRC("Red", 3, 1);
+        LightStatus = 4;
     }
 
-    return status;
+    return 0;
 }
 
 int MoveArmButtons::run() {
@@ -37,6 +39,6 @@ bool MoveArmButtons::isFinished() {
 }
 
 int MoveArmButtons::completion(){
-    return 0;
+    return LightStatus;
 }
 

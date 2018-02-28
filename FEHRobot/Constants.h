@@ -36,6 +36,10 @@ typedef enum {
 //Move Arm Constants
 #define MOVE_ARM_WAIT 2.0
 
+//LINE FOLLOW FOR TIME CONSTANTS
+typedef enum {
+    OFF_ON_OFF, ON_ON_OFF, ON_OFF_OFF, OFF_ON_ON, OFF_OFF_ON, OFF_OFF_OFF
+} LineFollowerState;
 
 //TASK CONSTANTS
 #define MAX_COMMANDS 20

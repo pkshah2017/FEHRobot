@@ -14,6 +14,8 @@ private:
     float timeToWait;
     float startTime;
 
+    int LightStatus;
+
     virtual int initialize();
     virtual int run();
     virtual bool isFinished();
