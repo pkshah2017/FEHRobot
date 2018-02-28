@@ -1,3 +1,6 @@
 Code    Meaning
 1       Timeout
 2       Invalid Input
+3       Blue Light Active
+4       Red Light Active
+5       Light Not detected
