@@ -35,6 +35,8 @@ Commands/WaitForTime.h
 Commands/WaitForTime.cpp
 Tasks/Task.h
 Tasks/Task.cpp
+Tasks/DriveToWrench.h
+Tasks/DriveToWrench.cpp
 Tasks/DriveToButtons.h
 Tasks/DriveToButtons.cpp
 Tasks/PressButtons.h
