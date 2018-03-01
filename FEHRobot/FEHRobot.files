@@ -21,6 +21,8 @@ Commands/TurnForTime.h
 Commands/TurnForTime.cpp
 Commands/DriveTilBump.h
 Commands/DriveTilBump.cpp
+Commands/DriveToLine.h
+Commands/DriveToLine.cpp
 Commands/DriveForTime.h
 Commands/DriveForTime.cpp
 Commands/ChangeArmPosition.h

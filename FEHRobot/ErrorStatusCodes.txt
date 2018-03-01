@@ -4,3 +4,4 @@ Code    Meaning
 3       Blue Light Active
 4       Red Light Active
 5       Light Not detected
+6       Experienced Theortically Impossible Code
