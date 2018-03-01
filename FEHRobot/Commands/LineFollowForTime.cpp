@@ -77,9 +77,6 @@ int LineFollowForTime::run() {
         break;
     }
 
-    int heading;
-    robot.drive(0, power);
-
     return 0;
 }
 
