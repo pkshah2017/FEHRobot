@@ -12,6 +12,7 @@ public:
     DriveForTime(Robot &robot_, int heading_, int power_, float sec);
 
     int changeHeading(int newHeading);
+    int changePower(int newPower);
     int changeDriveTime(int newTime);
     int changeDriveTime(float newTime);
 private:

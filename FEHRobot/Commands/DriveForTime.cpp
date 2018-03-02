@@ -18,6 +18,23 @@ int DriveForTime::constructor(Robot &robot_, int heading_, int power_, float sec
     timeToWait = sec_;
 }
 
+int DriveForTime::changeHeading(int newHeading){
+    heading = newHeading;
+}
+
+int DriveForTime::changePower(int newPower){
+    power = newPower;
+}
+
+int DriveForTime::changeDriveTime(int newTime){
+    timeToWait = newTime/1000.0;
+}
+
+int DriveForTime::changeDriveTime(float newTime){
+    timeToWait = newTime;
+}
+
+
 int DriveForTime::initialize() {
     startTime = TimeNow();
 
@@ -38,16 +55,4 @@ int DriveForTime::completion(){
     robot.stop();
 
     return 0;
-}
-
-int DriveForTime::changeHeading(int newHeading){
-    heading = newHeading;
-}
-
-int DriveForTime::changeDriveTime(int newTime){
-    timeToWait = newTime/1000.0;
-}
-
-int DriveForTime::changeDriveTime(float newTime){
-    timeToWait = newTime;
 }
