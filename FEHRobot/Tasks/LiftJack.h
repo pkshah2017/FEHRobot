@@ -10,12 +10,12 @@ class LiftJack :
 {
 public:
     LiftJack(Robot &robot_);
+
+    virtual int execute();
 private:
     Robot robot;
 
     DriveForTime driveForTime;
-
-    virtual int execute();
 };
 
 #endif
