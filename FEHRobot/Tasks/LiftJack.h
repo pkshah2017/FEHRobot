@@ -13,7 +13,9 @@ public:
 private:
     Robot robot;
 
-    DriveForTime runIntoJack;
+    DriveForTime driveForTime;
+
+    virtual int execute();
 };
 
 #endif
