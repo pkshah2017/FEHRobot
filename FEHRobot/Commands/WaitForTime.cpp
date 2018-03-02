@@ -20,14 +20,6 @@ int WaitForTime::constructor(Robot &robot_, float sec_){
     timeToWait = sec_;
 }
 
-int WaitForTime::changeDriveTime(int newTime){
-    timeToWait = newTime/1000.0;
-}
-
-int WaitForTime::changeDriveTime(float newTime){
-    timeToWait = newTime;
-}
-
 int WaitForTime::initialize() {
     startTime = TimeNow();
 

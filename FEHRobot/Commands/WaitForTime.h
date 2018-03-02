@@ -10,9 +10,6 @@ class WaitForTime :
 public:
     WaitForTime(Robot &robot_, int ms_);
     WaitForTime(Robot &robot_, float sec);
-
-    int changeDriveTime(int newTime);
-    int changeDriveTime(float newTime);
 private:
     Robot robot;
     float timeToWait;
