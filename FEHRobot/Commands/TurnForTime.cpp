@@ -19,6 +19,10 @@ int TurnForTime::constructor(Robot &robot_, int power_, float sec_){
     timeToWait = sec_;
 }
 
+int TurnForTime::setRobot(Robot &robot_){
+    robot = robot_;
+}
+
 int TurnForTime::changePower(int newPower){
     power = newPower;
 }

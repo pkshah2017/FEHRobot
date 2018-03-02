@@ -6,6 +6,10 @@ WaitForLight::WaitForLight(Robot &robot_)
     robot = robot_;
 }
 
+int WaitForLight::setRobot(Robot &robot_){
+    robot = robot_;
+}
+
 int WaitForLight::initialize() {
     return 0;
 }

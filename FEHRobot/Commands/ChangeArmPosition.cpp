@@ -18,6 +18,10 @@ int ChangeArmPosition::constructor(Robot &robot_, ArmPosition armPosition_, floa
     timeToWait = sec_;
 }
 
+int ChangeArmPosition::setRobot(Robot &robot_){
+    robot = robot_;
+}
+
 int ChangeArmPosition::selectArmPosition(ArmPosition armPosition_){
     armPosition = armPosition_;
 }

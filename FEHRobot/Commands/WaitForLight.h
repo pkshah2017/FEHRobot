@@ -9,6 +9,8 @@ class WaitForLight :
 {
 public:
     WaitForLight(Robot &robot_);
+
+    int setRobot(Robot &robot_);
 private:
     Robot robot;
 

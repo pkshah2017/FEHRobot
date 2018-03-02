@@ -8,6 +8,8 @@ class MoveArmButtons :
 {
 public:
     MoveArmButtons(Robot &robot_);
+
+    int setRobot(Robot &robot_);
 private:
     Robot robot;
 

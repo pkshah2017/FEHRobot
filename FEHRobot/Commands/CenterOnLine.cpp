@@ -7,6 +7,10 @@ CenterOnLine::CenterOnLine(Robot &robot_)
     robot = robot_;
 }
 
+int CenterOnLine::setRobot(Robot &robot_){
+    robot = robot_;
+}
+
 int CenterOnLine::initialize() {
     return 0;
 }

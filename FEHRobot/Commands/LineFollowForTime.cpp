@@ -17,6 +17,10 @@ int LineFollowForTime::constructor(Robot &robot_, int power_, float sec_){
     timeToWait = sec_;
 }
 
+int LineFollowForTime::setRobot(Robot &robot_){
+    robot = robot_;
+}
+
 int LineFollowForTime::changePower(int newPower){
     power = newPower;
 }

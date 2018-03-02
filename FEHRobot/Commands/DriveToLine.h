@@ -9,6 +9,8 @@ class DriveToLine :
 {
 public:
     DriveToLine(Robot &robot_, int power_);
+
+    int setRobot(Robot &robot_);
 private:
     Robot robot;
     int power;

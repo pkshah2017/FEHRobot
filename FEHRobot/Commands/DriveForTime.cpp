@@ -18,6 +18,10 @@ int DriveForTime::constructor(Robot &robot_, int heading_, int power_, float sec
     timeToWait = sec_;
 }
 
+int DriveForTime::setRobot(Robot &robot_){
+    robot = robot_;
+}
+
 int DriveForTime::changeHeading(int newHeading){
     heading = newHeading;
 }

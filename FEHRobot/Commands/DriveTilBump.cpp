@@ -9,6 +9,10 @@ DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Direction di
     direction = direction_;
 }
 
+int DriveTilBump::setRobot(Robot &robot_){
+    robot = robot_;
+}
+
 int DriveTilBump::changeHeading(int newHeading){
     heading = newHeading;
 }

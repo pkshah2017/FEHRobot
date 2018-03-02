@@ -11,6 +11,10 @@ DriveToPosition::DriveToPosition(Robot &robot_, float x_, float y_)
 
 }
 
+int DriveToPosition::setRobot(Robot &robot_){
+    robot = robot_;
+}
+
 int DriveToPosition::changeXSetpoint(float x_){
     x = x_;
 }
