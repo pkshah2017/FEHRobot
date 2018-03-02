@@ -1,13 +1,33 @@
 #include "DriveToJack.h"
 
 DriveToJack::DriveToJack(Robot &robot_):
-    leaveBase(robot_, 0, 50, 1000),
-    toFrontWall(robot_, 315, 50, RobotFront),
-    toRightWall(robot_, 270, 50, RobotRight)
+    waitForLight(robot_),
+    driveForTime(robot_, 0, 50, 1000),
+    driveTilBump(robot_, 315, 50, RobotFront)
 {
-    robot = robot_;
-    addCommand(&leaveBase);
-    addCommand(&toFrontWall);
-    addCommand(&toRightWall);
 }
 
+int DriveToJack::execute(){
+    /*
+     * Wait for start light
+     */
+    waitForLight.execute();
+
+    /*
+     * Drive out of start
+     */
+    driveForTime.execute();
+
+    /*
+     * Drive to wall
+     */
+    driveTilBump.execute();
+
+    /*
+     * Drive to corner
+     */
+    driveTilBump.changeHeading(270);
+    driveTilBump.changeBumpDirection(RobotRight);
+    driveTilBump.execute();
+
+}
