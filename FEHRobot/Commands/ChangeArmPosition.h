@@ -9,6 +9,10 @@ class ChangeArmPosition :
 public:
     ChangeArmPosition(Robot &robot_, ArmPosition armPosition_, int ms);
     ChangeArmPosition(Robot &robot_, ArmPosition armPosition_, float sec);
+
+    int selectArmPosition(ArmPosition armPosition_);
+    int selectWaitTime(int ms);
+    int selectWaitTime(float sec);
 private:
     Robot robot;
 
