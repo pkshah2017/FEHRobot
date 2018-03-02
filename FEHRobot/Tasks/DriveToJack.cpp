@@ -5,6 +5,7 @@ DriveToJack::DriveToJack(Robot &robot_):
     driveForTime(robot_, 0, 50, 1000),
     driveTilBump(robot_, 315, 50, RobotFront)
 {
+    robot = robot_
 }
 
 int DriveToJack::execute(){
