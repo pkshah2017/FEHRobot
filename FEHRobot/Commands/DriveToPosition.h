@@ -9,6 +9,9 @@ class DriveToPosition :
 {
 public:
     DriveToPosition(Robot &robot_, float x_, float y_);
+
+    int changeXSetpoint(float x_);
+    int changeYSetpoint(float y_);
 private:
     Robot robot;
     float x;

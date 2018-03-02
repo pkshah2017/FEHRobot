@@ -11,6 +11,14 @@ DriveToPosition::DriveToPosition(Robot &robot_, float x_, float y_)
 
 }
 
+int DriveToPosition::changeXSetpoint(float x_){
+    x = x_;
+}
+
+int DriveToPosition::changeYSetpoint(float y_){
+    y = y_;
+}
+
 int DriveToPosition::initialize() {
     LCD.WriteLine("Init Drive To Position");
     currentX = robot.getX();
