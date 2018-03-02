@@ -11,7 +11,6 @@ public:
     LineFollowForTime(Robot &robot_, int power_, int ms_);
     LineFollowForTime(Robot &robot_, int power_, float sec);
 
-    int setRobot(Robot &robot_);
     int changePower(int newPower);
     int changeDriveTime(int newTime);
     int changeDriveTime(float newTime);

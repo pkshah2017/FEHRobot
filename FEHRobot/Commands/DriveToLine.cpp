@@ -7,10 +7,6 @@ DriveToLine::DriveToLine(Robot &robot_, int power_)
     power = power_;
 }
 
-int DriveToLine::setRobot(Robot &robot_){
-    robot = robot_;
-}
-
 int DriveToLine::initialize() {
     int status = updateLineFollowerState();
 

@@ -11,10 +11,6 @@ WaitForTime::WaitForTime(Robot &robot_, int ms)
     constructor(robot_, ms/1000.0);
 }
 
-int WaitForTime::setRobot(Robot &robot_){
-    robot = robot_;
-}
-
 int WaitForTime::constructor(Robot &robot_, float sec_){
     robot = robot_;
     timeToWait = sec_;

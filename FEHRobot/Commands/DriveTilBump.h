@@ -9,7 +9,6 @@ class DriveTilBump :
 public:
     DriveTilBump(Robot &robot_, int heading_, int power_, Direction direction_);
 
-    int setRobot(Robot &robot_);
     int changeHeading(int newHeading);
     int changePower(int newPower);
     int changeBumpDirection(Direction direction_);

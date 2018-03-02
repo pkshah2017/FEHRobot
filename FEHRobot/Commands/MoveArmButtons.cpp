@@ -9,10 +9,6 @@ MoveArmButtons::MoveArmButtons(Robot &robot_)
     LightStatus = 5;
 }
 
-int MoveArmButtons::setRobot(Robot &robot_){
-    robot = robot_;
-}
-
 int MoveArmButtons::initialize() {
     robot.updateSensorStates();
 
