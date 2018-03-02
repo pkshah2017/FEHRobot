@@ -6,15 +6,10 @@
 class Task
 {
 private:
-    Command* commandArray[MAX_COMMANDS];
-    int addIndex;
-    int runIndex;
-
-    virtual int commandFailureRecovery(int error);
+    virtual int checkStatus(int status);
 public:
     Task();
-	int execute();
-    int addCommand(Command* command);
+    virtual int execute() = 0;
 };
 
 #endif
