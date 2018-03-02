@@ -23,6 +23,14 @@ int TurnForTime::changePower(int newPower){
     power = newPower;
 }
 
+int TurnForTime::changeDriveTime(int newTime){
+    timeToWait = newTime/1000.0;
+}
+
+int TurnForTime::changeDriveTime(float newTime){
+    timeToWait = newTime;
+}
+
 int TurnForTime::initialize() {
     startTime = TimeNow();
 
