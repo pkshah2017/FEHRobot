@@ -5,6 +5,7 @@
 #include "Robot.h"
 #include "Commands/DriveForTime.h"
 #include "Commands/WaitForLight.h"
+#include "Commands/CommandList.h"
 
 class DriveToWrench :
     public Task
@@ -14,9 +15,8 @@ public:
 private:
     Robot robot;
 
-    WaitForLight waitToStart;
-    DriveForTime leaveStart;
-    DriveForTime goToWrench;
+    WaitForLight waitForLight;
+    DriveForTime driveForTime;
 };
 
 #endif
