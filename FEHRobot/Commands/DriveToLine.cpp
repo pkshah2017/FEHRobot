@@ -7,6 +7,51 @@ DriveToLine::DriveToLine(Robot &robot_, int power_)
     power = power_;
 }
 
+int DriveToLine::initialize() {
+    int status = updateLineFollowerState();
+
+    return status;
+}
+
+int DriveToLine::run() {
+    int status = updateLineFollowerState(99, 99, 99);
+
+    switch(lineFollowStatus){
+    case OFF_ON_OFF:
+        //Should never happen
+        return 6;
+        break;
+    case ON_ON_OFF:
+        robot.turn(-25);
+        break;
+    case ON_OFF_OFF:
+        robot.turn(-25);
+        break;
+    case OFF_ON_ON:
+        robot.turn(25);
+        break;
+    case OFF_OFF_ON:
+        robot.turn(25);
+        break;
+    case OFF_OFF_OFF:
+        robot.drive(0, power);
+        break;
+    }
+
+    return status;
+}
+
+bool DriveToLine::isFinished() {
+    return lineFollowStatus == ON_ON_ON;
+}
+
+int DriveToLine::completion(){
+    robot.stop();
+
+    return 0;
+}
+
+
 int DriveToLine::updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold){
     robot.updateSensorStates();
 
@@ -34,47 +79,5 @@ int DriveToLine::updateLineFollowerState(float leftThreshold, float centerThresh
     {
         lineFollowStatus = OFF_OFF_OFF;
     }
-    return 0;
-}
-
-int DriveToLine::initialize() {
-    return 0;
-}
-
-int DriveToLine::run() {
-    updateLineFollowerState(99, 99, 99);
-
-    switch(lineFollowStatus){
-    case OFF_ON_OFF:
-        //Should never happen
-        return 6;
-        break;
-    case ON_ON_OFF:
-        robot.turn(-25);
-        break;
-    case ON_OFF_OFF:
-        robot.turn(-25);
-        break;
-    case OFF_ON_ON:
-        robot.turn(25);
-        break;
-    case OFF_OFF_ON:
-        robot.turn(25);
-        break;
-    case OFF_OFF_OFF:
-        robot.drive(0, power);
-        break;
-    }
-
-    return 0;
-}
-
-bool DriveToLine::isFinished() {
-    return lineFollowStatus == ON_ON_ON;
-}
-
-int DriveToLine::completion(){
-    robot.stop();
-
     return 0;
 }
