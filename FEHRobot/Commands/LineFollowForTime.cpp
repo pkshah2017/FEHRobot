@@ -17,6 +17,18 @@ int LineFollowForTime::constructor(Robot &robot_, int power_, float sec_){
     timeToWait = sec_;
 }
 
+int LineFollowForTime::changePower(int newPower){
+    power = newPower;
+}
+
+int LineFollowForTime::changeDriveTime(int newTime){
+    timeToWait = newTime/1000.0;
+}
+
+int LineFollowForTime::changeDriveTime(float newTime){
+    timeToWait = newTime;
+}
+
 int LineFollowForTime::updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold){
     robot.updateSensorStates();
 

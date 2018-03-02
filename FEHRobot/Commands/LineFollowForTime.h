@@ -10,6 +10,10 @@ class LineFollowForTime :
 public:
     LineFollowForTime(Robot &robot_, int power_, int ms_);
     LineFollowForTime(Robot &robot_, int power_, float sec);
+
+    int changePower(int newPower);
+    int changeDriveTime(int newTime);
+    int changeDriveTime(float newTime);
 private:
     Robot robot;
     int power;
