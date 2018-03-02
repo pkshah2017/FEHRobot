@@ -9,6 +9,18 @@ DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Direction di
     direction = direction_;
 }
 
+int DriveTilBump::changeHeading(int newHeading){
+    heading = newHeading;
+}
+
+int DriveTilBump::changePower(int newPower){
+    power = newPower;
+}
+
+int DriveTilBump::changeBumpDirection(Direction direction_){
+    direction = direction_;
+}
+
 int DriveTilBump::initialize() {
     startTime = TimeNow();
     robot.updateSensorStates();
