@@ -33,6 +33,7 @@ Commands/WaitForLight.h
 Commands/WaitForLight.cpp
 Commands/WaitForTime.h
 Commands/WaitForTime.cpp
+Commands/CommandList.cpp
 Tasks/Task.h
 Tasks/Task.cpp
 Tasks/DriveToWrench.h
