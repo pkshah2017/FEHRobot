@@ -5,46 +5,107 @@
 //If light is blue, values are modified in failure recovery
 PressButtons::PressButtons(Robot &robot_):
     moveArmButtons(robot_),
-    moveToButtons(robot_, 0, 50, 0),
-    touchButtons(robot_, 340, 50, 500),
-    turnIntoButtons(robot_, -25, 250),
-    holdButtons(robot_, 2000),
-    backSlightyAwayFromButtons(robot_, 180, 50, 150),
-    hitButtonsAgain(robot_, 0, 50, 350),
-    backAwayFromButtons(robot_, 180, 50, 250),
-    raiseArm(robot_, ArmUp, 0),
-    moveToWrench(robot_, 270, 50, 3800),
-    lowerArm(robot_, ArmRight, 1000),
-    liftWrench(robot_, ArmUp, 1000),
-    moveTowardStart(robot_, 90, 50, 2250),
-    pressFinalButton(robot_, 180, 50, 1950)
+    driveForTime(robot_, 0, 50, 0),
+    turnForTime(robot_, -25, 250),
+    waitForTime(robot_, 2000),
+    changeArmPosition(robot_, ArmRight, 1000)
 {
     robot = robot_;
-    addCommand(&moveArmButtons);
-    addCommand(&moveToButtons);
-    addCommand(&touchButtons);
-    addCommand(&turnIntoButtons);
-    addCommand(&holdButtons);
-    addCommand(&backSlightyAwayFromButtons);
-    addCommand(&hitButtonsAgain);
-    addCommand(&backAwayFromButtons);
-    addCommand(&raiseArm);
-    addCommand(&moveToWrench);
-    addCommand(&lowerArm);
-    addCommand(&liftWrench);
-    addCommand(&moveTowardStart);
-    addCommand(&pressFinalButton);
+    buttonColor = Red;
 }
 
-int PressButtons::commandFailureRecovery(int error){
-    if(error == 3){
-        touchButtons.changeHeading(10);
-        turnIntoButtons.changePower(25);
-        //moveToWrench.changeDriveTime(4000);
-    }
-    if(error >= 3 && error <= 5){
-        error = 0;
-    }
+int PressButtons::execute(){
+    int color = moveArmButtons.execute();
+    buttonColor = color == 3 ? Blue : Red;
+    /*
+     * Move To Buttons
+     */
+    driveForTime.changeHeading(buttonColor == Red ? 340 : 10);
+    driveForTime.changePower(50);
+    driveForTime.changeDriveTime(500);
+    driveForTime.execute();
 
-    return error;
+    /*
+     * Turn Into Buttons
+     */
+    turnForTime.changePower(buttonColor == Red ? -25 : 25);
+    turnForTime.changeDriveTime(250);
+    turnForTime.execute();
+
+    /*
+     * Hold Buttons
+     */
+    waitForTime.changeDriveTime(2000);
+
+    /*
+     * Back away slightly
+     */
+    driveForTime.changeHeading(180);
+    driveForTime.changePower(50);
+    driveForTime.changeDriveTime(150);
+    driveForTime.execute();
+
+    /*
+     * Hit buttons again
+     */
+    driveForTime.changeHeading(0);
+    driveForTime.changePower(50);
+    driveForTime.changeDriveTime(350);
+    driveForTime.execute();
+
+    /*
+     * Back away from buttons
+     */
+    driveForTime.changeHeading(180);
+    driveForTime.changePower(50);
+    driveForTime.changeDriveTime(250);
+    driveForTime.execute();
+
+    /*
+     * Raise Arm
+     */
+    changeArmPosition.selectArmPosition(ArmUp);
+    changeArmPosition.selectWaitTime(0);
+    changeArmPosition.execute();
+
+    /*
+     * Move To Wrench
+     */
+    driveForTime.changeHeading(270);
+    driveForTime.changePower(50);
+    driveForTime.changeDriveTime(3800);
+    driveForTime.execute();
+
+    /*
+     * Lower Arm on wrench
+     */
+    changeArmPosition.selectArmPosition(ArmRight);
+    changeArmPosition.selectWaitTime(1000);
+    changeArmPosition.execute();
+
+    /*
+    * Raise Arm with wrench
+    */
+    changeArmPosition.selectArmPosition(ArmUp);
+    changeArmPosition.selectWaitTime(1000);
+    changeArmPosition.execute();
+
+    /*
+    * Move Toward Finish
+    */
+    driveForTime.changeHeading(90);
+    driveForTime.changePower(50);
+    driveForTime.changeDriveTime(2250);
+    driveForTime.execute();
+
+    /*
+    * Hit final button
+    */
+    driveForTime.changeHeading(180);
+    driveForTime.changePower(50);
+    driveForTime.changeDriveTime(1950);
+    driveForTime.execute();
+
+    return 0;
 }
+

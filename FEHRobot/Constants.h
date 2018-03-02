@@ -44,6 +44,11 @@ typedef enum {
 //TASK CONSTANTS
 #define MAX_COMMANDS 20
 
+//Press Buttons Constants
+typedef enum {
+    Blue, Red
+} ButtonColor;
+
 //SUBPROGRAM CONSTANTS
 #define MAX_TASKS 20
 
