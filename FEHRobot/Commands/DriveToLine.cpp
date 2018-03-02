@@ -8,7 +8,7 @@ DriveToLine::DriveToLine(Robot &robot_, int power_)
 }
 
 int DriveToLine::initialize() {
-    int status = updateLineFollowerState();
+    int status = updateLineFollowerState(99, 99, 99);
 
     return status;
 }

@@ -21,9 +21,6 @@ private:
     TurnForTime turnForTime;
     WaitForTime waitForTime;
     ChangeArmPosition changeArmPosition;
-
-    virtual int checkStatus(int status);
-
 };
 
 #endif
