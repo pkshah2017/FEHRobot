@@ -3,21 +3,20 @@
 
 #include "Task.h"
 #include "Robot.h"
-#include "Commands/DriveForTime.h"
-#include "Commands/CenterOnLine.h"
-#include "Commands/WaitForLight.h"
+#include "Commands/CommandList.h"
 
 class DriveToButtons :
     public Task
 {
 public:
     DriveToButtons(Robot &robot_);
+
+    virtual int execute();
 private:
     Robot robot;
 
-    WaitForLight waitToStart;
-    DriveForTime leaveStart;
-    DriveForTime goToButtons;
+    WaitForLight waitForLight;
+    DriveForTime driveForTime;
     CenterOnLine centerOnLine;
 };
 
