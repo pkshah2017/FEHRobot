@@ -3,7 +3,7 @@
 Arm::Arm()
     : arm(FEHServo::Servo0)
 {
-    arm.SetMin(557);
+    arm.SetMin(527);
     arm.SetMax(2348);
 }
 
@@ -20,6 +20,9 @@ int Arm::setArmPosition(ArmPosition armPosition){
         break;
     case ArmAngledRight:
         arm.SetDegree(ARM_ANGLED_RIGHT_ANGLE);
+        break;
+    case ArmSlightlyRaised:
+        arm.SetDegree(ARM_SLIGHTLY_RAISED_ANGLE);
         break;
     default:
         return 2;

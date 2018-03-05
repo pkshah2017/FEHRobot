@@ -18,6 +18,7 @@ private:
     float y;
     float currentX;
     float currentY;
+    float startTime;
 
     virtual int initialize();
     virtual int run();

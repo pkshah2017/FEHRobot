@@ -20,6 +20,7 @@ private:
     WaitForTime waitForTime;
     ChangeArmPosition changeArmPosition;
     DriveTilBump driveTilBump;
+    DriveToLine driveToLine;
 };
 
 #endif

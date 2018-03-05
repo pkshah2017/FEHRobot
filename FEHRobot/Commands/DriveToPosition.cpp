@@ -20,11 +20,9 @@ int DriveToPosition::changeYSetpoint(float y_){
 }
 
 int DriveToPosition::initialize() {
-    LCD.WriteLine("Init Drive To Position");
     currentX = robot.getX();
     currentY = robot.getY();
 
-    LCD.WriteLine("Got Robot Position");
     LCD.WriteLine(currentX);
     LCD.WriteLine(currentY);
 
@@ -35,10 +33,6 @@ int DriveToPosition::run() {
     robot.updateRPSStates();
     currentX = robot.getX();
     currentY = robot.getY();
-
-    LCD.WriteLine("Current Robot Position");
-    LCD.WriteLine(currentX);
-    LCD.WriteLine(currentY);
 
     float deltaX = x - currentX;
     float deltaY = y - currentY;
@@ -54,10 +48,7 @@ int DriveToPosition::run() {
     }
     heading += 90;
 
-
-    LCD.WriteLine("Heading is");
-    LCD.WriteLine(heading);
-    robot.drive(heading, 40);
+    robot.drive(heading, 30);
 
     return 0;
 }
@@ -68,9 +59,7 @@ bool DriveToPosition::isFinished() {
 
     float error = sqrt(deltaX * deltaX + deltaY * deltaY);
 
-    LCD.WriteLine("Checking end status");
-    LCD.WriteLine(error);
-    return abs(error) < POSITION_TOLERANCE;
+    return abs(error) <= POSITION_TOLERANCE;
 }
 
 int DriveToPosition::completion(){

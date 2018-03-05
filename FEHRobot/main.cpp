@@ -1,14 +1,17 @@
 #include "Robot.h"
 #include "SubPrograms/Jack.h"
 #include "SubPrograms/Buttons.h"
+#include "Subprograms/Wrench.h"
 #include <FEHRPS.h>
 
 int main(void)
 {
-   // RPS.InitializeTouchMenu();
+    RPS.InitializeTouchMenu();
     Robot robot;
-    Buttons buttons(robot);
-    buttons.execute();
+    Wrench wrench(robot);
+    wrench.execute();
+   // Buttons buttons(robot);
+   // buttons.execute();
     //Jack jack(robot);
     //jack.execute();
     /*

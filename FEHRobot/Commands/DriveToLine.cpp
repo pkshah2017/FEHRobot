@@ -8,13 +8,13 @@ DriveToLine::DriveToLine(Robot &robot_, int power_)
 }
 
 int DriveToLine::initialize() {
-    int status = updateLineFollowerState(99, 99, 99);
+    int status = updateLineFollowerState(2.75, 2.5, 2.3);
 
     return status;
 }
 
 int DriveToLine::run() {
-    int status = updateLineFollowerState(99, 99, 99);
+    int status = updateLineFollowerState(2.75, 2.5, 2.3);
 
     switch(lineFollowStatus){
     case OFF_ON_OFF:
@@ -34,7 +34,7 @@ int DriveToLine::run() {
         robot.turn(25);
         break;
     case OFF_OFF_OFF:
-        robot.drive(0, power);
+        robot.drive(180, power);
         break;
     }
 
@@ -72,12 +72,16 @@ int DriveToLine::updateLineFollowerState(float leftThreshold, float centerThresh
     else if (right > rightTheshold && center > centerThreshold && left < leftThreshold) {
         lineFollowStatus = ON_ON_OFF; // update a new state
     }
-    else if (right > rightTheshold && center <centerThreshold && left < leftThreshold) {
+    else if (right > rightTheshold && center < centerThreshold && left < leftThreshold) {
         lineFollowStatus = ON_OFF_OFF; // update a new state
+    }
+    else if (right < rightTheshold && center < centerThreshold && left < leftThreshold)
+    {
+        lineFollowStatus = OFF_OFF_OFF;
     }
     else
     {
-        lineFollowStatus = OFF_OFF_OFF;
+        lineFollowStatus = ON_ON_ON;
     }
     return 0;
 }

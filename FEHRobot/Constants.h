@@ -6,9 +6,10 @@
 #define ARM_RIGHT_ANGLE 0
 #define ARM_UP_ANGLE 90
 #define ARM_ANGLED_RIGHT_ANGLE 45
+#define ARM_SLIGHTLY_RAISED_ANGLE 20
 
 typedef enum {
-    ArmLeft, ArmRight, ArmUp, ArmAngledRight
+    ArmLeft, ArmRight, ArmUp, ArmAngledRight, ArmSlightlyRaised
 } ArmPosition;
 
 
@@ -32,7 +33,7 @@ typedef enum {
 #define TIMEOUT 5000.0
 
 //DRIVE TO POSITION CONSTANTS
-#define POSITION_TOLERANCE 1.5
+#define POSITION_TOLERANCE 1.0
 
 //Move Arm Constants
 #define MOVE_ARM_WAIT 2.0
