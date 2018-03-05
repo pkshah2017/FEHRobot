@@ -32,6 +32,7 @@ int DriveToPosition::initialize() {
 }
 
 int DriveToPosition::run() {
+    robot.updateRPSStates();
     currentX = robot.getX();
     currentY = robot.getY();
 

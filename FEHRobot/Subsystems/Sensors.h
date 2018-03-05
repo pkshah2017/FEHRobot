@@ -23,6 +23,12 @@ private:
     float leftOptoState;
     float centerOptoState;
     float rightOptoState;
+
+    int fuelType;
+    int deadzoneStatus;
+    float robotX;
+    float robotY;
+    float robotHeading;
 public:
     Sensors();
 
@@ -36,11 +42,12 @@ public:
     float getCenterOpto();
     float getRightOpto();
 
-    int fuelType();
+    int updateRPSState();
+    int getFuelType();
     int isDeadzoneActive();
-    float robotX();
-    float robotY();
-    float robotHeading();
+    float getRobotX();
+    float getRobotY();
+    float getRobotHeading();
 
 };
 

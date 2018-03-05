@@ -6,7 +6,11 @@ Robot::Robot()
 }
 
 int Robot::updateSensorStates() {
-    sensors.updateSensorStates();
+    return sensors.updateSensorStates();
+}
+
+int Robot::updateRPSStates() {
+    return sensors.updateRPSState();
 }
 
 bool Robot::getLimit(Direction direction) {
@@ -48,19 +52,19 @@ float Robot::getCDSState(){
 }
 
 float Robot::getX(){
-    return sensors.robotX();
+    return sensors.getRobotX();
 }
 
 float Robot::getY(){
-    return sensors.robotY();
+    return sensors.getRobotY();
 }
 
 float Robot::getHeading(){
-    return sensors.robotHeading();
+    return sensors.getRobotHeading();
 }
 
 int Robot::getFuelType(){
-    return sensors.fuelType();
+    return sensors.getFuelType();
 }
 
 int Robot::getDeadzoneStatus(){

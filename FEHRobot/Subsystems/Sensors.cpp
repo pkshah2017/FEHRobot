@@ -51,24 +51,30 @@ float Sensors::getRightOpto() {
     return rightOptoState;
 }
 
-int Sensors::fuelType(){
-    //return RPS.FuelType();
-    return 0;
+int Sensors::updateRPSState(){
+    fuelType = RPS.FuelType();
+    deadzoneStatus = RPS.IsDeadzoneActive();
+    robotX = RPS.X();
+    robotY = RPS.Y();
+    robotHeading = RPS.Heading();
+}
+
+int Sensors::getFuelType(){
+    return fuelType;
 }
 
 int Sensors::isDeadzoneActive(){
-    //return RPS.IsDeadzoneActive();
-    return 0;
+    return deadzoneStatus;
 }
 
-float Sensors::robotX(){
-    return RPS.X();
+float Sensors::getRobotX(){
+    return robotX;
 }
 
-float Sensors::robotY(){
-    return RPS.Y();
+float Sensors::getRobotY(){
+    return robotY;
 }
 
-float Sensors::robotHeading(){
-    return RPS.Heading();
+float Sensors::getRobotHeading(){
+    return robotHeading;
 }

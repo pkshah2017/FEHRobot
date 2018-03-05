@@ -16,6 +16,7 @@ public:
     Robot();
 
     int updateSensorStates();
+    int updateRPSStates();
 
     bool getLimit(Direction direction);
     float getCDSState();
