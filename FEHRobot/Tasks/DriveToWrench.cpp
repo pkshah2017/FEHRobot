@@ -2,7 +2,8 @@
 
 DriveToWrench::DriveToWrench(Robot &robot_):
     waitForLight(robot_),
-    driveForTime(robot_, 0, 50, 1350)
+    driveForTime(robot_, 0, 50, 1350),
+    driveToPosition(robot_, 0, 0)
 {
     robot = robot_;
 }

@@ -5,7 +5,6 @@
 //If light is blue, values are modified in failure recovery
 PressButtons::PressButtons(Robot &robot_):
     readButtonLight(robot_),
-    moveArmButtons(robot_),
     driveForTime(robot_, 0, 50, 0),
     turnForTime(robot_, -25, 250),
     waitForTime(robot_, 2000),

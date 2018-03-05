@@ -17,7 +17,7 @@ private:
 
     WaitForLight waitForLight;
     DriveForTime driveForTime;
-    DriveToPosition DriveToPosition;
+    DriveToPosition driveToPosition;
 };
 
 #endif

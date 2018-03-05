@@ -10,7 +10,7 @@ class Wrench :
     public Subprogram
 {
 public:
-    Jack(Robot &robot_);
+    Wrench(Robot &robot_);
 private:
     Robot robot;
 
