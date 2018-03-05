@@ -16,6 +16,7 @@ private:
     Robot robot;
     ButtonColor buttonColor;
 
+    ReadButtonLight readButtonLight;
     MoveArmButtons moveArmButtons;
     DriveForTime driveForTime;
     TurnForTime turnForTime;

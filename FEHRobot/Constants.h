@@ -46,7 +46,7 @@ typedef enum {
 
 //Press Buttons Constants
 typedef enum {
-    Blue, Red
+    Blue, Red, Undefined
 } ButtonColor;
 
 //SUBPROGRAM CONSTANTS

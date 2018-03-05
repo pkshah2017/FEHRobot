@@ -1,20 +1,17 @@
-#ifndef MOVEARMBUTTONS
-#define MOVEARMBUTTONS
+#ifndef READBUTTONLIGHT
+#define READBUTTONLIGHT
 
 #include "Command.h"
 #include "Robot.h"
-class MoveArmButtons :
+class ReadButtonLight :
     public Command
 {
 public:
-    MoveArmButtons(Robot &robot_);
+    ReadButtonLight(Robot &robot_);
 private:
     Robot robot;
 
-    float timeToWait;
-    float startTime;
-
-    int LightStatus;
+    ButtonColor buttonColor;
 
     virtual int initialize();
     virtual int run();

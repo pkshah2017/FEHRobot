@@ -4,6 +4,7 @@
 //All commands are initalized assuming the light will be red
 //If light is blue, values are modified in failure recovery
 PressButtons::PressButtons(Robot &robot_):
+    readButtonLight(robot_),
     moveArmButtons(robot_),
     driveForTime(robot_, 0, 50, 0),
     turnForTime(robot_, -25, 250),
@@ -15,8 +16,17 @@ PressButtons::PressButtons(Robot &robot_):
 }
 
 int PressButtons::execute(){
-    int color = moveArmButtons.execute();
-    buttonColor = color == 3 ? Blue : Red;
+    /*
+     * Read the button color
+     */
+    buttonColor = static_cast<ButtonColor>(readButtonLight.execute());
+    /*
+     * Change the arm position to press the button
+     */
+    ArmPosition buttonPosition = buttonColor == Blue ? ArmLeft : ArmRight;
+    changeArmPosition.selectArmPosition(buttonPosition);
+    changeArmPosition.selectWaitTime(1000);
+    changeArmPosition.execute();
     /*
      * Move To Buttons
      */

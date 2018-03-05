@@ -5,6 +5,7 @@
 #include "Commands/DriveToLine.h"
 #include "Commands/DriveToPosition.h"
 #include "Commands/LineFollowForTime.h"
+#include "Commands/ReadButtonLight.h"
 #include "Commands/TurnForTime.h"
 #include "Commands/WaitForLight.h"
 #include "Commands/WaitForTime.h"
