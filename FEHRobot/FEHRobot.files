@@ -38,7 +38,9 @@ Tasks/Task.h
 Tasks/Task.cpp
 Tasks/DriveToWrench.h
 Tasks/DriveToWrench.cpp
-Tasks/DriveToButtons.h
+Tasks/DriveToWrench.h
+Tasks/PickUpWrench.cpp
+Tasks/PickUpWrench.h
 Tasks/DriveToButtons.cpp
 Tasks/PressButtons.h
 Tasks/PressButtons.cpp
@@ -52,3 +54,5 @@ SubPrograms/Jack.h
 SubPrograms/Jack.cpp
 SubPrograms/Buttons.h
 SubPrograms/Buttons.cpp
+SubPrograms/Wrench.h
+SubPrograms/Wrench.cpp

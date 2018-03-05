@@ -3,8 +3,6 @@
 
 #include "Task.h"
 #include "Robot.h"
-#include "Commands/DriveForTime.h"
-#include "Commands/WaitForLight.h"
 #include "Commands/CommandList.h"
 
 class DriveToWrench :
@@ -19,6 +17,7 @@ private:
 
     WaitForLight waitForLight;
     DriveForTime driveForTime;
+    DriveToPosition DriveToPosition;
 };
 
 #endif
