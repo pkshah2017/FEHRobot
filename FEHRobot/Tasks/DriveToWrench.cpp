@@ -32,7 +32,7 @@ int DriveToWrench::execute(){
     /*
      * Drive to wrench
      */
-    driveToPosition.changeXSetpoint(7.7);
+    driveToPosition.changeXSetpoint(8.1);
     driveToPosition.changeYSetpoint(21.3);
     driveToPosition.execute();
 }

@@ -20,6 +20,7 @@ int DriveToPosition::changeYSetpoint(float y_){
 }
 
 int DriveToPosition::initialize() {
+    robot.updateRPSStates();
     currentX = robot.getX();
     currentY = robot.getY();
 
