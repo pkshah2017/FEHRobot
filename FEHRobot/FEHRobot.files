@@ -7,6 +7,8 @@ Subsystems/Sensors.h
 Subsystems/Sensors.cpp
 Subsystems/Arm.h
 Subsystems/Arm.cpp
+Subsystems/RPSLocations.h
+Subsystems/RPSLocations.cpp
 Robot.h
 Robot.cpp
 Commands/Command.h
