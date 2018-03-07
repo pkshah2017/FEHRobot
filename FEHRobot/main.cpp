@@ -8,12 +8,12 @@ int main(void)
 {
     RPS.InitializeTouchMenu();
     Robot robot;
-    Wrench wrench(robot);
-    wrench.execute();
-   // Buttons buttons(robot);
-   // buttons.execute();
-    //Jack jack(robot);
-    //jack.execute();
+   Buttons buttons(robot);
+    buttons.execute();
+   Jack jack(robot);
+   jack.execute();
+   Wrench wrench(robot);
+   wrench.execute();
     /*
     LCD.WriteLine("Program Began");
     Robot robot;

@@ -13,21 +13,21 @@ int DriveToWrench::execute(){
     /*
      * Wait for start light
      */
-    waitForLight.execute();
+  //  waitForLight.execute();
 
-    /*
-     * Raise Arm
-     */
-    changeArmPosition.selectArmPosition(ArmUp);
-    changeArmPosition.selectWaitTime(500);
-    changeArmPosition.execute();
+//    /*
+//     * Raise Arm
+//     */
+//    changeArmPosition.selectArmPosition(ArmUp);
+//    changeArmPosition.selectWaitTime(500);
+//    changeArmPosition.execute();
 
-    /*
-     * Drive out of start
-     */
-    driveToPosition.changeXSetpoint(17.2);
-    driveToPosition.changeYSetpoint(21.3);
-    driveToPosition.execute();
+//    /*
+//     * Drive out of start
+//     */
+//    driveToPosition.changeXSetpoint(17.2);
+//    driveToPosition.changeYSetpoint(21.3);
+//    driveToPosition.execute();
 
     /*
      * Drive to wrench

@@ -77,43 +77,43 @@ int PressButtons::execute(){
     changeArmPosition.selectWaitTime(0);
     changeArmPosition.execute();
 
-    /*
-     * Move To Wrench
-     */
-    driveForTime.changeHeading(270);
-    driveForTime.changePower(50);
-    driveForTime.changeDriveTime(3800);
-    driveForTime.execute();
+//    /*
+//     * Move To Wrench
+//     */
+//    driveForTime.changeHeading(270);
+//    driveForTime.changePower(50);
+//    driveForTime.changeDriveTime(3800);
+//    driveForTime.execute();
 
-    /*
-     * Lower Arm on wrench
-     */
-    changeArmPosition.selectArmPosition(ArmRight);
-    changeArmPosition.selectWaitTime(1000);
-    changeArmPosition.execute();
+//    /*
+//     * Lower Arm on wrench
+//     */
+//    changeArmPosition.selectArmPosition(ArmRight);
+//    changeArmPosition.selectWaitTime(1000);
+//    changeArmPosition.execute();
 
-    /*
-    * Raise Arm with wrench
-    */
-    changeArmPosition.selectArmPosition(ArmUp);
-    changeArmPosition.selectWaitTime(1000);
-    changeArmPosition.execute();
+//    /*
+//    * Raise Arm with wrench
+//    */
+//    changeArmPosition.selectArmPosition(ArmUp);
+//    changeArmPosition.selectWaitTime(1000);
+//    changeArmPosition.execute();
 
-    /*
-    * Move Toward Finish
-    */
-    driveForTime.changeHeading(90);
-    driveForTime.changePower(50);
-    driveForTime.changeDriveTime(2250);
-    driveForTime.execute();
+//    /*
+//    * Move Toward Finish
+//    */
+//    driveForTime.changeHeading(90);
+//    driveForTime.changePower(50);
+//    driveForTime.changeDriveTime(2250);
+//    driveForTime.execute();
 
-    /*
-    * Hit final button
-    */
-    driveForTime.changeHeading(180);
-    driveForTime.changePower(50);
-    driveForTime.changeDriveTime(1950);
-    driveForTime.execute();
+//    /*
+//    * Hit final button
+//    */
+//    driveForTime.changeHeading(180);
+//    driveForTime.changePower(50);
+//    driveForTime.changeDriveTime(1950);
+//    driveForTime.execute();
 
     return 0;
 }

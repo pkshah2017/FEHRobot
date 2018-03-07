@@ -15,7 +15,6 @@ public:
 private:
     Robot robot;
 
-    WaitForLight waitForLight;
     DriveForTime driveForTime;
     DriveTilBump driveTilBump;
 };
