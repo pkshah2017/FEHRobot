@@ -41,6 +41,7 @@ Tasks/DriveToWrench.cpp
 Tasks/DriveToWrench.h
 Tasks/PickUpWrench.cpp
 Tasks/PickUpWrench.h
+Tasks/DriveToButtons.h
 Tasks/DriveToButtons.cpp
 Tasks/PressButtons.h
 Tasks/PressButtons.cpp

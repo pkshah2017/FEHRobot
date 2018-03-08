@@ -34,12 +34,14 @@ int DriveToPosition::run() {
     robot.updateRPSStates();
     currentX = robot.getX();
     currentY = robot.getY();
+    float currentHeading = robot.getHeading();
 
     float deltaX = x - currentX;
     float deltaY = y - currentY;
 
     float error = sqrt(deltaX * deltaX + deltaY * deltaY);
     float heading = atan(deltaY/deltaX) * 180 / PI;
+    heading = ((int)(heading - currentHeading + 360)) % 360;
     if(deltaX < 0 && deltaY > 0){
         heading = 180 + heading;
     } else if(deltaX < 0 && deltaY < 0){

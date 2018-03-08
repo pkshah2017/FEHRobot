@@ -8,10 +8,10 @@ int main(void)
 {
     RPS.InitializeTouchMenu();
     Robot robot;
-    Wrench wrench(robot);
-    wrench.execute();
-   // Buttons buttons(robot);
-   // buttons.execute();
+   // Wrench wrench(robot);
+   // wrench.execute();
+   Buttons buttons(robot);
+    buttons.execute();
     //Jack jack(robot);
     //jack.execute();
     /*
