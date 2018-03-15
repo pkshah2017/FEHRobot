@@ -8,12 +8,12 @@ Command::Command()
 
 int Command::execute() {
     int errorCode = initialize();
-    if(errorCode != 0){
+    if(errorCode != SUCCESS){
         errorCode = initializeFailureRecovery(errorCode);
     }
-    while (errorCode == 0 && !isFinished()) {
+    while (errorCode == SUCCESS && !isFinished()) {
         int errorCode = run();
-        if(errorCode != 0){
+        if(errorCode != SUCCESS){
             errorCode = runFailureRecovery(errorCode);
         }
 		Sleep(REFRESH_RATE);

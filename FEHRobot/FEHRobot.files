@@ -1,5 +1,7 @@
 ErrorStatusCodes.txt
 Constants.h
+SubPrograms/Menu.cpp
+SubPrograms/Menu.h
 main.cpp
 Subsystems/DriveTrain.cpp
 Subsystems/DriveTrain.h

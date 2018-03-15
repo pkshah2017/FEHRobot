@@ -12,10 +12,19 @@
 #define MOTOR_VOLTAGE 7.2
 #define PI 3.14159265358
 
-//ERROR CODES
-typedef enum {
-    Success,Timeout,InvalidInput, BlueLight, RedLight, LightNotDetected , ImpossibleCode
-} StatusCode;
+//typedef enum {
+//    Success,Timeout,InvalidInput, BlueLight, RedLight, LightNotDetected , ImpossibleCode
+//} StatusCode;
+
+//STATUS CODES
+#define SUCCESS 0
+#define TIMEOUT_CODE 1
+#define INVALID_INPUT 2
+#define BLUE_LIGHT 3
+#define RED_LIGHT 4
+#define LIGHT_NOT_DETECTED 5
+#define IMPOSSIBLE_CODE 6
+
 
 //ARM  POSITIONS
 typedef enum {
