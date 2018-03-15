@@ -8,6 +8,11 @@ DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Direction di
     power = power_;
     direction = direction_;
 }
+int DriveTilBump::setup(int newHeading, int newPower , Direction newDirection){
+ heading = newHeading;
+ power = newPower;
+ direction = newDirection;
+}
 
 int DriveTilBump::changeHeading(int newHeading){
     heading = newHeading;

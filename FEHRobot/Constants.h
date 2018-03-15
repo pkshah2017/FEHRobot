@@ -8,15 +8,21 @@
 #define ARM_ANGLED_RIGHT_ANGLE 45
 #define ARM_SLIGHTLY_RAISED_ANGLE 20
 
-typedef enum {
-    ArmLeft, ArmRight, ArmUp, ArmAngledRight, ArmSlightlyRaised
-} ArmPosition;
-
-
 //DRIVE TRAIN CONSTANTS
 #define MOTOR_VOLTAGE 7.2
 #define PI 3.14159265358
 
+//ERROR CODES
+typedef enum {
+    Success,Timeout,InvalidInput, BlueLight, RedLight, LightNotDetected , ImpossibleCode
+} StatusCode;
+
+//ARM  POSITIONS
+typedef enum {
+    ArmLeft, ArmRight, ArmUp, ArmAngledRight, ArmSlightlyRaised
+} ArmPosition;
+
+//BUMP SWITCHES
 typedef enum {
     RobotFront, RobotLeft, RobotRight
 } Direction;

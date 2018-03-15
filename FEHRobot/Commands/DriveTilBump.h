@@ -8,7 +8,7 @@ class DriveTilBump :
 {
 public:
     DriveTilBump(Robot &robot_, int heading_, int power_, Direction direction_);
-
+    int setup(int newHeading, int newPower,Direction newDirection);
     int changeHeading(int newHeading);
     int changePower(int newPower);
     int changeBumpDirection(Direction direction_);

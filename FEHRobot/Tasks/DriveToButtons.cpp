@@ -2,7 +2,7 @@
 
 DriveToButtons::DriveToButtons(Robot &robot_):
     waitForLight(robot_),
-    driveForTime(robot_, 0, 50, 1350),
+    driveForTime(robot_),
     centerOnLine(robot_)
 {
     robot = robot_;
@@ -17,14 +17,13 @@ int DriveToButtons::execute(){
     /*
      * Drive out of start
      */
+    driveForTime.setup(0,50,1350);
     driveForTime.execute();
-
 
     /*
      * Drive to buttons
      */
-    driveForTime.changeHeading(90);
-    driveForTime.changeDriveTime(1500);
+    driveForTime.setup(90,50,1500);
     driveForTime.execute();
 
     /*

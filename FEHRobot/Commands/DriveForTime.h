@@ -8,13 +8,9 @@ class DriveForTime :
     public Command
 {
 public:
-    DriveForTime(Robot &robot_, int heading_, int power_, int ms_);
-    DriveForTime(Robot &robot_, int heading_, int power_, float sec);
-
-    int changeHeading(int newHeading);
-    int changePower(int newPower);
-    int changeDriveTime(int newTime);
-    int changeDriveTime(float newTime);
+    DriveForTime(Robot &robot_);
+    void setup(int newHeading,int newPower, int newTime);
+    void setup(int newHeading,int newPower, float newTime);
 private:
     Robot robot;
     int heading;
