@@ -2,7 +2,7 @@
 
 DriveToButtons::DriveToButtons(Robot &robot_):
     waitForLight(robot_),
-    driveForTime(robot_),
+    driveForTime(robot_, 0, 50, 1350),
     centerOnLine(robot_)
 {
     robot = robot_;

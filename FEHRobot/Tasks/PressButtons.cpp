@@ -162,6 +162,50 @@ int PressButtons::execute(){
     driveToPosition.changeYSetpoint(30);
     driveToPosition.execute();
 
+    /*
+     * Code Below was for a PT Test.
+     * Remove once the actual full run code is developed.
+     * It is left in as a reference if needed.
+     */
+
+//    /*
+//     * Move To Wrench
+//     */
+//    driveForTime.changeHeading(270);
+//    driveForTime.changePower(50);
+//    driveForTime.changeDriveTime(3800);
+//    driveForTime.execute();
+
+//    /*
+//     * Lower Arm on wrench
+//     */
+//    changeArmPosition.selectArmPosition(ArmRight);
+//    changeArmPosition.selectWaitTime(1000);
+//    changeArmPosition.execute();
+
+//    /*
+//    * Raise Arm with wrench
+//    */
+//    changeArmPosition.selectArmPosition(ArmUp);
+//    changeArmPosition.selectWaitTime(1000);
+//    changeArmPosition.execute();
+
+//    /*
+//    * Move Toward Finish
+//    */
+//    driveForTime.changeHeading(90);
+//    driveForTime.changePower(50);
+//    driveForTime.changeDriveTime(2250);
+//    driveForTime.execute();
+
+//    /*
+//    * Hit final button
+//    */
+//    driveForTime.changeHeading(180);
+//    driveForTime.changePower(50);
+//    driveForTime.changeDriveTime(1950);
+//    driveForTime.execute();
+
     return 0;
 }
 
