@@ -12,8 +12,6 @@ int main(void)
     Robot robot;
     MainMenu.ChooseOption(robot);
 
-    //Wrench wrench(robot);
-    //wrench.execute();
 
 
     return 0;

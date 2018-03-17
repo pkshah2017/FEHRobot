@@ -21,6 +21,7 @@ private:
     TurnForTime turnForTime;
     WaitForTime waitForTime;
     ChangeArmPosition changeArmPosition;
+    DriveToPosition driveToPosition;
 };
 
 #endif
