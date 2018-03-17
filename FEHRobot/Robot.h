@@ -4,6 +4,7 @@
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Sensors.h"
 #include "Subsystems/Arm.h"
+#include "Subsystems/CrankArm.h"
 
 class Robot
 {
@@ -11,6 +12,7 @@ private:
 	DriveTrain driveTrain;
 	Sensors sensors;
     Arm arm;
+    CrankArm crankArm;
 public:
 
     Robot();
@@ -32,6 +34,7 @@ public:
     int stop();
 
     int setArmPosition(ArmPosition armPosition);
+    int setCrankArmPosition(ArmPosition ArmPosition);
 };
 
 #endif

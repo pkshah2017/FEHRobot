@@ -92,3 +92,7 @@ int Robot::stop() {
 int Robot::setArmPosition(ArmPosition armPosition){
     arm.setArmPosition(armPosition);
 }
+
+int Robot::setCrankArmPosition(ArmPosition armPosition){
+    crankArm.setArmPosition(armPosition);
+}
