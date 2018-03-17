@@ -5,14 +5,14 @@
  * Subsystem Constants
  */
 
-//Front Arm Position Angles
+//Arm Position Angles
 #define ARM_LEFT_ANGLE 180
 #define ARM_RIGHT_ANGLE 0
 #define ARM_UP_ANGLE 90
 #define ARM_ANGLED_RIGHT_ANGLE 45
 #define ARM_SLIGHTLY_RAISED_ANGLE 20
 
-//Front Arm Position Names
+//Arm Position Names
 typedef enum {
     ArmLeft, ArmRight, ArmUp, ArmAngledRight, ArmSlightlyRaised
 } ArmPosition;
