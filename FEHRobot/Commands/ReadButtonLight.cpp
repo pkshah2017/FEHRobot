@@ -19,15 +19,18 @@ StatusCode ReadButtonLight::initialize() {
         buttonColor = L_Red;
     }
 
+    LCD.WriteRC("LIGHT VALUE: ", 2 , 1);
+    LCD.WriteRC(buttonColor, 2 , 15);
     return Success;
 }
 
 StatusCode ReadButtonLight::run() {
+    LCD.WriteLine("RAN RUN FOR RBL");
     return Success;
 }
 
 bool ReadButtonLight::isFinished() {
-    return Success;
+    return true;
 }
 
 StatusCode ReadButtonLight::completion(){

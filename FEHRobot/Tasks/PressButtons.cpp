@@ -20,19 +20,30 @@ StatusCode PressButtons::execute(){
      * Read the button color
      */
     status = readButtonLight.execute();
+    LCD.WriteLine("Got Color");
     /*
      * Change the arm position to press the button
      */
-    ArmPosition buttonPosition;
+    ArmPosition buttonPosition = ArmRight;
     if(status == L_Red){
         buttonPosition = ArmRight;
+        status = Success;
     } else if(status == L_Blue){
         buttonPosition = ArmLeft;
+        status = Success;
     } else {
         status = E_UnreachableCode;
+        if(status != Success){
+            LCD.Write("ERROR CODE: ");
+            LCD.WriteLine((int)status);
+            LCD.Write("Description: ");
+            //LCD.WriteLine(errordesc[(int)status].message);
+        }
     }
+    LCD.WriteLine("Changing arm position");
     changeArmPosition.setup(buttonPosition, 1.0f);
     changeArmPosition.execute();
+    LCD.WriteLine("Changed arm position");
     /*
      * Move To Buttons
      */

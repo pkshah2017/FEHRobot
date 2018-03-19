@@ -3,12 +3,6 @@
 #include "FEHLCD.h"
 #include "FEHBattery.h"
 
-#include "SubPrograms/Jack.h"
-#include "SubPrograms/Buttons.h"
-#include "Subprograms/Wrench.h"
-
-Menu MainMenu;
-
 #define MAIN_MENU 0
 #define RUN_ALL 1
 #define TESTING_MENU 2
@@ -20,7 +14,7 @@ Menu MainMenu;
 #define BUTTONS_TASK 0
 #define JACK_TASK 1
 #define WRENCH_TASK 2
-#define GARAGE_TASK 3
+#define CRANK_TASK 3
 
 #define MENU_COLOR WHITE
 #define TEXT_COLOR GOLD
@@ -30,7 +24,18 @@ Menu MainMenu;
 #define SUCCESS_COLOR GREEN
 #define HEADER_COLOR BLUE
 #define DIAGNOSTIC_BACK_COLOR WHITE
-int mainMenu()
+
+
+Menu::Menu(Robot &robot_)
+    :buttons(robot_),
+      jack(robot_),
+      wrench(robot_),
+      crank(robot_)
+{
+
+}
+
+int  Menu::mainMenu()
 {
     LCD.Clear(BLACK);
     LCD.SetFontColor(WHITE);
@@ -75,7 +80,7 @@ int mainMenu()
     return currentMenu;
 }
 
-void booltoIcon(FEHIcon::Icon inputIcon, int input)
+void  Menu::booltoIcon(FEHIcon::Icon inputIcon, int input)
 {
     if (input)
     {
@@ -86,27 +91,30 @@ void booltoIcon(FEHIcon::Icon inputIcon, int input)
         inputIcon.ChangeLabelString("False");
     }
 }
-void updateIcon(FEHIcon::Icon inputIcon, float input)
+void  Menu::updateIcon(FEHIcon::Icon inputIcon, float input)
 {
 
     inputIcon.ChangeLabelFloat(input);
 
 }
 
-int runAll(Robot &robot_)
+int  Menu::runAll()
 {
-    Buttons buttons(robot_);
     LCD.Clear(BLACK);
     int currentMenu;
+
+
     buttons.execute();
+    jack.execute();
+    wrench.execute();
+    crank.execute();
 
     currentMenu = MAIN_MENU;
     return currentMenu;
 }
 
-int testingMenu(Robot &robot_)
+int  Menu::testingMenu()
 {
-
     LCD.Clear(BLACK);
 
     /* Create icons for DC motors menu */
@@ -119,7 +127,7 @@ int testingMenu(Robot &robot_)
     FEHIcon::DrawIconArray(Back, 1, 1, 1, 201, 1, 260, backLabel, MENU_COLOR, TEXT_COLOR);
 
     FEHIcon::Icon testingMenu[4];
-    char testingLabels[4][20] = {"Buttons","Jack","Wrench","Garage"};
+    char testingLabels[4][20] = {"Buttons","Jack","Wrench","Crank"};
     FEHIcon::DrawIconArray(testingMenu, 4, 1, 40, 1, 1, 1, testingLabels, MENU_COLOR, TEXT_COLOR);
 
     int currentMenu=TESTING_MENU, runTask =-1,n =-1;
@@ -132,19 +140,17 @@ int testingMenu(Robot &robot_)
             {
                 if (testingMenu[n].Pressed(x, y, 0))
                 {
-                    runTask = n+1;
+                    runTask = n;
                     testingMenu[n].WhilePressed(x, y);
                     break;
                 }
             }
-            Buttons buttonsTask(robot_);
-            Jack jack(robot_);
             switch (runTask)
             {
             case BUTTONS_TASK:
                 LCD.Clear(BLACK);
                 LCD.WriteLine("EXECUTE");
-                buttonsTask.execute();
+                buttons.execute();
                 currentMenu = MAIN_MENU;
                 break;
             case JACK_TASK:
@@ -154,11 +160,11 @@ int testingMenu(Robot &robot_)
                 currentMenu = MAIN_MENU;
                 break;
             case WRENCH_TASK:
-                // wrench.execute();
+                wrench.execute();
                 currentMenu = MAIN_MENU;
                 break;
-            case GARAGE_TASK:
-                // garage.execute();
+            case CRANK_TASK:
+                crank.execute();
                 currentMenu = MAIN_MENU;
                 break;
             }
@@ -173,7 +179,7 @@ int testingMenu(Robot &robot_)
     return currentMenu;
 }
 
-int diagnosticMenu(Robot &robot_){
+int  Menu::diagnosticMenu(){
     LCD.Clear(BLACK);
     float x,y;
     int currentMenu=DIAGNOSTIC;
@@ -216,7 +222,7 @@ int diagnosticMenu(Robot &robot_){
     }
     return currentMenu;
 }
-int RPSCheck(Robot &robot_){
+int  Menu::RPSCheck(){
     int currentMenu=RPS_CHECK;
     LCD.Clear(BLACK);
     float x,y;
@@ -247,12 +253,12 @@ int RPSCheck(Robot &robot_){
     }
     return currentMenu;
 }
-void clearSystemCheck(){
+void  Menu::clearSystemCheck(){
     LCD.SetFontColor(BLACK);
     LCD.FillRectangle(0,200,319,119);
     LCD.SetFontColor(TEXT_COLOR);
 }
-int systemCheck(Robot &robot_){
+int  Menu::systemCheck(){
     //successCount describes the total number of successful tests
     //it will actually be useful if I implement a timeout function
     int currentMenu=SYSTEM_CHECK, currentCheck =0,successCount =0;
@@ -288,8 +294,8 @@ int systemCheck(Robot &robot_){
     while(currentMenu==SYSTEM_CHECK)
     {
         robot_.updateSensorStates();
-        booltoIcon(microSwitch[3],robot_.getLimit(RobotFront));
-        booltoIcon(microSwitch[4],robot_.getLimit(RobotLeft));
+        booltoIcon(microSwitch[3],robot_.getLimit(RobotLeft));
+        booltoIcon(microSwitch[4],robot_.getLimit(RobotFront));
         booltoIcon(microSwitch[5],robot_.getLimit(RobotRight));
 
         updateIcon(optoSensors[3],robot_.getOpto(LeftOpto));
@@ -402,7 +408,7 @@ int systemCheck(Robot &robot_){
     return currentMenu;
 }
 
-int optoCheck(Robot &robot_){
+int  Menu::optoCheck(){
     int currentMenu=OPTO_CHECK;
     LCD.Clear(BLACK);
     float x,y;
@@ -435,9 +441,8 @@ int optoCheck(Robot &robot_){
     return currentMenu;
 }
 
-void Menu::ChooseOption(Robot &robot_)
+void Menu::ChooseOption()
 {
-    robot = robot_;
     int currentMenu=MAIN_MENU;
     //RPS.InitializeTouchMenu();
     while (true)
@@ -448,22 +453,22 @@ void Menu::ChooseOption(Robot &robot_)
             currentMenu = mainMenu();
             break;
         case RUN_ALL:
-            currentMenu = runAll(robot);
+            currentMenu = runAll();
             break;
         case TESTING_MENU:
-            currentMenu = testingMenu(robot);
+            currentMenu = testingMenu();
             break;
         case DIAGNOSTIC:
-            currentMenu = diagnosticMenu(robot);
+            currentMenu = diagnosticMenu();
             break;
         case RPS_CHECK:
-            currentMenu = RPSCheck(robot);
+            currentMenu = RPSCheck();
             break;
         case SYSTEM_CHECK:
-            currentMenu = systemCheck(robot);
+            currentMenu = systemCheck();
             break;
         case OPTO_CHECK:
-            currentMenu = optoCheck(robot);
+            currentMenu = optoCheck();
             break;
         }
     }

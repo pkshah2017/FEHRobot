@@ -1,7 +1,5 @@
 ErrorStatusCodes.txt
 Constants.h
-SubPrograms/Menu.cpp
-SubPrograms/Menu.h
 main.cpp
 Subsystems/DriveTrain.cpp
 Subsystems/DriveTrain.h
@@ -15,6 +13,8 @@ Subsystems/RPSLocations.h
 Subsystems/RPSLocations.cpp
 Robot.h
 Robot.cpp
+SubPrograms/Menu.h
+SubPrograms/Menu.cpp
 Commands/Command.h
 Commands/Command.cpp
 Commands/CommandList.h
