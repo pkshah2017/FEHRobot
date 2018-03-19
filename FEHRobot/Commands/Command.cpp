@@ -6,7 +6,7 @@ Command::Command()
 {
 }
 
-int Command::execute() {
+StatusCode Command::execute() {
     StatusCode errorCode = initialize();
     if(errorCode != Success){
         errorCode = initializeFailureRecovery(errorCode);

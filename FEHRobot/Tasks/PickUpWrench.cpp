@@ -15,7 +15,7 @@ PickUpWrench::PickUpWrench(Robot &robot_):
     robot = robot_;
 }
 
-int PickUpWrench::execute(){
+StatusCode PickUpWrench::execute(){
     /*
      * Change the arm position to grab wrench
      */
@@ -166,6 +166,6 @@ int PickUpWrench::execute(){
 //    driveForTime.changeDriveTime(1950);
 //    driveForTime.execute();
 
-    return 0;
+    return Success;
 }
 

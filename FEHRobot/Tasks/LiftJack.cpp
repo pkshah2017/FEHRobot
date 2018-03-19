@@ -6,8 +6,8 @@ LiftJack::LiftJack(Robot &robot_):
     robot = robot_;
 }
 
-int LiftJack::execute(){
-    int status = driveForTime.execute();
+StatusCode LiftJack::execute(){
+    StatusCode status = driveForTime.execute();
 
     return status;
 }

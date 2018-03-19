@@ -2,14 +2,15 @@
 #define TASK
 
 #include "Commands/Command.h"
+#include <FEHLCD.h>
 
 class Task
 {
 private:
-    virtual int checkStatus(int status);
+    virtual StatusCode checkStatus(StatusCode status);
 public:
     Task();
-    virtual int execute() = 0;
+    virtual StatusCode execute() = 0;
 };
 
 #endif

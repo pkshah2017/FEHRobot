@@ -11,10 +11,9 @@ class PressButtons :
 public:
     PressButtons(Robot &robot_);
 
-    virtual int execute();
+    virtual StatusCode execute();
 private:
     Robot robot;
-    ButtonColor buttonColor;
 
     ReadButtonLight readButtonLight;
     DriveForTime driveForTime;

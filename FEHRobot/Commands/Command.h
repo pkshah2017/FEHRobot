@@ -17,7 +17,7 @@ private:
     StatusCode printError(StatusCode errorCode);
 public:
     Command();
-    int execute();
+    StatusCode execute();
 };
 
 #endif

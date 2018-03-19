@@ -49,11 +49,6 @@ typedef enum {
  */
 #define MAX_COMMANDS 20
 
-//Button Colors
-typedef enum {
-    Blue, Red, Undefined
-} ButtonColor;
-
 /*
  * SubProgram Constants
  */

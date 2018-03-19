@@ -11,7 +11,7 @@ class DriveToWrench :
 public:
     DriveToWrench(Robot &robot_);
 
-    virtual int execute();
+    virtual StatusCode execute();
 private:
     Robot robot;
 

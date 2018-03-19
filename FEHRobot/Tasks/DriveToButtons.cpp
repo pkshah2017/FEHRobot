@@ -8,7 +8,7 @@ DriveToButtons::DriveToButtons(Robot &robot_):
     robot = robot_;
 }
 
-int DriveToButtons::execute(){
+StatusCode DriveToButtons::execute(){
     /*
      * Wait for start light
      */
@@ -17,13 +17,13 @@ int DriveToButtons::execute(){
     /*
      * Drive out of start
      */
-    driveForTime.setup(0,50,1350);
+    driveForTime.setup(0, 50, 1350);
     driveForTime.execute();
 
     /*
      * Drive to buttons
      */
-    driveForTime.setup(90,50,1500);
+    driveForTime.setup(90, 50, 1500);
     driveForTime.execute();
 
     /*

@@ -11,7 +11,7 @@ class DriveToJack :
 public:
     DriveToJack(Robot &robot_);
 
-    virtual int execute();
+    virtual StatusCode execute();
 private:
     Robot robot;
 

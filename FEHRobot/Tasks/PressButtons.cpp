@@ -15,18 +15,25 @@ PressButtons::PressButtons(Robot &robot_):
     driveToPosition(robot_, 0, 0)
 {
     robot = robot_;
-    buttonColor = Red;
 }
 
-int PressButtons::execute(){
+StatusCode PressButtons::execute(){
+    StatusCode status;
     /*
      * Read the button color
      */
-    buttonColor = static_cast<ButtonColor>(readButtonLight.execute());
+    status = readButtonLight.execute();
     /*
      * Change the arm position to press the button
      */
-    ArmPosition buttonPosition = buttonColor == Blue ? ArmLeft : ArmRight;
+    ArmPosition buttonPosition;
+    if(status == L_Red){
+        buttonPosition = ArmRight;
+    } else if(status == L_Blue){
+        buttonPosition = ArmLeft;
+    } else {
+        status = E_UnreachableCode;
+    }
     changeArmPosition.selectArmPosition(buttonPosition);
     changeArmPosition.selectWaitTime(1000);
     changeArmPosition.execute();
@@ -206,6 +213,6 @@ int PressButtons::execute(){
 //    driveForTime.changeDriveTime(1950);
 //    driveForTime.execute();
 
-    return 0;
+    return Success;
 }
 

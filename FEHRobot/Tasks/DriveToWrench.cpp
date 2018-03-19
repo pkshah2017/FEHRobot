@@ -9,7 +9,7 @@ DriveToWrench::DriveToWrench(Robot &robot_):
     robot = robot_;
 }
 
-int DriveToWrench::execute(){
+StatusCode DriveToWrench::execute(){
     /*
      * Wait for start light
      */
