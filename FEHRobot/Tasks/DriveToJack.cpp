@@ -13,24 +13,20 @@ StatusCode DriveToJack::execute(){
     /*
      * Drive towards wrench/start/jack
      */
-    driveForTime.changeDriveTime(1500);
-    driveForTime.changeHeading(270);
-    driveForTime.changePower(50);
+    driveForTime.setup(270, 50, 1500);
     driveForTime.execute();
 
     /*
      * Drive to Wall
      */
-    driveForTime.changeDriveTime(3500);
-    driveForTime.changeHeading(315);
-    driveForTime.changePower(50);
+    driveForTime.setup(315, 50, 3500);
     driveForTime.execute();
 
     /*
      * Drive to corner
      */
-    driveTilBump.changeHeading(270);
-    driveTilBump.changeBumpDirection(RobotRight);
-    driveTilBump.changePower(50);
+    driveTilBump.setup(270, 50, RobotRight);
     driveTilBump.execute();
+
+    return Success;
 }

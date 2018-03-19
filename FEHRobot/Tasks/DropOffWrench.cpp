@@ -1,10 +1,10 @@
-#include "PickUpWrench.h"
+#include "DropOffWrench.h"
 #include "FEHLCD.h"
 #include <FEHUtility.h>
 
 //All commands are initalized assuming the light will be red
 //If light is blue, values are modified in failure recovery
-PickUpWrench::PickUpWrench(Robot &robot_):
+DropOffWrench::DropOffWrench(Robot &robot_):
     driveForTime(robot_, 0, 50, 0),
     turnForTime(robot_, -25, 250),
     waitForTime(robot_, 2000),
@@ -15,27 +15,30 @@ PickUpWrench::PickUpWrench(Robot &robot_):
     robot = robot_;
 }
 
-StatusCode PickUpWrench::execute(){
+StatusCode DropOffWrench::execute(){
     /*
-     * Change the arm position to grab wrench
+     * Slightly lower arm
      */
-    changeArmPosition.setup(ArmRight, 2.0f);
+    changeArmPosition.setup(ArmAngledRight, 1500);
     changeArmPosition.execute();
+
     /*
-     * Change the arm position to slightly raised
+     * Enter garage
      */
-    changeArmPosition.setup(ArmSlightlyRaised, 0.0f);
-    changeArmPosition.execute();
-    /*
-     * Back away from wrench stand
-     */
-    driveForTime.setup(90, 50, 500);
+    driveForTime.setup(270, 50, 1000);
     driveForTime.execute();
+
     /*
-     * Raise arm to pickup wrench
+     * Lower Arm
      */
-    changeArmPosition.setup(ArmUp, 2.0f);
+    changeArmPosition.setup(ArmRight, 1500);
     changeArmPosition.execute();
+
+    /*
+     * Exit garage
+     */
+    driveForTime.setup(90, 50, 1800);
+    driveForTime.execute();
 
     return Success;
 }

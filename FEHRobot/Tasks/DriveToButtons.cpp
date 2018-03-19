@@ -30,4 +30,6 @@ StatusCode DriveToButtons::execute(){
      * Center on the line
      */
     centerOnLine.execute();
+
+    return Success;
 }

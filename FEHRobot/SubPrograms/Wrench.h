@@ -5,6 +5,9 @@
 #include "Robot.h"
 #include "Tasks/DriveToWrench.h"
 #include "Tasks/PickUpWrench.h"
+#include "Tasks/DriveToGarage.h"
+#include "Tasks/DropOffWrench.h"
+
 
 class Wrench :
     public Subprogram
@@ -16,6 +19,9 @@ private:
 
     DriveToWrench driveToWrench;
     PickUpWrench pickUpWrench;
+    DriveToGarage driveToGarage;
+    DropOffWrench dropOffWrench;
+
 };
 
 #endif

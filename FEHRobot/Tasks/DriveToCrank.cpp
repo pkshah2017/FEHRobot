@@ -1,6 +1,6 @@
-#include "DriveToWrench.h"
+#include "DriveToCrank.h"
 
-DriveToWrench::DriveToWrench(Robot &robot_):
+DriveToCrank::DriveToCrank(Robot &robot_):
     waitForLight(robot_),
     driveForTime(robot_, 0, 50, 1350),
     driveToPosition(robot_, 0, 0),
@@ -9,12 +9,12 @@ DriveToWrench::DriveToWrench(Robot &robot_):
     robot = robot_;
 }
 
-StatusCode DriveToWrench::execute(){
+StatusCode DriveToCrank::execute(){
     /*
      * Drive to wrench
      */
-    driveToPosition.setup(8.1f, 21.3f);
-    driveToPosition.execute();
+    //driveToPosition.setup(8.1f, 21.3f);
+    //driveToPosition.execute();
 
     return Success;
 }
