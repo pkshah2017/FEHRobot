@@ -38,9 +38,6 @@ StatusCode DriveToPosition::initialize() {
     currentX = robot.getX();
     currentY = robot.getY();
 
-    LCD.WriteLine(currentX);
-    LCD.WriteLine(currentY);
-
     return Success;
 }
 
@@ -71,6 +68,7 @@ StatusCode DriveToPosition::run() {
 }
 
 bool DriveToPosition::isFinished() {
+    robot.updateRPSStates();
     float deltaX = x - currentX;
     float deltaY = y - currentY;
 

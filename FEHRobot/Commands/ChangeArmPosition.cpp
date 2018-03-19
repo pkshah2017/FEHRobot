@@ -29,6 +29,14 @@ StatusCode ChangeArmPosition::constructor(Robot &robot_, ArmPosition armPosition
     return status;
 }
 
+StatusCode ChangeArmPosition::setup(ArmPosition armPosition_, int ms){
+    StatusCode status = selectArmPosition(armPosition_);
+    if(status == Success) {
+        status = selectWaitTime(ms/1000.0f);
+    }
+    return Success;
+}
+
 StatusCode ChangeArmPosition::setup(ArmPosition armPosition_, float sec_){
     StatusCode status = selectArmPosition(armPosition_);
     if(status == Success) {

@@ -60,10 +60,10 @@ StatusCode DriveToPositionWithHeading::run() {
     float deltaY = y - currentY;
 
 
-//    motor[FL] = -C1LY - C1LX - C1RX;
-//    motor[FR] =  C1LY - C1LX - C1RX;
-//    motor[BR] =  C1LY + C1LX - C1RX;
-//    motor[BL] = -C1LY + C1LX - C1RX;
+    //    motor[FL] = -C1LY - C1LX - C1RX;
+    //    motor[FR] =  C1LY - C1LX - C1RX;
+    //    motor[BR] =  C1LY + C1LX - C1RX;
+    //    motor[BL] = -C1LY + C1LX - C1RX;
 
     float error = sqrt(deltaX * deltaX + deltaY * deltaY);
 
@@ -84,7 +84,20 @@ StatusCode DriveToPositionWithHeading::run() {
     /*
      * Calculate turn speed
      */
-    int turnSpeed = -((int)(finalHeading - currentHeading + 360)) % 360;
+    int tempFinalHeading = (int)(finalHeading+ 90) % 360;
+    int tempCurrentHeading = (int)(currentHeading+ 90) % 360;
+    float turnSpeed = 0.0f;
+    if (tempFinalHeading - tempCurrentHeading > 3){
+        turnSpeed = -6.0f;
+    }
+    else if (tempCurrentHeading - tempFinalHeading > 3){
+        turnSpeed = 6.0f;
+    }
+    else {
+        turnSpeed = 0.0f;
+    }
+    //= (float)(((int)(finalHeading - currentHeading + 360)) % 360)/360.0f;
+
     robot.driveAndTurn(driveHeading, 30, turnSpeed);
 
     return Success;

@@ -20,7 +20,6 @@ StatusCode PressButtons::execute(){
      * Read the button color
      */
     status = readButtonLight.execute();
-    LCD.WriteLine("Got Color");
     /*
      * Change the arm position to press the button
      */
@@ -40,10 +39,8 @@ StatusCode PressButtons::execute(){
             //LCD.WriteLine(errordesc[(int)status].message);
         }
     }
-    LCD.WriteLine("Changing arm position");
     changeArmPosition.setup(buttonPosition, 1.0f);
     changeArmPosition.execute();
-    LCD.WriteLine("Changed arm position");
     /*
      * Move To Buttons
      */

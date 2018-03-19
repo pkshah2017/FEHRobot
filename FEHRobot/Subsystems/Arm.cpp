@@ -28,4 +28,5 @@ int Arm::setArmPosition(ArmPosition armPosition){
         return 2;
         break;
     }
+    return 0;
 }

@@ -10,22 +10,15 @@ ReadButtonLight::ReadButtonLight(Robot &robot_)
 StatusCode ReadButtonLight::initialize() {
     robot.updateSensorStates();
 
-    LCD.WriteRC("CDS VALUE: ", 2 , 1);
-    LCD.WriteRC(robot.getCDSState(), 2 , 12);
-
-    if(robot.getCDSState() > .85){
-        buttonColor = L_Blue;
-    } else {
+    if(robot.getCDSState() < .85){
         buttonColor = L_Red;
+    } else {
+        buttonColor = L_Blue;
     }
-
-    LCD.WriteRC("LIGHT VALUE: ", 2 , 1);
-    LCD.WriteRC(buttonColor, 2 , 15);
     return Success;
 }
 
 StatusCode ReadButtonLight::run() {
-    LCD.WriteLine("RAN RUN FOR RBL");
     return Success;
 }
 
