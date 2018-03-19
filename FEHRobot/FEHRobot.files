@@ -22,6 +22,8 @@ Commands/CenterOnLine.h
 Commands/CenterOnLine.cpp
 Commands/DriveToPosition.h
 Commands/DriveToPosition.cpp
+Commands/DriveToPositionWithHeading.h
+Commands/DriveToPositionWithHeading.cpp
 Commands/LineFollowForTime.h
 Commands/LineFollowForTime.cpp
 Commands/TurnForTime.h

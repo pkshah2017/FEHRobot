@@ -83,6 +83,12 @@ int Robot::drive(int heading, int power) {
     return 0;
 }
 
+int Robot::driveAndTurn(int heading, int power, int turnSpeed) {
+    driveTrain.driveAndTurn(heading, power, turnSpeed);
+
+    return 0;
+}
+
 int Robot::stop() {
     driveTrain.stop();
 

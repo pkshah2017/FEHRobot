@@ -31,6 +31,7 @@ public:
 
     int turn(int power);
     int drive(int heading, int power);
+    int driveAndTurn(int heading, int power, int turnSpeed);
     int stop();
 
     int setArmPosition(ArmPosition armPosition);
