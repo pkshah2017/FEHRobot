@@ -65,7 +65,7 @@ typedef enum {
 
 typedef enum {
     Success, L_Red, L_Blue, E_Timeout, E_InvalidInput, E_LightNotDetected , E_UnreachableCode
-} ErrorCode;
+} StatusCode;
 /*
 struct _errordesc {
     int  code;
