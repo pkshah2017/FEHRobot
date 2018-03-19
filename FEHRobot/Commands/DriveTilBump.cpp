@@ -4,46 +4,59 @@
 DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Direction direction_)
 {
     robot = robot_;
-    heading = heading_;
-    power = power_;
-    direction = direction_;
-}
-int DriveTilBump::setup(int newHeading, int newPower , Direction newDirection){
- heading = newHeading;
- power = newPower;
- direction = newDirection;
+    StatusCode status = setup(heading_, power_, direction_);
+    if(status != Success){
+        LCD.Write("ERROR CODE: ");
+        LCD.WriteLine((int)status);
+        LCD.Write("Description: ");
+        //LCD.WriteLine(errordesc[(int)status].message);
+    }
 }
 
-int DriveTilBump::changeHeading(int newHeading){
+StatusCode DriveTilBump::setup(int newHeading, int newPower , Direction newDirection){
+    StatusCode status = changeHeading(newHeading);
+    if(status == Success){
+        status = changePower(newPower);
+    }
+    if(status == Success){
+        status = changeBumpDirection(newDirection);
+    }
+    return status;
+}
+
+StatusCode DriveTilBump::changeHeading(int newHeading){
     heading = newHeading;
+    return Success;
 }
 
-int DriveTilBump::changePower(int newPower){
+StatusCode DriveTilBump::changePower(int newPower){
     power = newPower;
+    return Success;
 }
 
-int DriveTilBump::changeBumpDirection(Direction direction_){
+StatusCode DriveTilBump::changeBumpDirection(Direction direction_){
     direction = direction_;
+    return Success;
 }
 
-int DriveTilBump::initialize() {
+StatusCode DriveTilBump::initialize() {
     startTime = TimeNow();
     robot.updateSensorStates();
 
-    return 0;
+    return Success;
 }
 
-int DriveTilBump::run() {
+StatusCode DriveTilBump::run() {
     robot.drive(heading, power);
     robot.updateSensorStates();
     if(TimeNow() - startTime > TIMEOUT){
-        return 1;
+        return E_Timeout;
     }
-    return 0;
+    return Success;
 }
 
-int DriveTilBump::runFailureRecovery(int error){
-    if(error == 1){
+StatusCode DriveTilBump::runFailureRecovery(StatusCode error){
+    if(error == E_Timeout){
         robot.stop();
     }
     return error;
@@ -53,9 +66,9 @@ bool DriveTilBump::isFinished() {
     return !robot.getLimit(direction);
 }
 
-int DriveTilBump::completion(){
+StatusCode DriveTilBump::completion(){
     robot.stop();
 
-    return 0;
+    return Success;
 }
 

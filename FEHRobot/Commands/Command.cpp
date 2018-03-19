@@ -7,13 +7,13 @@ Command::Command()
 }
 
 int Command::execute() {
-    int errorCode = initialize();
-    if(errorCode != 0){
+    StatusCode errorCode = initialize();
+    if(errorCode != Success){
         errorCode = initializeFailureRecovery(errorCode);
     }
-    while (errorCode == 0 && !isFinished()) {
-        int errorCode = run();
-        if(errorCode != 0){
+    while (errorCode == Success && !isFinished()) {
+        StatusCode errorCode = run();
+        if(errorCode != Success){
             errorCode = runFailureRecovery(errorCode);
         }
 		Sleep(REFRESH_RATE);
@@ -22,14 +22,18 @@ int Command::execute() {
     return errorCode;
 }
 
-int Command::initializeFailureRecovery(int errorCode){
-    LCD.Write("ERROR: ");
-    LCD.WriteLine(errorCode);
-    return errorCode;
+StatusCode Command::initializeFailureRecovery(StatusCode errorCode){
+    return printError(errorCode);
 }
 
-int Command::runFailureRecovery(int errorCode){
-    LCD.Write("ERROR: ");
-    LCD.WriteLine(errorCode);
+StatusCode Command::runFailureRecovery(StatusCode errorCode){
+    return printError(errorCode);
+}
+
+StatusCode Command::printError(StatusCode errorCode){
+    LCD.Write("ERROR CODE: ");
+    LCD.WriteLine((int)errorCode);
+    LCD.Write("Description: ");
+    //LCD.WriteLine((errordesc[(int)errorCode]));
     return errorCode;
 }

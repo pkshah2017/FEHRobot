@@ -9,17 +9,19 @@ class DriveToLine :
 {
 public:
     DriveToLine(Robot &robot_, int power_);
+
+    StatusCode changePower(int newPower);
 private:
     Robot robot;
     int power;
     LineFollowerState lineFollowStatus;
 
-    virtual int initialize();
-    virtual int run();
+    virtual StatusCode initialize();
+    virtual StatusCode run();
     virtual bool isFinished();
-    virtual int completion();
+    virtual StatusCode completion();
 
-    int updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold);
+    StatusCode updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold);
 };
 
 #endif

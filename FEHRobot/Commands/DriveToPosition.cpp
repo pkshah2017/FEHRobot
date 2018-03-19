@@ -6,20 +6,32 @@
 DriveToPosition::DriveToPosition(Robot &robot_, float x_, float y_)
 {
     robot = robot_;
+    StatusCode status = setup(x_, y_);
+    if(status != Success){
+        LCD.Write("ERROR CODE: ");
+        LCD.WriteLine((int)status);
+        LCD.Write("Description: ");
+        //LCD.WriteLine(errordesc[(int)status].message);
+    }
+}
+
+StatusCode DriveToPosition::setup(float newX, float newY){
+    x = newX;
+    y = newY;
+    return Success;
+}
+
+StatusCode DriveToPosition::changeXSetpoint(float x_){
     x = x_;
+    return Success;
+}
+
+StatusCode DriveToPosition::changeYSetpoint(float y_){
     y = y_;
-
+    return Success;
 }
 
-int DriveToPosition::changeXSetpoint(float x_){
-    x = x_;
-}
-
-int DriveToPosition::changeYSetpoint(float y_){
-    y = y_;
-}
-
-int DriveToPosition::initialize() {
+StatusCode DriveToPosition::initialize() {
     robot.updateRPSStates();
     currentX = robot.getX();
     currentY = robot.getY();
@@ -27,10 +39,10 @@ int DriveToPosition::initialize() {
     LCD.WriteLine(currentX);
     LCD.WriteLine(currentY);
 
-    return 0;
+    return Success;
 }
 
-int DriveToPosition::run() {
+StatusCode DriveToPosition::run() {
     robot.updateRPSStates();
     currentX = robot.getX();
     currentY = robot.getY();
@@ -53,7 +65,7 @@ int DriveToPosition::run() {
 
     robot.drive(heading, 30);
 
-    return 0;
+    return Success;
 }
 
 bool DriveToPosition::isFinished() {
@@ -65,8 +77,8 @@ bool DriveToPosition::isFinished() {
     return abs(error) <= POSITION_TOLERANCE;
 }
 
-int DriveToPosition::completion(){
+StatusCode DriveToPosition::completion(){
     robot.stop();
 
-    return 0;
+    return Success;
 }

@@ -6,20 +6,19 @@ WaitForLight::WaitForLight(Robot &robot_)
     robot = robot_;
 }
 
-int WaitForLight::initialize() {
-    return 0;
+StatusCode WaitForLight::initialize() {
+    return Success;
 }
 
-int WaitForLight::run() {
+StatusCode WaitForLight::run() {
     robot.updateSensorStates();
-    return 0;
+    return Success;
 }
 
 bool WaitForLight::isFinished() {
     return robot.getCDSState() < 1.2;
 }
 
-int WaitForLight::completion(){
-
-    return 0;
+StatusCode WaitForLight::completion(){
+    return Success;
 }

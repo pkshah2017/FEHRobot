@@ -4,40 +4,52 @@
 DriveToLine::DriveToLine(Robot &robot_, int power_)
 {
     robot = robot_;
-    power = power_;
+    StatusCode status = changePower(power_);
+    if(status != Success){
+        LCD.Write("ERROR CODE: ");
+        LCD.WriteLine((int)status);
+        LCD.Write("Description: ");
+        //LCD.WriteLine(errordesc[(int)status].message);
+    }
 }
 
-int DriveToLine::initialize() {
-    int status = updateLineFollowerState(2.75, 2.5, 2.3);
+StatusCode DriveToLine::changePower(int newPower){
+    power = newPower;
+    return Success;
+}
+
+StatusCode DriveToLine::initialize() {
+    StatusCode status = updateLineFollowerState(2.75, 2.5, 2.3);
 
     return status;
 }
 
-int DriveToLine::run() {
-    int status = updateLineFollowerState(2.75, 2.5, 2.3);
+StatusCode DriveToLine::run() {
+    StatusCode status = updateLineFollowerState(2.75, 2.5, 2.3);
 
-    switch(lineFollowStatus){
-    case OFF_ON_OFF:
-        //Should never happen
-        return 6;
-        break;
-    case ON_ON_OFF:
-        robot.turn(-25);
-        break;
-    case ON_OFF_OFF:
-        robot.turn(-25);
-        break;
-    case OFF_ON_ON:
-        robot.turn(25);
-        break;
-    case OFF_OFF_ON:
-        robot.turn(25);
-        break;
-    case OFF_OFF_OFF:
-        robot.drive(180, power);
-        break;
+    if(status == Success){
+        switch(lineFollowStatus){
+        case OFF_ON_OFF:
+            //Should never happen
+            return E_UnreachableCode;
+            break;
+        case ON_ON_OFF:
+            robot.turn(-25);
+            break;
+        case ON_OFF_OFF:
+            robot.turn(-25);
+            break;
+        case OFF_ON_ON:
+            robot.turn(25);
+            break;
+        case OFF_OFF_ON:
+            robot.turn(25);
+            break;
+        case OFF_OFF_OFF:
+            robot.drive(180, power);
+            break;
+        }
     }
-
     return status;
 }
 
@@ -45,14 +57,13 @@ bool DriveToLine::isFinished() {
     return lineFollowStatus == ON_ON_ON;
 }
 
-int DriveToLine::completion(){
+StatusCode DriveToLine::completion(){
     robot.stop();
 
-    return 0;
+    return Success;
 }
 
-
-int DriveToLine::updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold){
+StatusCode DriveToLine::updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold){
     robot.updateSensorStates();
 
     float left = robot.getOpto(LeftOpto);
@@ -83,5 +94,5 @@ int DriveToLine::updateLineFollowerState(float leftThreshold, float centerThresh
     {
         lineFollowStatus = ON_ON_ON;
     }
-    return 0;
+    return Success;
 }

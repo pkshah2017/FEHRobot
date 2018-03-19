@@ -4,15 +4,18 @@
 #include "Command.h"
 #include "Robot.h"
 class ChangeArmPosition :
-    public Command
+        public Command
 {
 public:
+    ChangeArmPosition(Robot &robot_);
     ChangeArmPosition(Robot &robot_, ArmPosition armPosition_, int ms);
     ChangeArmPosition(Robot &robot_, ArmPosition armPosition_, float sec);
 
-    int selectArmPosition(ArmPosition armPosition_);
-    int selectWaitTime(int ms);
-    int selectWaitTime(float sec);
+    StatusCode selectArmPosition(ArmPosition armPosition_);
+    StatusCode selectWaitTime(int ms);
+    StatusCode selectWaitTime(float sec);
+
+    StatusCode setup(ArmPosition armPosition_, float sec);
 private:
     Robot robot;
 
@@ -20,12 +23,12 @@ private:
     int timeToWait;
     ArmPosition armPosition;
 
-    int constructor(Robot &robot_, ArmPosition armPosition_, float sec);
+    StatusCode constructor(Robot &robot_, ArmPosition armPosition_, float sec);
 
-    virtual int initialize();
-    virtual int run();
+    virtual StatusCode initialize();
+    virtual StatusCode run();
     virtual bool isFinished();
-    virtual int completion();
+    virtual StatusCode completion();
 };
 
 

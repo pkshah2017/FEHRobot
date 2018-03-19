@@ -11,9 +11,12 @@ public:
     LineFollowForTime(Robot &robot_, int power_, int ms_);
     LineFollowForTime(Robot &robot_, int power_, float sec);
 
-    int changePower(int newPower);
-    int changeDriveTime(int newTime);
-    int changeDriveTime(float newTime);
+    StatusCode setup(int newPower, int newTimeMS);
+    StatusCode setup(int newPower, float newTimeSec);
+
+    StatusCode changePower(int newPower);
+    StatusCode changeDriveTime(int newTime);
+    StatusCode changeDriveTime(float newTime);
 private:
     Robot robot;
     int power;
@@ -21,13 +24,13 @@ private:
     float timeToWait;
     float startTime;
 
-    virtual int initialize();
-    virtual int run();
+    virtual StatusCode initialize();
+    virtual StatusCode run();
     virtual bool isFinished();
-    virtual int completion();
+    virtual StatusCode completion();
 
-    int constructor(Robot &robot_, int power_, float sec_);
-    int updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold);
+    StatusCode constructor(Robot &robot_, int power_, float sec_);
+    StatusCode updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold);
 };
 
 #endif

@@ -10,14 +10,14 @@ public:
     CenterOnLine(Robot &robot_);
 private:
     Robot robot;
-    bool leftOptoStatus;
-    bool centerOptoStatus;
-    bool rightOptoStatus;
+    bool leftOptoOnLine;
+    bool centerOptoOnLine;
+    bool rightOptoOnLine;
 
-    virtual int initialize();
-    virtual int run();
+    virtual StatusCode initialize();
+    virtual StatusCode run();
     virtual bool isFinished();
-    virtual int completion();
+    virtual StatusCode completion();
 
     bool checkLeftOpto();
     bool checkCenterOpto();

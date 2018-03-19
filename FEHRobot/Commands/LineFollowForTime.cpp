@@ -11,25 +11,45 @@ LineFollowForTime::LineFollowForTime(Robot &robot_, int power_, int ms)
     constructor(robot_, power_, ms/1000.0);
 }
 
-int LineFollowForTime::constructor(Robot &robot_, int power_, float sec_){
+StatusCode LineFollowForTime::setup(int newPower, int newTime){
+    return setup(newPower, newTime/1000.0f);
+}
+
+StatusCode LineFollowForTime::setup(int newPower, float newTime){
+    StatusCode status = changePower(newPower);
+    if(status == Success){
+        status = changeDriveTime(newTime);
+    }
+    return status;
+}
+
+StatusCode LineFollowForTime::constructor(Robot &robot_, int power_, float sec_){
     robot = robot_;
-    power = power_;
-    timeToWait = sec_;
+    StatusCode status = setup(power_, sec_);
+    if(status != Success){
+        LCD.Write("ERROR CODE: ");
+        LCD.WriteLine((int)status);
+        LCD.Write("Description: ");
+        //LCD.WriteLine(errordesc[(int)status].message);
+    }
 }
 
-int LineFollowForTime::changePower(int newPower){
+StatusCode LineFollowForTime::changePower(int newPower){
     power = newPower;
+    return Success;
 }
 
-int LineFollowForTime::changeDriveTime(int newTime){
+StatusCode LineFollowForTime::changeDriveTime(int newTime){
     timeToWait = newTime/1000.0;
+    return Success;
 }
 
-int LineFollowForTime::changeDriveTime(float newTime){
+StatusCode LineFollowForTime::changeDriveTime(float newTime){
     timeToWait = newTime;
+    return Success;
 }
 
-int LineFollowForTime::updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold){
+StatusCode LineFollowForTime::updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold){
     robot.updateSensorStates();
 
     float left = robot.getOpto(LeftOpto);
@@ -56,16 +76,16 @@ int LineFollowForTime::updateLineFollowerState(float leftThreshold, float center
     {
         lineFollowStatus = OFF_OFF_OFF;
     }
-    return 0;
+    return Success;
 }
 
-int LineFollowForTime::initialize() {
+StatusCode LineFollowForTime::initialize() {
     startTime = TimeNow();
 
-    return 0;
+    return Success;
 }
 
-int LineFollowForTime::run() {
+StatusCode LineFollowForTime::run() {
     updateLineFollowerState(99, 99, 99);
 
     switch(lineFollowStatus){
@@ -85,19 +105,19 @@ int LineFollowForTime::run() {
         robot.drive(270, power);
         break;
     case OFF_OFF_OFF:
-            robot.stop();
+        robot.stop();
         break;
     }
 
-    return 0;
+    return Success;
 }
 
 bool LineFollowForTime::isFinished() {
     return TimeNow() - startTime > timeToWait;
 }
 
-int LineFollowForTime::completion(){
+StatusCode LineFollowForTime::completion(){
     robot.stop();
 
-    return 0;
+    return Success;
 }

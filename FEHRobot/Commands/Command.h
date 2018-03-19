@@ -2,19 +2,22 @@
 #define COMMAND
 
 #include "Constants.h"
+#include "FEHLCD.h"
 
 class Command
 {
 private:
-    virtual int initialize() = 0;
-    virtual int initializeFailureRecovery(int error);
-    virtual int run() = 0;
-    virtual int runFailureRecovery(int error);
+    virtual StatusCode initialize() = 0;
+    virtual StatusCode initializeFailureRecovery(StatusCode error);
+    virtual StatusCode run() = 0;
+    virtual StatusCode runFailureRecovery(StatusCode error);
     virtual bool isFinished() = 0;
-    virtual int completion() = 0;
+    virtual StatusCode completion() = 0;
+
+    StatusCode printError(StatusCode errorCode);
 public:
     Command();
-	int execute();
+    int execute();
 };
 
 #endif

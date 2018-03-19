@@ -10,8 +10,10 @@ class DriveToPosition :
 public:
     DriveToPosition(Robot &robot_, float x_, float y_);
 
-    int changeXSetpoint(float x_);
-    int changeYSetpoint(float y_);
+    StatusCode setup(float newX, float newY);
+
+    StatusCode changeXSetpoint(float x_);
+    StatusCode changeYSetpoint(float y_);
 private:
     Robot robot;
     float x;
@@ -20,10 +22,10 @@ private:
     float currentY;
     float startTime;
 
-    virtual int initialize();
-    virtual int run();
+    virtual StatusCode initialize();
+    virtual StatusCode run();
     virtual bool isFinished();
-    virtual int completion();
+    virtual StatusCode completion();
 };
 
 #endif

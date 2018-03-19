@@ -4,60 +4,80 @@
 DriveForTime::DriveForTime(Robot &robot_, int heading_, int power_, float sec_)
 {
     robot = robot_;
-    setup(heading_, power_, sec_);
+    StatusCode status = setup(heading_, power_, sec_);
+    if(status != Success){
+        LCD.Write("ERROR CODE: ");
+        LCD.WriteLine((int)status);
+        LCD.Write("Description: ");
+        //LCD.WriteLine(errordesc[(int)status].message);
+    }
 }
 
 DriveForTime::DriveForTime(Robot &robot_, int heading_, int power_, int ms)
 {
     robot = robot_;
-    setup(heading_, power_, ms);
+    StatusCode status = setup(heading_, power_, ms);
+    if(status != Success){
+        LCD.Write("ERROR CODE: ");
+        LCD.WriteLine((int)status);
+        LCD.Write("Description: ");
+        //LCD.WriteLine(errordesc[(int)status].message);
+    }
 }
 
-void DriveForTime::setup(int newHeading,int newPower, int newTime){
+StatusCode DriveForTime::setup(int newHeading,int newPower, int newTime){
+    return setup(newHeading, newPower, newTime/1000.0f);
+}
+
+StatusCode DriveForTime::setup(int newHeading,int newPower, float newTime){
+    StatusCode status = changeHeading(newHeading);
+    if(status == Success){
+        status = changePower(newPower);
+    }
+    if(status == Success){
+        status = changeDriveTime(newTime);
+    }
+    return status;
+}
+
+StatusCode DriveForTime::changeHeading(int newHeading){
     heading = newHeading;
-    power = newPower;
-    timeToWait =newTime/1000.0;
-}
-void DriveForTime::setup(int newHeading,int newPower, float newTime){
-    heading = newHeading;
-    power = newPower;
-    timeToWait =newTime;
+    return Success;
 }
 
-int DriveForTime::changeHeading(int newHeading){
-    heading = newHeading;
-}
-
-int DriveForTime::changePower(int newPower){
+StatusCode DriveForTime::changePower(int newPower){
     power = newPower;
+    return Success;
 }
 
-int DriveForTime::changeDriveTime(int newTime){
+StatusCode DriveForTime::changeDriveTime(int newTime){
     timeToWait = newTime/1000.0;
+    return Success;
 }
 
-int DriveForTime::changeDriveTime(float newTime){
+StatusCode DriveForTime::changeDriveTime(float newTime){
     timeToWait = newTime;
+    return Success;
 }
 
-int DriveForTime::initialize() {
+StatusCode DriveForTime::initialize() {
     startTime = TimeNow();
 
-    return 0;
+    return Success;
 }
 
-int DriveForTime::run() {
+StatusCode DriveForTime::run() {
     robot.drive(heading, power);
 
-    return 0;
+    return Success;
 }
 
 bool DriveForTime::isFinished() {
     return TimeNow() - startTime > timeToWait;
 }
 
-int DriveForTime::completion(){
+StatusCode DriveForTime::completion(){
     robot.stop();
 
-    return 0;
+    return Success;
 }

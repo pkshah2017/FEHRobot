@@ -11,12 +11,12 @@ public:
 private:
     Robot robot;
 
-    ButtonColor buttonColor;
+    StatusCode buttonColor;
 
-    virtual int initialize();
-    virtual int run();
+    virtual StatusCode initialize();
+    virtual StatusCode run();
     virtual bool isFinished();
-    virtual int completion();
+    virtual StatusCode completion();
 };
 
 

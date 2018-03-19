@@ -59,10 +59,25 @@ typedef enum {
  */
 #define MAX_TASKS 20
 
+/*
+ * Error Codes
+ */
 
-//typedef enum {
-//    Success,Timeout,InvalidInput, BlueLight, RedLight, LightNotDetected , ImpossibleCode
-//} StatusCode;
-
-
+typedef enum {
+    Success, L_Red, L_Blue, E_Timeout, E_InvalidInput, E_LightNotDetected , E_UnreachableCode
+} ErrorCode;
+/*
+struct _errordesc {
+    int  code;
+    const char *message;
+} errordesc[] = {
+{ Success, "Sucess" },
+{ L_Red, "Red Light Detected" },
+{ L_Blue, "Blue Light Detected" },
+{ E_Timeout, "Timeout" },
+{ E_InvalidInput, "Invalid input" },
+{ E_LightNotDetected, "Light Not Detected" },
+{ E_UnreachableCode, "Unreachable Code Reached" }
+};
+*/
 #endif

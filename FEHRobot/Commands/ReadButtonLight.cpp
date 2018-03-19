@@ -4,33 +4,33 @@
 ReadButtonLight::ReadButtonLight(Robot &robot_)
 {
     robot = robot_;
-    buttonColor = Undefined;
+    buttonColor = E_UnreachableCode;
 }
 
-int ReadButtonLight::initialize() {
+StatusCode ReadButtonLight::initialize() {
     robot.updateSensorStates();
 
     LCD.WriteRC("CDS VALUE: ", 2 , 1);
     LCD.WriteRC(robot.getCDSState(), 2 , 12);
 
     if(robot.getCDSState() > .85){
-        buttonColor = Blue;
+        buttonColor = L_Blue;
     } else {
-        buttonColor = Red;
+        buttonColor = L_Red;
     }
 
-    return 0;
+    return Success;
 }
 
-int ReadButtonLight::run() {
-    return 0;
+StatusCode ReadButtonLight::run() {
+    return Success;
 }
 
 bool ReadButtonLight::isFinished() {
-    return true;
+    return Success;
 }
 
-int ReadButtonLight::completion(){
+StatusCode ReadButtonLight::completion(){
     return buttonColor;
 }
 

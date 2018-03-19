@@ -7,34 +7,32 @@ CenterOnLine::CenterOnLine(Robot &robot_)
     robot = robot_;
 }
 
-int CenterOnLine::initialize() {
-    return 0;
+StatusCode CenterOnLine::initialize() {
+    return Success;
 }
 
-int CenterOnLine::run() {
-    //LCD.WriteLine("Running center on line");
+StatusCode CenterOnLine::run() {
+    StatusCode status = Success;
     updateOptoStates();
-    if(leftOptoStatus){
+    if(leftOptoOnLine){
         robot.drive(90, 25);
-        LCD.WriteRC("Move left ",4,1);
-    } else if (rightOptoStatus){
+    } else if (rightOptoOnLine){
         robot.drive(270, 25);
-        LCD.WriteRC("Move right",4,1);
-    } else{
-        LCD.WriteRC("No Move   ",4,1);
+    } else if (!centerOptoOnLine){
+        status = E_UnreachableCode;
     }
 
-    return 0;
+    return status;
 }
 
 bool CenterOnLine::isFinished() {
-    return centerOptoStatus && !leftOptoStatus && !rightOptoStatus;
+    return centerOptoOnLine && !leftOptoOnLine && !rightOptoOnLine;
 }
 
-int CenterOnLine::completion(){
+StatusCode CenterOnLine::completion(){
     robot.stop();
 
-    return 0;
+    return Success;
 }
 
 bool CenterOnLine::checkLeftOpto(){
@@ -57,7 +55,7 @@ bool CenterOnLine::checkRightOpto(){
 
 void CenterOnLine::updateOptoStates(){
     robot.updateSensorStates();
-    leftOptoStatus = checkLeftOpto();
-    centerOptoStatus = checkCenterOpto();
-    rightOptoStatus = checkRightOpto();
+    leftOptoOnLine = checkLeftOpto();
+    centerOptoOnLine = checkCenterOpto();
+    rightOptoOnLine = checkRightOpto();
 }

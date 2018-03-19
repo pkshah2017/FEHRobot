@@ -11,13 +11,13 @@ public:
     DriveForTime(Robot &robot_,  int heading_, int power_, float sec_);
     DriveForTime(Robot &robot_,  int heading_, int power_, int ms);
 
-    void setup(int newHeading,int newPower, int newTime);
-    void setup(int newHeading,int newPower, float newTime);
+    StatusCode setup(int newHeading,int newPower, int newTime);
+    StatusCode setup(int newHeading,int newPower, float newTime);
 
-    int changeHeading(int newHeading);
-    int changePower(int newPower);
-    int changeDriveTime(int newTime);
-    int changeDriveTime(float newTime);
+    StatusCode changeHeading(int newHeading);
+    StatusCode changePower(int newPower);
+    StatusCode changeDriveTime(int newTime);
+    StatusCode changeDriveTime(float newTime);
 private:
     Robot robot;
     int heading;
@@ -25,12 +25,12 @@ private:
     float timeToWait;
     float startTime;
 
-    virtual int initialize();
-    virtual int run();
+    virtual StatusCode initialize();
+    virtual StatusCode run();
     virtual bool isFinished();
-    virtual int completion();
+    virtual StatusCode completion();
 
-    int constructor(Robot &robot_, int heading_, int power_, float sec_);
+    StatusCode constructor(Robot &robot_, int heading_, int power_, float sec_);
 };
 
 #endif

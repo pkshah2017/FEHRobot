@@ -8,10 +8,12 @@ class DriveTilBump :
 {
 public:
     DriveTilBump(Robot &robot_, int heading_, int power_, Direction direction_);
-    int setup(int newHeading, int newPower,Direction newDirection);
-    int changeHeading(int newHeading);
-    int changePower(int newPower);
-    int changeBumpDirection(Direction direction_);
+
+    StatusCode setup(int newHeading, int newPower,Direction newDirection);
+
+    StatusCode changeHeading(int newHeading);
+    StatusCode changePower(int newPower);
+    StatusCode changeBumpDirection(Direction direction_);
 private:
     Robot robot;
     int heading;
@@ -19,11 +21,11 @@ private:
     float startTime;
     Direction direction;
 
-    virtual int initialize();
-    virtual int run();
+    virtual StatusCode initialize();
+    virtual StatusCode run();
     virtual bool isFinished();
-    virtual int runFailureRecovery(int error);
-    virtual int completion();
+    virtual StatusCode runFailureRecovery(StatusCode error);
+    virtual StatusCode completion();
 };
 
 

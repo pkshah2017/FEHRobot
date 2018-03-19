@@ -11,19 +11,19 @@ public:
     WaitForTime(Robot &robot_, int ms_);
     WaitForTime(Robot &robot_, float sec);
 
-    int changeDriveTime(int newTime);
-    int changeDriveTime(float newTime);
+    StatusCode changeDriveTime(int newTime);
+    StatusCode changeDriveTime(float newTime);
 private:
     Robot robot;
     float timeToWait;
     float startTime;
 
-    virtual int initialize();
-    virtual int run();
+    virtual StatusCode initialize();
+    virtual StatusCode run();
     virtual bool isFinished();
-    virtual int completion();
+    virtual StatusCode completion();
 
-    int constructor(Robot &robot_, float sec_);
+    StatusCode constructor(Robot &robot_, float sec_);
 };
 
 #endif

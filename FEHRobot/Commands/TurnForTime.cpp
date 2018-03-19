@@ -13,42 +13,62 @@ TurnForTime::TurnForTime(Robot &robot_, int power_, int ms)
     constructor(robot_, power_, ms/1000.0);
 }
 
-int TurnForTime::constructor(Robot &robot_, int power_, float sec_){
+StatusCode TurnForTime::constructor(Robot &robot_, int power_, float sec_){
     robot = robot_;
-    power = power_;
-    timeToWait = sec_;
+    StatusCode status = setup(power_, sec_);
+    if(status != Success){
+        LCD.Write("ERROR CODE: ");
+        LCD.WriteLine((int)status);
+        LCD.Write("Description: ");
+        //LCD.WriteLine(errordesc[(int)status].message);
+    }
 }
 
-int TurnForTime::changePower(int newPower){
+StatusCode TurnForTime::setup(int newPower, int newTime){
+    return setup(newPower, newTime/1000.0f);
+}
+
+StatusCode TurnForTime::setup(int newPower, float newTime){
+    StatusCode status = changePower(newPower);
+    if(status == Success){
+        status = changeDriveTime(newTime);
+    }
+    return status;
+}
+
+StatusCode TurnForTime::changePower(int newPower){
     power = newPower;
+    return Success;
 }
 
-int TurnForTime::changeDriveTime(int newTime){
+StatusCode TurnForTime::changeDriveTime(int newTime){
     timeToWait = newTime/1000.0;
+    return Success;
 }
 
-int TurnForTime::changeDriveTime(float newTime){
+StatusCode TurnForTime::changeDriveTime(float newTime){
     timeToWait = newTime;
+    return Success;
 }
 
-int TurnForTime::initialize() {
+StatusCode TurnForTime::initialize() {
     startTime = TimeNow();
 
-    return 0;
+    return Success;
 }
 
-int TurnForTime::run() {
+StatusCode TurnForTime::run() {
     robot.turn(power);
 
-    return 0;
+    return Success;
 }
 
 bool TurnForTime::isFinished() {
     return TimeNow() - startTime > timeToWait;
 }
 
-int TurnForTime::completion(){
+StatusCode TurnForTime::completion(){
     robot.stop();
 
-    return 0;
+    return Success;
 }

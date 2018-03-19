@@ -11,36 +11,43 @@ WaitForTime::WaitForTime(Robot &robot_, int ms)
     constructor(robot_, ms/1000.0);
 }
 
-int WaitForTime::constructor(Robot &robot_, float sec_){
+StatusCode WaitForTime::constructor(Robot &robot_, float sec_){
     robot = robot_;
-    timeToWait = sec_;
+    StatusCode status = changeDriveTime(sec_);
+    if(status != Success){
+        LCD.Write("ERROR CODE: ");
+        LCD.WriteLine((int)status);
+        LCD.Write("Description: ");
+        //LCD.WriteLine(errordesc[(int)status].message);
+    }
 }
 
-int WaitForTime::changeDriveTime(int newTime){
+StatusCode WaitForTime::changeDriveTime(int newTime){
     timeToWait = newTime/1000.0;
+    return Success;
 }
 
-int WaitForTime::changeDriveTime(float newTime){
+StatusCode WaitForTime::changeDriveTime(float newTime){
     timeToWait = newTime;
+    return Success;
 }
 
-int WaitForTime::initialize() {
+StatusCode WaitForTime::initialize() {
     startTime = TimeNow();
 
-    return 0;
+    return Success;
 }
 
-int WaitForTime::run() {
-
-    return 0;
+StatusCode WaitForTime::run() {
+    return Success;
 }
 
 bool WaitForTime::isFinished() {
     return TimeNow() - startTime > timeToWait;
 }
 
-int WaitForTime::completion(){
+StatusCode WaitForTime::completion(){
     robot.stop();
 
-    return 0;
+    return Success;
 }
