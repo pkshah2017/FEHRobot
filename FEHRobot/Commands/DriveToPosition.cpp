@@ -16,9 +16,11 @@ DriveToPosition::DriveToPosition(Robot &robot_, float x_, float y_)
 }
 
 StatusCode DriveToPosition::setup(float newX, float newY){
-    x = newX;
-    y = newY;
-    return Success;
+    StatusCode status = changeXSetpoint(newX);
+    if(status == Success){
+        status = changeYSetpoint(newY);
+    }
+    return status;
 }
 
 StatusCode DriveToPosition::changeXSetpoint(float x_){
