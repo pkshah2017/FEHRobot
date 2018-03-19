@@ -4,8 +4,6 @@
 
 FEHServo crankArm(FEHServo::Servo1);
 
-//All commands are initalized assuming the light will be red
-//If light is blue, values are modified in failure recovery
 PressButtons::PressButtons(Robot &robot_):
     readButtonLight(robot_),
     driveForTime(robot_, 0, 50, 0),
