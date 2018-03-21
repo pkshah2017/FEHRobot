@@ -8,8 +8,8 @@ class TurnForTime :
     public Command
 {
 public:
-    TurnForTime(Robot &robot_, int power_, int ms_);
-    TurnForTime(Robot &robot_,  int power_, float sec);
+    TurnForTime(Robot *robot_, int power_, int ms_);
+    TurnForTime(Robot *robot_,  int power_, float sec);
 
     StatusCode setup(int newPower, int newTimeMS);
     StatusCode setup(int newPower, float newTimeSec);
@@ -18,7 +18,7 @@ public:
     StatusCode changeDriveTime(int newTime);
     StatusCode changeDriveTime(float newTime);
 private:
-    Robot robot;
+    Robot *robot;
     int power;
     float timeToWait;
     float startTime;
@@ -28,7 +28,7 @@ private:
     virtual bool isFinished();
     virtual StatusCode completion();
 
-    StatusCode constructor(Robot &robot_, int power_, float sec_);
+    StatusCode constructor(Robot *robot_, int power_, float sec_);
 };
 
 #endif

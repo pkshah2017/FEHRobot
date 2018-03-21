@@ -9,11 +9,11 @@ class DriveToJack :
     public Task
 {
 public:
-    DriveToJack(Robot &robot_);
+    DriveToJack(Robot *robot_);
 
     virtual StatusCode execute();
 private:
-    Robot robot;
+    Robot *robot;
 
     DriveForTime driveForTime;
     DriveTilBump driveTilBump;

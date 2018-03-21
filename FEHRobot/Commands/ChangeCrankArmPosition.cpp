@@ -2,22 +2,22 @@
 #include <FEHUtility.h>
 #include <FEHLCD.h>
 
-ChangeCrankArmPosition::ChangeCrankArmPosition(Robot &robot_)
+ChangeCrankArmPosition::ChangeCrankArmPosition(Robot *robot_)
 {
     constructor(robot_, ArmUp, 0.0);
 }
 
-ChangeCrankArmPosition::ChangeCrankArmPosition(Robot &robot_, ArmPosition armPosition_, float sec)
+ChangeCrankArmPosition::ChangeCrankArmPosition(Robot *robot_, ArmPosition armPosition_, float sec)
 {
     constructor(robot_, armPosition_, sec);
 }
 
-ChangeCrankArmPosition::ChangeCrankArmPosition(Robot &robot_, ArmPosition armPosition_, int ms)
+ChangeCrankArmPosition::ChangeCrankArmPosition(Robot *robot_, ArmPosition armPosition_, int ms)
 {
     constructor(robot_, armPosition_, ms/1000.0);
 }
 
-StatusCode ChangeCrankArmPosition::constructor(Robot &robot_, ArmPosition armPosition_, float sec_){
+StatusCode ChangeCrankArmPosition::constructor(Robot *robot_, ArmPosition armPosition_, float sec_){
     robot = robot_;
     StatusCode status = setup(armPosition_, sec_);
     if(status != Success){
@@ -53,7 +53,7 @@ StatusCode ChangeCrankArmPosition::selectWaitTime(float sec){
 }
 
 StatusCode ChangeCrankArmPosition::initialize() {
-    robot.setCrankArmPosition(armPosition);
+    (*robot).setCrankArmPosition(armPosition);
     startTime = TimeNow();
 
     return Success;

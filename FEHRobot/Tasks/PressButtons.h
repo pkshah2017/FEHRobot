@@ -9,11 +9,11 @@ class PressButtons :
     public Task
 {
 public:
-    PressButtons(Robot &robot_);
+    PressButtons(Robot *robot_);
 
     virtual StatusCode execute();
 private:
-    Robot robot;
+    Robot *robot;
 
     ReadButtonLight readButtonLight;
     DriveForTime driveForTime;

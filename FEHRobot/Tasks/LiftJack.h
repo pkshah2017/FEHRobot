@@ -9,11 +9,11 @@ class LiftJack :
     public Task
 {
 public:
-    LiftJack(Robot &robot_);
+    LiftJack(Robot *robot_);
 
     virtual StatusCode execute();
 private:
-    Robot robot;
+    Robot *robot;
 
     DriveForTime driveForTime;
 };

@@ -9,11 +9,11 @@ class DriveToButtons :
     public Task
 {
 public:
-    DriveToButtons(Robot &robot_);
+    DriveToButtons(Robot *robot_);
 
     virtual StatusCode execute();
 private:
-    Robot robot;
+    Robot *robot;
 
     WaitForLight waitForLight;
     DriveForTime driveForTime;

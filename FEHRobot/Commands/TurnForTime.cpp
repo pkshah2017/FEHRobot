@@ -3,17 +3,17 @@
 
 //Positive Power is to the right
 
-TurnForTime::TurnForTime(Robot &robot_, int power_, float sec_)
+TurnForTime::TurnForTime(Robot *robot_, int power_, float sec_)
 {
     constructor(robot_, power_, sec_);
 }
 
-TurnForTime::TurnForTime(Robot &robot_, int power_, int ms)
+TurnForTime::TurnForTime(Robot *robot_, int power_, int ms)
 {
     constructor(robot_, power_, ms/1000.0);
 }
 
-StatusCode TurnForTime::constructor(Robot &robot_, int power_, float sec_){
+StatusCode TurnForTime::constructor(Robot *robot_, int power_, float sec_){
     robot = robot_;
     StatusCode status = setup(power_, sec_);
     if(status != Success){
@@ -58,7 +58,7 @@ StatusCode TurnForTime::initialize() {
 }
 
 StatusCode TurnForTime::run() {
-    robot.turn(power);
+    (*robot).turn(power);
 
     return Success;
 }
@@ -68,7 +68,7 @@ bool TurnForTime::isFinished() {
 }
 
 StatusCode TurnForTime::completion(){
-    robot.stop();
+    (*robot).stop();
 
     return Success;
 }

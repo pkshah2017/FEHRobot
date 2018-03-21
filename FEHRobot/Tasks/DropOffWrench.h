@@ -9,11 +9,11 @@ class DropOffWrench :
     public Task
 {
 public:
-    DropOffWrench(Robot &robot_);
+    DropOffWrench(Robot *robot_);
 
     virtual StatusCode execute();
 private:
-    Robot robot;
+    Robot *robot;
 
     DriveForTime driveForTime;
     TurnForTime turnForTime;

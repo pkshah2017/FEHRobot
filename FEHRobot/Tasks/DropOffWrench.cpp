@@ -4,7 +4,7 @@
 
 //All commands are initalized assuming the light will be red
 //If light is blue, values are modified in failure recovery
-DropOffWrench::DropOffWrench(Robot &robot_):
+DropOffWrench::DropOffWrench(Robot *robot_):
     driveForTime(robot_, 0, 50, 0),
     turnForTime(robot_, -25, 250),
     waitForTime(robot_, 2000),

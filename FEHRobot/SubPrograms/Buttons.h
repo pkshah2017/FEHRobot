@@ -10,9 +10,9 @@ class Buttons :
     public Subprogram
 {
 public:
-    Buttons(Robot &robot_);
+    Buttons(Robot *robot_);
 private:
-    Robot robot;
+    Robot *robot;
 
     DriveToButtons driveToButtons;
     PressButtons pressButtons;

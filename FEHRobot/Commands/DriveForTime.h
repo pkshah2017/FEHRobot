@@ -8,8 +8,8 @@ class DriveForTime :
     public Command
 {
 public:
-    DriveForTime(Robot &robot_,  int heading_, int power_, float sec_);
-    DriveForTime(Robot &robot_,  int heading_, int power_, int ms);
+    DriveForTime(Robot *robot_,  int heading_, int power_, float sec_);
+    DriveForTime(Robot *robot_,  int heading_, int power_, int ms);
 
     StatusCode setup(int newHeading,int newPower, int newTime);
     StatusCode setup(int newHeading,int newPower, float newTime);
@@ -19,7 +19,7 @@ public:
     StatusCode changeDriveTime(int newTime);
     StatusCode changeDriveTime(float newTime);
 private:
-    Robot robot;
+    Robot *robot;
     int heading;
     int power;
     float timeToWait;
@@ -30,7 +30,7 @@ private:
     virtual bool isFinished();
     virtual StatusCode completion();
 
-    StatusCode constructor(Robot &robot_, int heading_, int power_, float sec_);
+    StatusCode constructor(Robot *robot_, int heading_, int power_, float sec_);
 };
 
 #endif

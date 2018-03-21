@@ -1,6 +1,6 @@
 #include "Jack.h"
 
-Jack::Jack(Robot &robot_)
+Jack::Jack(Robot *robot_)
     :driveToJack(robot_),
       liftJack(robot_)
 {

@@ -1,7 +1,7 @@
 #include "DriveForTime.h"
 #include <FEHUtility.h>
 
-DriveForTime::DriveForTime(Robot &robot_, int heading_, int power_, float sec_)
+DriveForTime::DriveForTime(Robot *robot_, int heading_, int power_, float sec_)
 {
     robot = robot_;
     StatusCode status = setup(heading_, power_, sec_);
@@ -13,7 +13,7 @@ DriveForTime::DriveForTime(Robot &robot_, int heading_, int power_, float sec_)
     }
 }
 
-DriveForTime::DriveForTime(Robot &robot_, int heading_, int power_, int ms)
+DriveForTime::DriveForTime(Robot *robot_, int heading_, int power_, int ms)
 {
     robot = robot_;
     StatusCode status = setup(heading_, power_, ms);
@@ -67,7 +67,7 @@ StatusCode DriveForTime::initialize() {
 }
 
 StatusCode DriveForTime::run() {
-    robot.drive(heading, power);
+    (*robot).drive(heading, power);
 
     return Success;
 }
@@ -77,7 +77,7 @@ bool DriveForTime::isFinished() {
 }
 
 StatusCode DriveForTime::completion(){
-    robot.stop();
+    (*robot).stop();
 
     return Success;
 }

@@ -1,6 +1,6 @@
 #include "Wrench.h"
 
-Wrench::Wrench(Robot &robot_)
+Wrench::Wrench(Robot *robot_)
     :driveToWrench(robot_),
       pickUpWrench(robot_),
       driveToGarage(robot_),

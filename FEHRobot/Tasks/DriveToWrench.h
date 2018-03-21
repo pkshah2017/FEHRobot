@@ -9,11 +9,11 @@ class DriveToWrench :
     public Task
 {
 public:
-    DriveToWrench(Robot &robot_);
+    DriveToWrench(Robot *robot_);
 
     virtual StatusCode execute();
 private:
-    Robot robot;
+    Robot *robot;
 
     WaitForLight waitForLight;
     DriveForTime driveForTime;

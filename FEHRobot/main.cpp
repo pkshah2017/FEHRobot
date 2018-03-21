@@ -9,14 +9,14 @@
 #include "SubPrograms/Menu.h"
 
 Robot robot;
-Logger logger(robot);
+Logger logger(&robot);
 
 int main(void)
 {
     SD.OpenLog();
     logger.logMessage("Starting Main Program\n");
     RPS.InitializeTouchMenu();
-    Menu MainMenuSelction(robot);
+    Menu MainMenuSelction(&robot);
     MainMenuSelction.ChooseOption();
     SD.CloseLog();
     return 0;

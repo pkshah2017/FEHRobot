@@ -7,9 +7,9 @@
 class Logger
 {
 private:
-    Robot robot;
+    Robot *robot;
 public:
-    Logger(Robot &robot_);
+    Logger(Robot *robot_);
     void logWorldState();
     void logMessage(const char *message);
     void logMessage(char *message);

@@ -1,12 +1,12 @@
 #include "LineFollowForTime.h"
 #include <FEHUtility.h>
 
-LineFollowForTime::LineFollowForTime(Robot &robot_, int power_, float sec_)
+LineFollowForTime::LineFollowForTime(Robot *robot_, int power_, float sec_)
 {
     constructor(robot_, power_, sec_);
 }
 
-LineFollowForTime::LineFollowForTime(Robot &robot_, int power_, int ms)
+LineFollowForTime::LineFollowForTime(Robot *robot_, int power_, int ms)
 {
     constructor(robot_, power_, ms/1000.0);
 }
@@ -23,7 +23,7 @@ StatusCode LineFollowForTime::setup(int newPower, float newTime){
     return status;
 }
 
-StatusCode LineFollowForTime::constructor(Robot &robot_, int power_, float sec_){
+StatusCode LineFollowForTime::constructor(Robot *robot_, int power_, float sec_){
     robot = robot_;
     StatusCode status = setup(power_, sec_);
     if(status != Success){
@@ -50,11 +50,11 @@ StatusCode LineFollowForTime::changeDriveTime(float newTime){
 }
 
 StatusCode LineFollowForTime::updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold){
-    robot.updateSensorStates();
+    (*robot).updateSensorStates();
 
-    float left = robot.getOpto(LeftOpto);
-    float center = robot.getOpto(CenterOpto);
-    float right = robot.getOpto(RightOpto);
+    float left = (*robot).getOpto(LeftOpto);
+    float center = (*robot).getOpto(CenterOpto);
+    float right = (*robot).getOpto(RightOpto);
 
     //   > is black (on)     < is white (off)
     if (right < rightTheshold && center > centerThreshold && left < leftThreshold) {
@@ -90,22 +90,22 @@ StatusCode LineFollowForTime::run() {
 
     switch(lineFollowStatus){
     case OFF_ON_OFF:
-        robot.drive(0, power);
+        (*robot).drive(0, power);
         break;
     case ON_ON_OFF:
-        robot.drive(45, power);
+        (*robot).drive(45, power);
         break;
     case ON_OFF_OFF:
-        robot.drive(90, power);
+        (*robot).drive(90, power);
         break;
     case OFF_ON_ON:
-        robot.drive(315, power);
+        (*robot).drive(315, power);
         break;
     case OFF_OFF_ON:
-        robot.drive(270, power);
+        (*robot).drive(270, power);
         break;
     case OFF_OFF_OFF:
-        robot.stop();
+        (*robot).stop();
         break;
     }
 
@@ -117,7 +117,7 @@ bool LineFollowForTime::isFinished() {
 }
 
 StatusCode LineFollowForTime::completion(){
-    robot.stop();
+    (*robot).stop();
 
     return Success;
 }

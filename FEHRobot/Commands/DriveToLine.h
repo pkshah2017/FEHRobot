@@ -8,11 +8,11 @@ class DriveToLine :
     public Command
 {
 public:
-    DriveToLine(Robot &robot_, int power_);
+    DriveToLine(Robot *robot_, int power_);
 
     StatusCode changePower(int newPower);
 private:
-    Robot robot;
+    Robot *robot;
     int power;
     LineFollowerState lineFollowStatus;
 

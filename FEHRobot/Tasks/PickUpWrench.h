@@ -9,11 +9,11 @@ class PickUpWrench :
     public Task
 {
 public:
-    PickUpWrench(Robot &robot_);
+    PickUpWrench(Robot *robot_);
 
     virtual StatusCode execute();
 private:
-    Robot robot;
+    Robot *robot;
 
     DriveForTime driveForTime;
     TurnForTime turnForTime;

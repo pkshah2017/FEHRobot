@@ -3,7 +3,7 @@
 #include "FEHServo.h"
 
 
-PressButtons::PressButtons(Robot &robot_):
+PressButtons::PressButtons(Robot *robot_):
     readButtonLight(robot_),
     driveForTime(robot_, 0, 50, 0),
     turnForTime(robot_, -25, 250),

@@ -9,11 +9,11 @@ class TurnCrank :
     public Task
 {
 public:
-    TurnCrank(Robot &robot_);
+    TurnCrank(Robot *robot_);
 
     virtual StatusCode execute();
 private:
-    Robot robot;
+    Robot *robot;
 
     ChangeCrankArmPosition changeCrankArmPosition;
 };

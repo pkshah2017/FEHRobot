@@ -1,6 +1,6 @@
 #include "DriveToButtons.h"
 
-DriveToButtons::DriveToButtons(Robot &robot_):
+DriveToButtons::DriveToButtons(Robot *robot_):
     waitForLight(robot_),
     driveForTime(robot_, 0, 50, 1350),
     centerOnLine(robot_)

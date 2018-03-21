@@ -9,11 +9,11 @@ class DriveToEnd :
     public Task
 {
 public:
-    DriveToEnd(Robot &robot_);
+    DriveToEnd(Robot *robot_);
 
     virtual StatusCode execute();
 private:
-    Robot robot;
+    Robot *robot;
 
     WaitForLight waitForLight;
     DriveForTime driveForTime;

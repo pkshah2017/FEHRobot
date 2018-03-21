@@ -14,7 +14,7 @@ struct _errordesc {
 { E_UnreachableCode, "Unreachable Code Reached" }
 };
 
-Logger::Logger(Robot &robot_){
+Logger::Logger(Robot *robot_){
     robot = robot_;
 }
 
@@ -29,17 +29,17 @@ void Logger::logMessage(char *message){
 void Logger::logWorldState(){
     SD.Printf("NEW DATA POINT\n");
     SD.Printf("TIME: %f\n", TimeNow());
-    SD.Printf("ROBOT X: %f\n", robot.getX());
-    SD.Printf("ROBOT Y: %f\n", robot.getY());
-    SD.Printf("ROBOT HEADING: %f\n", robot.getHeading());
-    SD.Printf("LEFT LIMIT STATE: %u\n", robot.getLimit(RobotLeft));
-    SD.Printf("FRONT LIMIT STATE: %u\n", robot.getLimit(RobotFront));
-    SD.Printf("RIGHT LIMIT STATE: %u\n", robot.getLimit(RobotRight));
-    SD.Printf("LEFT OPTO VALUE: %f\n", robot.getOpto(LeftOpto));
-    SD.Printf("CENTER OPTO VALUE: %f\n", robot.getOpto(CenterOpto));
-    SD.Printf("RIGHT OPTO VALUE: %f\n", robot.getOpto(RightOpto));
-    SD.Printf("DEADZONE STATUS: %d\n", robot.getDeadzoneStatus());
-    SD.Printf("FUEL TYPE: %d\n", robot.getFuelType());
+    SD.Printf("ROBOT X: %f\n", (*robot).getX());
+    SD.Printf("ROBOT Y: %f\n", (*robot).getY());
+    SD.Printf("ROBOT HEADING: %f\n", (*robot).getHeading());
+    SD.Printf("LEFT LIMIT STATE: %u\n", (*robot).getLimit(RobotLeft));
+    SD.Printf("FRONT LIMIT STATE: %u\n", (*robot).getLimit(RobotFront));
+    SD.Printf("RIGHT LIMIT STATE: %u\n", (*robot).getLimit(RobotRight));
+    SD.Printf("LEFT OPTO VALUE: %f\n", (*robot).getOpto(LeftOpto));
+    SD.Printf("CENTER OPTO VALUE: %f\n", (*robot).getOpto(CenterOpto));
+    SD.Printf("RIGHT OPTO VALUE: %f\n", (*robot).getOpto(RightOpto));
+    SD.Printf("DEADZONE STATUS: %d\n", (*robot).getDeadzoneStatus());
+    SD.Printf("FUEL TYPE: %d\n", (*robot).getFuelType());
 }
 
 void Logger::printError(StatusCode errorCode){

@@ -12,7 +12,7 @@
 class Menu
 {
 private:
-    Robot robot_;
+    Robot *robot_;
 
     int  mainMenu();
     void  booltoIcon(FEHIcon::Icon inputIcon, int input);
@@ -30,7 +30,7 @@ private:
     Wrench wrench;
     Crank crank;
 public:
-    Menu(Robot &robot_);
+    Menu(Robot *robot_);
     void ChooseOption();
 };
 #endif // MENU_H

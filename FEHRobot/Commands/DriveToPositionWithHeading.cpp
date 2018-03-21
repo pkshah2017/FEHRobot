@@ -3,7 +3,7 @@
 #include <math.h>
 #include <FEHLCD.h>
 
-DriveToPositionWithHeading::DriveToPositionWithHeading(Robot &robot_, float x_, float y_, float heading_)
+DriveToPositionWithHeading::DriveToPositionWithHeading(Robot *robot_, float x_, float y_, float heading_)
 {
     robot = robot_;
     StatusCode status = setup(x_, y_, heading_);
@@ -42,19 +42,19 @@ StatusCode DriveToPositionWithHeading::changeHeadingSetpoint(float heading_){
 }
 
 StatusCode DriveToPositionWithHeading::initialize() {
-    robot.updateRPSStates();
-    currentX = robot.getX();
-    currentY = robot.getY();
-    currentHeading = robot.getHeading();
+    (*robot).updateRPSStates();
+    currentX = (*robot).getX();
+    currentY = (*robot).getY();
+    currentHeading = (*robot).getHeading();
 
     return Success;
 }
 
 StatusCode DriveToPositionWithHeading::run() {
-    robot.updateRPSStates();
-    currentX = robot.getX();
-    currentY = robot.getY();
-    currentHeading = robot.getHeading();
+    (*robot).updateRPSStates();
+    currentX = (*robot).getX();
+    currentY = (*robot).getY();
+    currentHeading = (*robot).getHeading();
 
     float deltaX = x - currentX;
     float deltaY = y - currentY;
@@ -98,7 +98,7 @@ StatusCode DriveToPositionWithHeading::run() {
     }
     //= (float)(((int)(finalHeading - currentHeading + 360)) % 360)/360.0f;
 
-    robot.driveAndTurn(driveHeading, 30, turnSpeed);
+    (*robot).driveAndTurn(driveHeading, 30, turnSpeed);
 
     return Success;
 }
@@ -113,7 +113,7 @@ bool DriveToPositionWithHeading::isFinished() {
 }
 
 StatusCode DriveToPositionWithHeading::completion(){
-    robot.stop();
+    (*robot).stop();
 
     return Success;
 }

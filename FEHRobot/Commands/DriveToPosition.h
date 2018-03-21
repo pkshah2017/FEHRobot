@@ -8,14 +8,14 @@ class DriveToPosition :
     public Command
 {
 public:
-    DriveToPosition(Robot &robot_, float x_, float y_);
+    DriveToPosition(Robot *robot_, float x_, float y_);
 
     StatusCode setup(float newX, float newY);
 
     StatusCode changeXSetpoint(float x_);
     StatusCode changeYSetpoint(float y_);
 private:
-    Robot robot;
+    Robot *robot;
     float x;
     float y;
     float currentX;

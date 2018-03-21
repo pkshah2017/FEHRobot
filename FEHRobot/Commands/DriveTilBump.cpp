@@ -1,7 +1,7 @@
 #include "DriveTilBump.h"
 #include <FEHUtility.h>
 
-DriveTilBump::DriveTilBump(Robot &robot_, int heading_, int power_, Direction direction_)
+DriveTilBump::DriveTilBump(Robot *robot_, int heading_, int power_, Direction direction_)
 {
     robot = robot_;
     StatusCode status = setup(heading_, power_, direction_);
@@ -41,14 +41,14 @@ StatusCode DriveTilBump::changeBumpDirection(Direction direction_){
 
 StatusCode DriveTilBump::initialize() {
     startTime = TimeNow();
-    robot.updateSensorStates();
+    (*robot).updateSensorStates();
 
     return Success;
 }
 
 StatusCode DriveTilBump::run() {
-    robot.drive(heading, power);
-    robot.updateSensorStates();
+    (*robot).drive(heading, power);
+    (*robot).updateSensorStates();
     if(TimeNow() - startTime > TIMEOUT){
         return E_Timeout;
     }
@@ -57,17 +57,17 @@ StatusCode DriveTilBump::run() {
 
 StatusCode DriveTilBump::runFailureRecovery(StatusCode error){
     if(error == E_Timeout){
-        robot.stop();
+        (*robot).stop();
     }
     return error;
 }
 
 bool DriveTilBump::isFinished() {
-    return !robot.getLimit(direction);
+    return !(*robot).getLimit(direction);
 }
 
 StatusCode DriveTilBump::completion(){
-    robot.stop();
+    (*robot).stop();
 
     return Success;
 }

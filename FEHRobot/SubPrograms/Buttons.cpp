@@ -1,6 +1,6 @@
 #include "Buttons.h"
 
-Buttons::Buttons(Robot &robot_)
+Buttons::Buttons(Robot *robot_)
     :driveToButtons(robot_),
       pressButtons(robot_)
 {

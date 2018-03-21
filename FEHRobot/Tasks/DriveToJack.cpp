@@ -1,6 +1,6 @@
 #include "DriveToJack.h"
 
-DriveToJack::DriveToJack(Robot &robot_):
+DriveToJack::DriveToJack(Robot *robot_):
     driveForTime(robot_, 0, 50, 1000),
     driveTilBump(robot_, 315, 50, RobotFront)
 {

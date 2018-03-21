@@ -1,17 +1,17 @@
 #include "WaitForTime.h"
 #include <FEHUtility.h>
 
-WaitForTime::WaitForTime(Robot &robot_, float sec_)
+WaitForTime::WaitForTime(Robot *robot_, float sec_)
 {
     constructor(robot_, sec_);
 }
 
-WaitForTime::WaitForTime(Robot &robot_, int ms)
+WaitForTime::WaitForTime(Robot *robot_, int ms)
 {
     constructor(robot_, ms/1000.0);
 }
 
-StatusCode WaitForTime::constructor(Robot &robot_, float sec_){
+StatusCode WaitForTime::constructor(Robot *robot_, float sec_){
     robot = robot_;
     StatusCode status = changeDriveTime(sec_);
     if(status != Success){
@@ -47,7 +47,5 @@ bool WaitForTime::isFinished() {
 }
 
 StatusCode WaitForTime::completion(){
-    robot.stop();
-
     return Success;
 }

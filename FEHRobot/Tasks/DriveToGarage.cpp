@@ -1,6 +1,6 @@
 #include "DriveToGarage.h"
 
-DriveToGarage::DriveToGarage(Robot &robot_):
+DriveToGarage::DriveToGarage(Robot *robot_):
     waitForLight(robot_),
     driveForTime(robot_, 0, 50, 1350),
     driveTilBump(robot_, 230, 50, RobotRight),

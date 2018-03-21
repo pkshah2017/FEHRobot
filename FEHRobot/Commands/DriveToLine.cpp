@@ -1,7 +1,7 @@
 #include "DriveToLine.h"
 #include <FEHUtility.h>
 
-DriveToLine::DriveToLine(Robot &robot_, int power_)
+DriveToLine::DriveToLine(Robot *robot_, int power_)
 {
     robot = robot_;
     StatusCode status = changePower(power_);
@@ -34,19 +34,19 @@ StatusCode DriveToLine::run() {
             return E_UnreachableCode;
             break;
         case ON_ON_OFF:
-            robot.turn(-25);
+            (*robot).turn(-25);
             break;
         case ON_OFF_OFF:
-            robot.turn(-25);
+            (*robot).turn(-25);
             break;
         case OFF_ON_ON:
-            robot.turn(25);
+            (*robot).turn(25);
             break;
         case OFF_OFF_ON:
-            robot.turn(25);
+            (*robot).turn(25);
             break;
         case OFF_OFF_OFF:
-            robot.drive(180, power);
+            (*robot).drive(180, power);
             break;
         }
     }
@@ -58,17 +58,17 @@ bool DriveToLine::isFinished() {
 }
 
 StatusCode DriveToLine::completion(){
-    robot.stop();
+    (*robot).stop();
 
     return Success;
 }
 
 StatusCode DriveToLine::updateLineFollowerState(float leftThreshold, float centerThreshold, float rightTheshold){
-    robot.updateSensorStates();
+    (*robot).updateSensorStates();
 
-    float left = robot.getOpto(LeftOpto);
-    float center = robot.getOpto(CenterOpto);
-    float right = robot.getOpto(RightOpto);
+    float left = (*robot).getOpto(LeftOpto);
+    float center = (*robot).getOpto(CenterOpto);
+    float right = (*robot).getOpto(RightOpto);
 
     //   > is black (on)     < is white (off)
     if (right < rightTheshold && center > centerThreshold && left < leftThreshold) {

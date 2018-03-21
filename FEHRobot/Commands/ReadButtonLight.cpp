@@ -1,16 +1,16 @@
 #include "ReadButtonLight.h"
 #include <FEHLCD.h>
 
-ReadButtonLight::ReadButtonLight(Robot &robot_)
+ReadButtonLight::ReadButtonLight(Robot *robot_)
 {
     robot = robot_;
     buttonColor = E_UnreachableCode;
 }
 
 StatusCode ReadButtonLight::initialize() {
-    robot.updateSensorStates();
+    (*robot).updateSensorStates();
 
-    if(robot.getCDSState() < .85){
+    if((*robot).getCDSState() < .85){
         buttonColor = L_Red;
     } else {
         buttonColor = L_Blue;

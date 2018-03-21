@@ -7,9 +7,9 @@ class CenterOnLine :
     public Command
 {
 public:
-    CenterOnLine(Robot &robot_);
+    CenterOnLine(Robot *robot_);
 private:
-    Robot robot;
+    Robot *robot;
     bool leftOptoOnLine;
     bool centerOptoOnLine;
     bool rightOptoOnLine;

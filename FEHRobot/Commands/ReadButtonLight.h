@@ -7,9 +7,9 @@ class ReadButtonLight :
     public Command
 {
 public:
-    ReadButtonLight(Robot &robot_);
+    ReadButtonLight(Robot *robot_);
 private:
-    Robot robot;
+    Robot *robot;
 
     StatusCode buttonColor;
 

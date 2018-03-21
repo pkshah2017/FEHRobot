@@ -8,9 +8,9 @@ class WaitForLight :
     public Command
 {
 public:
-    WaitForLight(Robot &robot_);
+    WaitForLight(Robot *robot_);
 private:
-    Robot robot;
+    Robot *robot;
 
     virtual StatusCode initialize();
     virtual StatusCode run();

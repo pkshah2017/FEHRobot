@@ -1,6 +1,6 @@
 #include "Crank.h"
 
-Crank::Crank(Robot &robot_)
+Crank::Crank(Robot *robot_)
     :driveToCrank(robot_),
       turnCrank(robot_),
       driveToEnd(robot_)

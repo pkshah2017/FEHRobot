@@ -3,7 +3,7 @@
 #include <math.h>
 #include <FEHLCD.h>
 
-DriveToPosition::DriveToPosition(Robot &robot_, float x_, float y_)
+DriveToPosition::DriveToPosition(Robot *robot_, float x_, float y_)
 {
     robot = robot_;
     StatusCode status = setup(x_, y_);
@@ -34,18 +34,18 @@ StatusCode DriveToPosition::changeYSetpoint(float y_){
 }
 
 StatusCode DriveToPosition::initialize() {
-    robot.updateRPSStates();
-    currentX = robot.getX();
-    currentY = robot.getY();
+    (*robot).updateRPSStates();
+    currentX = (*robot).getX();
+    currentY = (*robot).getY();
 
     return Success;
 }
 
 StatusCode DriveToPosition::run() {
-    robot.updateRPSStates();
-    currentX = robot.getX();
-    currentY = robot.getY();
-    float currentHeading = robot.getHeading();
+    (*robot).updateRPSStates();
+    currentX = (*robot).getX();
+    currentY = (*robot).getY();
+    float currentHeading = (*robot).getHeading();
 
     float deltaX = x - currentX;
     float deltaY = y - currentY;
@@ -62,13 +62,13 @@ StatusCode DriveToPosition::run() {
     }
     heading += 90;
 
-    robot.drive(heading, 30);
+    (*robot).drive(heading, 30);
 
     return Success;
 }
 
 bool DriveToPosition::isFinished() {
-    robot.updateRPSStates();
+    (*robot).updateRPSStates();
     float deltaX = x - currentX;
     float deltaY = y - currentY;
 
@@ -78,7 +78,7 @@ bool DriveToPosition::isFinished() {
 }
 
 StatusCode DriveToPosition::completion(){
-    robot.stop();
+    (*robot).stop();
 
     return Success;
 }

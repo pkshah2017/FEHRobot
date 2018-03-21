@@ -12,9 +12,9 @@ class Crank :
     public Subprogram
 {
 public:
-    Crank(Robot &robot_);
+    Crank(Robot *robot_);
 private:
-    Robot robot;
+    Robot *robot;
 
     DriveToCrank driveToCrank;
     TurnCrank turnCrank;

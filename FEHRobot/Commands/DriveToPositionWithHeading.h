@@ -8,7 +8,7 @@ class DriveToPositionWithHeading :
     public Command
 {
 public:
-    DriveToPositionWithHeading(Robot &robot_, float x_, float y_, float heading_);
+    DriveToPositionWithHeading(Robot *robot_, float x_, float y_, float heading_);
 
     StatusCode setup(float newX, float newY, float newHeading);
 
@@ -16,7 +16,7 @@ public:
     StatusCode changeYSetpoint(float y_);
     StatusCode changeHeadingSetpoint(float heading_);
 private:
-    Robot robot;
+    Robot *robot;
     float x;
     float y;
     float finalHeading;

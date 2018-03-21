@@ -7,9 +7,9 @@ class ChangeCrankArmPosition :
         public Command
 {
 public:
-    ChangeCrankArmPosition(Robot &robot_);
-    ChangeCrankArmPosition(Robot &robot_, ArmPosition armPosition_, int ms);
-    ChangeCrankArmPosition(Robot &robot_, ArmPosition armPosition_, float sec);
+    ChangeCrankArmPosition(Robot *robot_);
+    ChangeCrankArmPosition(Robot *robot_, ArmPosition armPosition_, int ms);
+    ChangeCrankArmPosition(Robot *robot_, ArmPosition armPosition_, float sec);
 
     StatusCode selectArmPosition(ArmPosition armPosition_);
     StatusCode selectWaitTime(int ms);
@@ -17,13 +17,13 @@ public:
 
     StatusCode setup(ArmPosition armPosition_, float sec);
 private:
-    Robot robot;
+    Robot *robot;
 
     int startTime;
     int timeToWait;
     ArmPosition armPosition;
 
-    StatusCode constructor(Robot &robot_, ArmPosition armPosition_, float sec);
+    StatusCode constructor(Robot *robot_, ArmPosition armPosition_, float sec);
 
     virtual StatusCode initialize();
     virtual StatusCode run();

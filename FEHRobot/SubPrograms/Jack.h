@@ -10,9 +10,9 @@ class Jack :
     public Subprogram
 {
 public:
-    Jack(Robot &robot_);
+    Jack(Robot *robot_);
 private:
-    Robot robot;
+    Robot *robot;
 
     DriveToJack driveToJack;
     LiftJack liftJack;

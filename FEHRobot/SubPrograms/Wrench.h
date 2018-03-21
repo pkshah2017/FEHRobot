@@ -13,9 +13,9 @@ class Wrench :
     public Subprogram
 {
 public:
-    Wrench(Robot &robot_);
+    Wrench(Robot *robot_);
 private:
-    Robot robot;
+    Robot *robot;
 
     DriveToWrench driveToWrench;
     PickUpWrench pickUpWrench;

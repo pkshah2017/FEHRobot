@@ -7,7 +7,7 @@ class DriveTilBump :
     public Command
 {
 public:
-    DriveTilBump(Robot &robot_, int heading_, int power_, Direction direction_);
+    DriveTilBump(Robot *robot_, int heading_, int power_, Direction direction_);
 
     StatusCode setup(int newHeading, int newPower,Direction newDirection);
 
@@ -15,7 +15,7 @@ public:
     StatusCode changePower(int newPower);
     StatusCode changeBumpDirection(Direction direction_);
 private:
-    Robot robot;
+    Robot *robot;
     int heading;
     int power;
     float startTime;
