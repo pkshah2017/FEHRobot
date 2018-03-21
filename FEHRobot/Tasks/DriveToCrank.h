@@ -15,10 +15,8 @@ public:
 private:
     Robot robot;
 
-    WaitForLight waitForLight;
-    DriveForTime driveForTime;
     DriveToPosition driveToPosition;
-    ChangeArmPosition changeArmPosition;
+    ChangeCrankArmPosition changeCrankArmPosition;
 };
 
 #endif

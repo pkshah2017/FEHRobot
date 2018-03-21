@@ -1,5 +1,6 @@
 #include "Commands/CenterOnLine.h"
 #include "Commands/ChangeArmPosition.h"
+#include "Commands/ChangeCrankArmPosition.h"
 #include "Commands/DriveForTime.h"
 #include "Commands/DriveTilBump.h"
 #include "Commands/DriveToLine.h"

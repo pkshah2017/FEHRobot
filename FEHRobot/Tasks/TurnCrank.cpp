@@ -5,17 +5,20 @@
 //All commands are initalized assuming the light will be red
 //If light is blue, values are modified in failure recovery
 TurnCrank::TurnCrank(Robot &robot_):
-    driveForTime(robot_, 0, 50, 0),
-    turnForTime(robot_, -25, 250),
-    waitForTime(robot_, 2000),
-    changeArmPosition(robot_, ArmRight, 1000),
-    driveTilBump(robot_, 270, 50, RobotLeft),
-    driveToLine(robot_, 35)
+    changeCrankArmPosition(robot_, ArmUp, 500)
 {
     robot = robot_;
 }
 
 StatusCode TurnCrank::execute(){
+    /*
+     * Turn the crank
+     */
+    robot.updateRPSStates();
+    int fuelType = robot.getFuelType();
+    ArmPosition endPosition = fuelType == 1 ? ArmLeft : ArmRight;
+    changeCrankArmPosition.setup(endPosition, .5f);
+    changeCrankArmPosition.execute();
 
     return Success;
 }

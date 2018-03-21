@@ -15,12 +15,7 @@ public:
 private:
     Robot robot;
 
-    DriveForTime driveForTime;
-    TurnForTime turnForTime;
-    WaitForTime waitForTime;
-    ChangeArmPosition changeArmPosition;
-    DriveTilBump driveTilBump;
-    DriveToLine driveToLine;
+    ChangeCrankArmPosition changeCrankArmPosition;
 };
 
 #endif
