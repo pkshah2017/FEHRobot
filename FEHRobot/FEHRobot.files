@@ -13,6 +13,8 @@ Subsystems/RPSLocations.h
 Subsystems/RPSLocations.cpp
 Robot.h
 Robot.cpp
+Logger.h
+Logger.cpp
 SubPrograms/Menu.h
 SubPrograms/Menu.cpp
 Commands/Command.h
