@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "Command.h"
 #include <FEHUtility.h>
 #include <FEHLCD.h>
@@ -12,8 +13,10 @@ StatusCode Command::execute() {
         errorCode = initializeFailureRecovery(errorCode);
     }
     while (errorCode == Success && !isFinished()) {
+        logger.logWorldState();
         StatusCode errorCode = run();
         if(errorCode != Success){
+            //logger.printError(errorCode);
             errorCode = runFailureRecovery(errorCode);
         }
 		Sleep(REFRESH_RATE);
