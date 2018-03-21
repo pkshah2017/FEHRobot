@@ -42,7 +42,7 @@ void Logger::logWorldState(){
     SD.Printf("FUEL TYPE: %d\n", (*robot).getFuelType());
 }
 
-void Logger::printError(StatusCode errorCode){
+void Logger::logError(StatusCode errorCode){
 
     SD.Printf("ERROR CODE: %u\n", (int)errorCode);
     SD.Printf("Description: ");

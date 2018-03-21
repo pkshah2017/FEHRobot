@@ -13,7 +13,7 @@ public:
     void logWorldState();
     void logMessage(const char *message);
     void logMessage(char *message);
-    void printError(StatusCode errorCode);
+    void logError(StatusCode errorCode);
 };
 
 extern Logger logger;
