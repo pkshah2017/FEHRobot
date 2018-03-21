@@ -19,6 +19,8 @@ private:
     DriveForTime driveForTime;
     DriveToPosition driveToPosition;
     ChangeArmPosition changeArmPosition;
+    ChangeCrankArmPosition changeCrankArmPosition;
+    TurnForTime turnForTime;
 };
 
 #endif

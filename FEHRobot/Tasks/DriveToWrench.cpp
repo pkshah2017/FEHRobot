@@ -6,7 +6,7 @@ DriveToWrench::DriveToWrench(Robot *robot_):
     driveForTime(robot_, 0, 50, 1350),
     driveToPosition(robot_, 0, 0),
     changeArmPosition(robot_, ArmUp, 500),
-    driveToPositionWithHeading(robot_, 0, 0, 180)
+    driveToPositionWithHeading(robot_, 0, 0, 315)
 {
     robot = robot_;
 }
@@ -17,7 +17,8 @@ StatusCode DriveToWrench::execute(){
      */
     //driveToPosition.setup(7.5f, 21.0f);
     //driveToPosition.execute();
-    driveToPositionWithHeading.setup(7.5f, 21.0f, 0);
+    robot.updateRPSStates();
+    driveToPositionWithHeading.setup(7.5f, 19.75f, 0);
     driveToPositionWithHeading.execute();
     (*robot).updateRPSStates();
     LCD.WriteRC("LOCATION X and Y: ", 6, 1);

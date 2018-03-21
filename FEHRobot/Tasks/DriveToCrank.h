@@ -15,7 +15,9 @@ public:
 private:
     Robot *robot;
 
-    DriveToPosition driveToPosition;
+    DriveForTime driveForTime;
+    DriveToPosition driveToPosition;    
+    DriveToPositionWithHeading driveToPositionWithHeading;
     ChangeCrankArmPosition changeCrankArmPosition;
 };
 

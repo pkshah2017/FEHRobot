@@ -16,7 +16,9 @@ private:
     Robot *robot;
 
     DriveForTime driveForTime;
+    DriveToPosition driveToPosition;
     DriveTilBump driveTilBump;
+    TurnForTime turnForTime;
 };
 
 #endif

@@ -17,13 +17,13 @@ StatusCode DriveToButtons::execute(){
     /*
      * Drive out of start
      */
-    driveForTime.setup(0, 50, 1350);
+    driveForTime.setup(0, 50, 1300);
     driveForTime.execute();
 
     /*
      * Drive to buttons
      */
-    driveForTime.setup(90, 50, 1500);
+    driveForTime.setup(90, 50, 1400);
     driveForTime.execute();
 
     /*

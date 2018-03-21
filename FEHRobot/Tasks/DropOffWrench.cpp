@@ -19,26 +19,27 @@ StatusCode DropOffWrench::execute(){
     /*
      * Slightly lower arm
      */
-    changeArmPosition.setup(ArmAngledRight, 1500);
+    changeArmPosition.setup(ArmAngledRight, 500);
     changeArmPosition.execute();
 
     /*
      * Enter garage
      */
-    driveForTime.setup(270, 50, 1000);
+    driveForTime.setup(270, 60, 1000);
     driveForTime.execute();
 
     /*
      * Lower Arm
      */
-    changeArmPosition.setup(ArmRight, 1500);
+    changeArmPosition.setup(ArmRight, 500);
     changeArmPosition.execute();
 
     /*
      * Exit garage
      */
-    driveForTime.setup(90, 50, 1800);
+    driveForTime.setup(90, 60, 1600);
     driveForTime.execute();
+
 
     return Success;
 }
