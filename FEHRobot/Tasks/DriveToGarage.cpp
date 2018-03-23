@@ -13,16 +13,19 @@ DriveToGarage::DriveToGarage(Robot *robot_):
 }
 
 StatusCode DriveToGarage::execute(){
+
+    driveForTime.setup(180, 70, 500);
+    driveForTime.execute();
     /*
      * Move To Ramp
      */
-    driveTilBump.setup(230, 50, RobotRight);
+    driveTilBump.setup(250, 70, RobotRight);
     driveTilBump.execute();
 
     /*
      * Go up ramp
      */
-    driveForTime.setup(175, 75, 4000);
+    driveForTime.setup(175, 100, 3000);
     driveForTime.execute();
 
     /*
@@ -30,17 +33,21 @@ StatusCode DriveToGarage::execute(){
      */
     driveForTime.setup(180, 50, 2000);
     driveForTime.execute();
-
+    /*
+     * Back away slightly
+     */
+    driveForTime.setup(0, 50, 250);
+    driveForTime.execute();
     /*
      * Become parallel with garage door
      */
-    turnForTime.setup(25, 1100);
+    turnForTime.setup(25, 1200);
     turnForTime.execute();
 
     /*
      * Move towards garage while parallel
      */
-    driveForTime.setup(180, 50, 1150);
+    driveForTime.setup(180, 50, 1250);
     driveForTime.execute();
 
     /*

@@ -46,6 +46,7 @@ StatusCode DriveToPositionWithHeading::initialize() {
     currentX = (*robot).getX();
     currentY = (*robot).getY();
     currentHeading = (*robot).getHeading();
+    startTime = TimeNow();
 
     return Success;
 }
@@ -84,20 +85,32 @@ StatusCode DriveToPositionWithHeading::run() {
     /*
      * Calculate turn speed
      */
-    int tempFinalHeading = (int)(finalHeading+ 90) % 360;
-    int tempCurrentHeading = (int)(currentHeading+ 90) % 360;
+    int tempFinalHeading = (int)(finalHeading+ 180) % 360;
+    int tempCurrentHeading = (int)(currentHeading+ 180) % 360;
     float turnSpeed = 0.0f;
-    if (tempFinalHeading - tempCurrentHeading > 3){
-        turnSpeed = -6.0f;
+    if ((tempFinalHeading - tempCurrentHeading) >= 1){
+        turnSpeed = -(float)(.5f*abs((float)(tempFinalHeading - tempCurrentHeading)));
     }
-    else if (tempCurrentHeading - tempFinalHeading > 3){
-        turnSpeed = 6.0f;
+    else if ((tempFinalHeading - tempCurrentHeading) <= -1){
+        turnSpeed = (float)(.5f*abs((float)(tempFinalHeading - tempCurrentHeading)));
     }
     else {
         turnSpeed = 0.0f;
     }
-    //= (float)(((int)(finalHeading - currentHeading + 360)) % 360)/360.0f;
+    LCD.WriteRC("turn",4,1);
+    LCD.WriteRC(turnSpeed,4,9);
+    LCD.WriteRC("error",5,1);
+    LCD.WriteRC(error,5,9);
+    float currentTime = TimeNow();
+    LCD.WriteRC("time",6,1);
+    LCD.WriteRC(currentTime - startTime,6,9);
+    LCD.WriteRC("finalH",7,1);
+    LCD.WriteRC(tempFinalHeading,7,9);
+    LCD.WriteRC("currentH",7,1);
+    LCD.WriteRC(tempCurrentHeading,8,9);
 
+    startTime = currentTime;
+    //= (float)(((int)(finalHeading - currentHeading + 360)) % 360)/360.0f;
     (*robot).driveAndTurn(driveHeading, 30, turnSpeed);
 
     return Success;
@@ -107,9 +120,10 @@ bool DriveToPositionWithHeading::isFinished() {
     float deltaX = x - currentX;
     float deltaY = y - currentY;
 
-    float error = sqrt(deltaX * deltaX + deltaY * deltaY);
+    float positionError = sqrt(deltaX * deltaX + deltaY * deltaY);
+    float headingError = abs(currentHeading - finalHeading);
 
-    return abs(error) <= POSITION_TOLERANCE;
+    return abs(positionError) <= POSITION_TOLERANCE;
 }
 
 StatusCode DriveToPositionWithHeading::completion(){
