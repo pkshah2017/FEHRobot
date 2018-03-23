@@ -20,23 +20,23 @@ int DriveTrain::driveAndTurn(int heading, int power, float turnSpeed){
 
     //float headingRad = heading * PI / 180;
     float powerPercent = (float)power;
-//    LCD.WriteRC("Power Percent: ", 2, 1);
-//    LCD.WriteRC(powerPercent, 2, 16);
-//heading is 45 degrees
+    //    LCD.WriteRC("Power Percent: ", 2, 1);
+    //    LCD.WriteRC(powerPercent, 2, 16);
+    //heading is 45 degrees
     //float calculatedCos = cos(headingRad + PI / 4);//0
-   // float calculatedSin = sin(headingRad + PI / 4);//1
-   // LCD.WriteLine("calculated cos and sin");
+    // float calculatedSin = sin(headingRad + PI / 4);//1
+    // LCD.WriteLine("calculated cos and sin");
 
     float FRSpeed = powerPercent * -x + turnSpeed;
     float FLSpeed = powerPercent * y + turnSpeed;
     float BRSpeed = powerPercent * -y + turnSpeed;
     float BLSpeed = powerPercent * x + turnSpeed;
 
-//    LCD.WriteRC("Raw Powers: ", 3, 1);
-//    LCD.WriteRC(FRSpeed, 3, 12);
-//    LCD.WriteRC(FLSpeed, 4, 12);
-//    LCD.WriteRC(BRSpeed, 5, 12);
-//    LCD.WriteRC(BLSpeed, 6, 12);
+    //    LCD.WriteRC("Raw Powers: ", 3, 1);
+    //    LCD.WriteRC(FRSpeed, 3, 12);
+    //    LCD.WriteRC(FLSpeed, 4, 12);
+    //    LCD.WriteRC(BRSpeed, 5, 12);
+    //    LCD.WriteRC(BLSpeed, 6, 12);
 
 
     float speeds[4];
@@ -57,15 +57,15 @@ int DriveTrain::driveAndTurn(int heading, int power, float turnSpeed){
         }
     }
 
-//    LCD.WriteRC("Scaled Powers: ", 7, 1);
-//    if(needsToRescale){
-//        for(int i = 0; i < 4; i++){
-//            speeds[i] = speeds[i] / max;
-//            LCD.WriteRC(FRSpeed, 8 + i, 12);
-//        }
-//    }
+    //    LCD.WriteRC("Scaled Powers: ", 7, 1);
+    //    if(needsToRescale){
+    //        for(int i = 0; i < 4; i++){
+    //            speeds[i] = speeds[i] / max;
+    //            LCD.WriteRC(FRSpeed, 8 + i, 12);
+    //        }
+    //    }
 
-  //  LCD.WriteLine("Found final motor values");
+    //  LCD.WriteLine("Found final motor values");
 
     FRMotor.SetPercent(speeds[0]);
     FLMotor.SetPercent(speeds[1]);
@@ -82,7 +82,6 @@ int DriveTrain::turn(int power) {
     FLMotor.SetPercent(power);
     BLMotor.SetPercent(power);
     BRMotor.SetPercent(power);
-
     return 0;
 }
 
@@ -95,9 +94,9 @@ int DriveTrain::drive(int heading, int power) {
     FLMotor.SetPercent(y*power);
     BLMotor.SetPercent(x*power);
     BRMotor.SetPercent(-y*power);
-/*
-    driveAndTurn(heading, power, 0);
-*/
+    /*
+     * driveAndTurn(heading, power, 0);
+     */
     return 0;
 }
 

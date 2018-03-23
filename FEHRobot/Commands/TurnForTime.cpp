@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "TurnForTime.h"
 #include <FEHUtility.h>
 
@@ -10,17 +11,14 @@ TurnForTime::TurnForTime(Robot *robot_, int power_, float sec_)
 
 TurnForTime::TurnForTime(Robot *robot_, int power_, int ms)
 {
-    constructor(robot_, power_, ms/1000.0);
+    constructor(robot_, power_, ms/1000.0f);
 }
 
 StatusCode TurnForTime::constructor(Robot *robot_, int power_, float sec_){
     robot = robot_;
     StatusCode status = setup(power_, sec_);
     if(status != Success){
-        LCD.Write("ERROR CODE: ");
-        LCD.WriteLine((int)status);
-        LCD.Write("Description: ");
-        //LCD.WriteLine(errordesc[(int)status].message);
+        logger->logError(status);
     }
 }
 

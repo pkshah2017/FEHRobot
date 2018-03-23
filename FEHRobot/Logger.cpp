@@ -46,6 +46,9 @@ void Logger::logMessage(char *message){
 void Logger::logWorldState(){
     SD.Printf("NEW DATA POINT\t");
     SD.Printf("TIME: %f\t", TimeNow());
+    SD.Printf("ROBOT ACTUAL X: %f\t", (*robot).getCurrentX());
+    SD.Printf("ROBOT ACTUAL Y: %f\t", (*robot).getCurrentY());
+    SD.Printf("ROBOT ACTUAL HEADING: %f\t", (*robot).getCurrentHeading());
     SD.Printf("ROBOT X: %f\t", (*robot).getX());
     SD.Printf("ROBOT Y: %f\t", (*robot).getY());
     SD.Printf("ROBOT HEADING: %f\t", (*robot).getHeading());

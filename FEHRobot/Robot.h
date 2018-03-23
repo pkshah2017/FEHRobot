@@ -31,6 +31,11 @@ public:
     int getFuelType();
     int getDeadzoneStatus();
 
+
+    float getCurrentX();
+    float getCurrentY();
+    float getCurrentHeading();
+
     int turn(int power);
     int drive(int heading, int power);
     int driveAndTurn(int heading, int power, int turnSpeed);

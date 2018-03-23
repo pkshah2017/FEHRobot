@@ -71,6 +71,18 @@ int Robot::getDeadzoneStatus(){
     return sensors.isDeadzoneActive();
 }
 
+float Robot::getCurrentX(){
+    return RPS.X();
+}
+
+float Robot::getCurrentY(){
+    return RPS.Y();
+}
+
+float Robot::getCurrentHeading(){
+    return RPS.Heading();
+}
+
 int Robot::turn(int power) {
     driveTrain.turn(power);
 

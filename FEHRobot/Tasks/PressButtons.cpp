@@ -68,7 +68,7 @@ StatusCode PressButtons::execute(){
     /*
      * Hold Buttons again if deadzone is still active
      */
-    waitForTime.changeDriveTime(robot-> getDeadzoneStatus() != 2 ? 5500 : 0);
+    waitForTime.changeDriveTime(robot-> getDeadzoneStatus() != 2 ? 00 : 0);
     waitForTime.execute();
 
     /*
