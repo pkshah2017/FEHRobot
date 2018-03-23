@@ -16,7 +16,7 @@ int main(void)
     logger = new Logger(&robot);
     SD.OpenLog();
     logger -> logMessage("Starting Main Program\r\n");
-    RPS.InitializeTouchMenu();
+    //RPS.InitializeTouchMenu();
     logger -> logMessage("Initialized Touch Menu\r\n");
     Menu MainMenuSelction(&robot);
     MainMenuSelction.ChooseOption();

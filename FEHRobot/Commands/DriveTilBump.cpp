@@ -72,3 +72,7 @@ StatusCode DriveTilBump::completion(){
     return Success;
 }
 
+const char * DriveTilBump::getCommandName(){
+    return "DriveTilBump";
+}
+

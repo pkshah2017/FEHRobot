@@ -81,3 +81,7 @@ StatusCode DriveForTime::completion(){
 
     return Success;
 }
+
+const char * DriveForTime::getCommandName(){
+    return "DriveForTime";
+}

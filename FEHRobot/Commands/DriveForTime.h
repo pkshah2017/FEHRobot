@@ -18,6 +18,8 @@ public:
     StatusCode changePower(int newPower);
     StatusCode changeDriveTime(int newTime);
     StatusCode changeDriveTime(float newTime);
+
+    virtual const char* getCommandName();
 private:
     Robot *robot;
     int heading;

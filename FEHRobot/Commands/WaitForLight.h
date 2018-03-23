@@ -9,6 +9,8 @@ class WaitForLight :
 {
 public:
     WaitForLight(Robot *robot_);
+
+    virtual const char* getCommandName();
 private:
     Robot *robot;
 

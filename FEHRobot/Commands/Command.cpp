@@ -9,7 +9,8 @@ Command::Command()
 }
 
 StatusCode Command::execute() {
-    logger -> logMessage(typeid(this).name());
+    logger -> logMessage("Beginning Command: ");
+    logger -> logMessage(getCommandName());
     logger -> logMessage("\r\n\r\n");
     StatusCode errorCode = initialize();
     if(errorCode != Success){
@@ -37,9 +38,6 @@ StatusCode Command::runFailureRecovery(StatusCode errorCode){
 }
 
 StatusCode Command::printError(StatusCode errorCode){
-    LCD.Write("ERROR CODE: ");
-    LCD.WriteLine((int)errorCode);
-    LCD.Write("Description: ");
-    //LCD.WriteLine((errordesc[(int)errorCode]));
+    logger -> logError(errorCode);
     return errorCode;
 }

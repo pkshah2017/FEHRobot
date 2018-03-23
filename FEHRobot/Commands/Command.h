@@ -18,6 +18,8 @@ private:
 public:
     Command();
     StatusCode execute();
+
+    virtual const char* getCommandName() = 0;
 };
 
 #endif

@@ -11,6 +11,8 @@ public:
     DriveToLine(Robot *robot_, int power_);
 
     StatusCode changePower(int newPower);
+
+    virtual const char* getCommandName();
 private:
     Robot *robot;
     int power;

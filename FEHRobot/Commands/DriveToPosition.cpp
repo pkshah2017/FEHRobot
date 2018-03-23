@@ -95,3 +95,7 @@ StatusCode DriveToPosition::completion(){
 
     return Success;
 }
+
+const char * DriveToPosition::getCommandName(){
+    return "DriveToPosition";
+}

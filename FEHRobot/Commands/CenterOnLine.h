@@ -8,6 +8,8 @@ class CenterOnLine :
 {
 public:
     CenterOnLine(Robot *robot_);
+
+    virtual const char* getCommandName();
 private:
     Robot *robot;
     bool leftOptoOnLine;

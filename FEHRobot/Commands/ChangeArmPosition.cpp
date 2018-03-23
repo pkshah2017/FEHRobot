@@ -79,3 +79,7 @@ StatusCode ChangeArmPosition::completion(){
     return Success;
 }
 
+const char * ChangeArmPosition::getCommandName(){
+    return "ChangeArmPosition";
+}
+

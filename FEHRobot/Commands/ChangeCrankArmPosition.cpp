@@ -71,3 +71,7 @@ StatusCode ChangeCrankArmPosition::completion(){
     return Success;
 }
 
+const char * ChangeCrankArmPosition::getCommandName(){
+    return "ChangeCrankArmPosition";
+}
+

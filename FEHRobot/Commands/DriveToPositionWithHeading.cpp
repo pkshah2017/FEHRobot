@@ -85,8 +85,14 @@ StatusCode DriveToPositionWithHeading::run() {
     /*
      * Calculate turn speed
      */
-    int tempFinalHeading = (int)(finalHeading+ 180) % 360;
-    int tempCurrentHeading = (int)(currentHeading+ 180) % 360;
+
+    float turnHeading = ((int)(finalHeading - currentHeading + 360)) % 360;
+    float differentTurnSpeed = 15.0f;
+    differentTurnSpeed *= turnHeading > 180 ? -1 : 1;
+    differentTurnSpeed *= turnHeading < 2 ? 0 : 1;
+
+    int tempFinalHeading = (int)(finalHeading + 180) % 360;
+    int tempCurrentHeading = (int)(currentHeading + 180) % 360;
     float turnSpeed = 0.0f;
     if ((tempFinalHeading - tempCurrentHeading) >= 1){
         turnSpeed = -(float)(.5f*abs((float)(tempFinalHeading - tempCurrentHeading)));
@@ -130,4 +136,8 @@ StatusCode DriveToPositionWithHeading::completion(){
     (*robot).stop();
 
     return Success;
+}
+
+const char * DriveToPositionWithHeading::getCommandName(){
+    return "DriveToPositionWithHeading";
 }

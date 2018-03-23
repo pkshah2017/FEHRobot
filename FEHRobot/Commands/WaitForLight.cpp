@@ -8,7 +8,6 @@ WaitForLight::WaitForLight(Robot *robot_)
 }
 
 StatusCode WaitForLight::initialize() {
-    logger -> logMessageScreen("Waiting For Light");
     return Success;
 }
 
@@ -22,6 +21,9 @@ bool WaitForLight::isFinished() {
 }
 
 StatusCode WaitForLight::completion(){
-    logger -> logMessageScreen("Detected Light");
     return Success;
+}
+
+const char * WaitForLight::getCommandName(){
+    return "WaitForLight";
 }

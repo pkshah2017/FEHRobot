@@ -14,6 +14,8 @@ public:
 
     StatusCode changeXSetpoint(float x_);
     StatusCode changeYSetpoint(float y_);
+
+    virtual const char* getCommandName();
 private:
     Robot *robot;
     float x;

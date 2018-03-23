@@ -8,6 +8,8 @@ class ReadButtonLight :
 {
 public:
     ReadButtonLight(Robot *robot_);
+
+    virtual const char* getCommandName();
 private:
     Robot *robot;
 

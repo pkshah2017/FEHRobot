@@ -30,3 +30,7 @@ StatusCode ReadButtonLight::completion(){
     return buttonColor;
 }
 
+const char * ReadButtonLight::getCommandName(){
+    return "LineFollowForTime";
+}
+

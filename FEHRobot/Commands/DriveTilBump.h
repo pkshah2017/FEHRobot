@@ -14,6 +14,8 @@ public:
     StatusCode changeHeading(int newHeading);
     StatusCode changePower(int newPower);
     StatusCode changeBumpDirection(Direction direction_);
+
+    virtual const char* getCommandName();
 private:
     Robot *robot;
     int heading;

@@ -121,3 +121,7 @@ StatusCode LineFollowForTime::completion(){
 
     return Success;
 }
+
+const char * LineFollowForTime::getCommandName(){
+    return "LineFollowForTime";
+}

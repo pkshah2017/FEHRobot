@@ -44,7 +44,7 @@ void Logger::logMessage(char *message){
 }
 
 void Logger::logWorldState(){
-    SD.Printf("\r\nNEW DATA POINT\t");
+    SD.Printf("NEW DATA POINT\t");
     SD.Printf("TIME: %f\t", TimeNow());
     SD.Printf("ROBOT X: %f\t", (*robot).getX());
     SD.Printf("ROBOT Y: %f\t", (*robot).getY());
@@ -56,7 +56,7 @@ void Logger::logWorldState(){
     SD.Printf("CENTER OPTO VALUE: %f\t", (*robot).getOpto(CenterOpto));
     SD.Printf("RIGHT OPTO VALUE: %f\t", (*robot).getOpto(RightOpto));
     SD.Printf("DEADZONE STATUS: %d\t", (*robot).getDeadzoneStatus());
-    SD.Printf("FUEL TYPE: %d\t", (*robot).getFuelType());
+    SD.Printf("FUEL TYPE: %d\t\r\n", (*robot).getFuelType());
 }
 
 void Logger::logError(StatusCode errorCode){

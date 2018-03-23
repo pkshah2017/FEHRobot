@@ -49,3 +49,7 @@ bool WaitForTime::isFinished() {
 StatusCode WaitForTime::completion(){
     return Success;
 }
+
+const char * WaitForTime::getCommandName(){
+    return "WaitForTime";
+}

@@ -16,6 +16,8 @@ public:
     StatusCode selectWaitTime(float sec);
 
     StatusCode setup(ArmPosition armPosition_, float sec);
+
+    virtual const char* getCommandName();
 private:
     Robot *robot;
 

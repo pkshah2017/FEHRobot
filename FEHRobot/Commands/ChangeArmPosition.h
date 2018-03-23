@@ -17,6 +17,8 @@ public:
 
     StatusCode setup(ArmPosition armPosition_, float sec);
     StatusCode setup(ArmPosition armPosition_, int ms);
+
+    virtual const char* getCommandName();
 private:
     Robot *robot;
 

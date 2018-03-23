@@ -17,7 +17,7 @@ StatusCode DriveToWrench::execute(){
      */
     //driveToPosition.setup(7.5f, 21.0f);
     //driveToPosition.execute();
-    robot.updateRPSStates();
+    (*robot).updateRPSStates();
     driveToPositionWithHeading.setup(7.5f, 19.75f, 0);
     driveToPositionWithHeading.execute();
     (*robot).updateRPSStates();

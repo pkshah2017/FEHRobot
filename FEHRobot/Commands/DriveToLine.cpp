@@ -96,3 +96,7 @@ StatusCode DriveToLine::updateLineFollowerState(float leftThreshold, float cente
     }
     return Success;
 }
+
+const char * DriveToLine::getCommandName(){
+    return "DriveToLine";
+}

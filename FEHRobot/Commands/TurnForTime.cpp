@@ -72,3 +72,7 @@ StatusCode TurnForTime::completion(){
 
     return Success;
 }
+
+const char * TurnForTime::getCommandName(){
+    return "TurnForTime";
+}

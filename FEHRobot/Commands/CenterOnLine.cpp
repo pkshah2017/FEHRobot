@@ -35,6 +35,10 @@ StatusCode CenterOnLine::completion(){
     return Success;
 }
 
+const char * CenterOnLine::getCommandName(){
+    return "CenterOnLine";
+}
+
 bool CenterOnLine::checkLeftOpto(){
     LCD.WriteRC("Left Opto Value: ", 1, 1);
     LCD.WriteRC((*robot).getOpto(LeftOpto), 1, 18);
