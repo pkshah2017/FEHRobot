@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "Menu.h"
 #include <FEHRPS.h>
 #include "FEHLCD.h"
@@ -32,7 +33,7 @@ Menu::Menu(Robot *robot_)
       wrench(robot_),
       crank(robot_)
 {
-
+    robot = robot_;
 }
 
 int  Menu::mainMenu()
@@ -236,13 +237,13 @@ int  Menu::RPSCheck(){
     while(currentMenu==RPS_CHECK)
     {
         LCD.Touch(&x,&y);
-        (*robot_).updateRPSStates();
+        (*robot).updateRPSStates();
         LCD.WriteRC("RPS X: ", 5, 1);
-        LCD.WriteRC((*robot_).getX(), 5, 19);
+        LCD.WriteRC((*robot).getX(), 5, 19);
         LCD.WriteRC("RPS Y:  ", 7, 1);
-        LCD.WriteRC((*robot_).getY(), 7, 19);
+        LCD.WriteRC((*robot).getY(), 7, 19);
         LCD.WriteRC("RPS Heading:  ", 9, 1);
-        LCD.WriteRC((*robot_).getHeading(), 9, 20);
+        LCD.WriteRC((*robot).getHeading(), 9, 20);
         Sleep(REFRESH_RATE);
         if (Backbtn[0].Pressed(x, y, 0))
         {
@@ -259,11 +260,12 @@ void  Menu::clearSystemCheck(){
     LCD.SetFontColor(TEXT_COLOR);
 }
 int  Menu::systemCheck(){
+
+    logger->logMessage("Beginning System Check\r\n");
     //successCount describes the total number of successful tests
     //it will actually be useful if I implement a timeout function
     int currentMenu=SYSTEM_CHECK, currentCheck =0,successCount =0;
     float x,y;
-
     LCD.Clear(BLACK);
     LCD.SetFontColor(TEXT_COLOR);
 
@@ -291,21 +293,28 @@ int  Menu::systemCheck(){
     char backLabel[1][20] = {"<-"};
     FEHIcon::DrawIconArray(Back, 1, 1, 1, 199, 1, 260, backLabel, MENU_COLOR, TEXT_COLOR);
 
+    logger->logMessage("Drew initial icons to screen\r\n");
+
     while(currentMenu==SYSTEM_CHECK)
     {
-        (*robot_).updateSensorStates();
-        booltoIcon(microSwitch[3],(*robot_).getLimit(RobotLeft));
-        booltoIcon(microSwitch[4],(*robot_).getLimit(RobotFront));
-        booltoIcon(microSwitch[5],(*robot_).getLimit(RobotRight));
 
-        updateIcon(optoSensors[3],(*robot_).getOpto(LeftOpto));
-        updateIcon(optoSensors[4],(*robot_).getOpto(CenterOpto));
-        updateIcon(optoSensors[5],(*robot_).getOpto(RightOpto));
+        logger->logMessage("Updating robot sensor values\r\n");
+        (*robot).updateSensorStates();
+        logger->logMessage("Updated robot sensor values\r\n");
+        booltoIcon(microSwitch[3],(*robot).getLimit(RobotLeft));
+        booltoIcon(microSwitch[4],(*robot).getLimit(RobotFront));
+        booltoIcon(microSwitch[5],(*robot).getLimit(RobotRight));
 
-        updateIcon(rps[3],(*robot_).getX());
-        updateIcon(rps[4],(*robot_).getY());
-        updateIcon(rps[5],(*robot_).getHeading());
-        updateIcon(cdsSensor[1],(*robot_).getCDSState());
+        updateIcon(optoSensors[3],(*robot).getOpto(LeftOpto));
+        updateIcon(optoSensors[4],(*robot).getOpto(CenterOpto));
+        updateIcon(optoSensors[5],(*robot).getOpto(RightOpto));
+
+        updateIcon(rps[3],(*robot).getX());
+        updateIcon(rps[4],(*robot).getY());
+        updateIcon(rps[5],(*robot).getHeading());
+        updateIcon(cdsSensor[1],(*robot).getCDSState());
+
+        logger->logMessage("Updated screen\r\n");
 
         clearSystemCheck();
         LCD.Touch(&x,&y);
@@ -318,7 +327,7 @@ int  Menu::systemCheck(){
         switch(currentCheck){
         case 0:
             LCD.WriteRC("Push rear button ",13,1);
-            if(!(*robot_).getLimit(RobotFront)){
+            if(!(*robot).getLimit(RobotFront)){
                 LCD.SetFontColor(SUCCESS_COLOR);
                 LCD.WriteRC("Good!",13, 20);
                 Sleep(500);
@@ -328,7 +337,7 @@ int  Menu::systemCheck(){
             break;
         case 1:
             LCD.WriteRC("Push left button ",13,1);
-            if(!(*robot_).getLimit(RobotLeft)){
+            if(!(*robot).getLimit(RobotLeft)){
                 LCD.SetFontColor(SUCCESS_COLOR);
                 LCD.WriteRC("Good!",13,20);
                 Sleep(500);
@@ -338,7 +347,7 @@ int  Menu::systemCheck(){
             break;
         case 2:
             LCD.WriteRC("Push right button ",13,1);
-            if(!(*robot_).getLimit(RobotRight)){
+            if(!(*robot).getLimit(RobotRight)){
                 LCD.SetFontColor(SUCCESS_COLOR);
                 LCD.WriteRC("Good!",13, 20);
                 Sleep(500);
@@ -348,7 +357,7 @@ int  Menu::systemCheck(){
             break;
         case 3:
             LCD.WriteRC("cds test",13,1);
-            if((*robot_).getCDSState()<2.8)
+            if((*robot).getCDSState()<2.8)
             {
                 LCD.SetFontColor(SUCCESS_COLOR);
                 LCD.WriteRC("Good!",13, 20);
@@ -360,7 +369,7 @@ int  Menu::systemCheck(){
             LCD.WriteRC("Press Test Servo ",13,1);
             if(LCD.Touch(&x,&y))
             {
-                (*robot_).setArmPosition(ArmUp);
+                (*robot).setArmPosition(ArmUp);
                 currentCheck++;
             }
             break;
@@ -423,13 +432,13 @@ int  Menu::optoCheck(){
     while(currentMenu==OPTO_CHECK)
     {
         LCD.Touch(&x,&y);
-        (*robot_).updateSensorStates();
+        (*robot).updateSensorStates();
         LCD.WriteRC("Left Opto:  ", 5, 1);
-        LCD.WriteRC((*robot_).getOpto(LeftOpto), 5, 19);
+        LCD.WriteRC((*robot).getOpto(LeftOpto), 5, 19);
         LCD.WriteRC("Center Opto:  ", 7, 1);
-        LCD.WriteRC((*robot_).getOpto(CenterOpto), 7, 19);
+        LCD.WriteRC((*robot).getOpto(CenterOpto), 7, 19);
         LCD.WriteRC("Right Opto :  ", 9, 1);
-        LCD.WriteRC((*robot_).getOpto(RightOpto), 9, 20);
+        LCD.WriteRC((*robot).getOpto(RightOpto), 9, 20);
         Sleep(REFRESH_RATE);
 
         if (Back[0].Pressed(x, y, 0))

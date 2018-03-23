@@ -1,5 +1,8 @@
 #include "Logger.h"
 #include <FEHUtility.h>
+#include <FEHLCD.h>
+#include <string.h>
+#include <stdio.h>
 
 struct _errordesc {
     int  code;
@@ -19,6 +22,20 @@ Logger::Logger(Robot *robot_){
 }
 
 void Logger::logMessage(const char *message){
+    int messageLength = strlen(message);
+
+    char stringMessage[messageLength + 50];
+
+    int ret = snprintf(stringMessage, sizeof stringMessage, "%f: %s\0",  TimeNow(), message);
+    //SD.Printf(stringMessage);
+    // SD.Printf(messageLength);
+    //    SD.Printf(" ");
+    SD.Printf(message);
+}
+
+
+void Logger::logMessageScreen(const char *message){
+    LCD.WriteLine(message);
     SD.Printf(message);
 }
 
@@ -27,25 +44,25 @@ void Logger::logMessage(char *message){
 }
 
 void Logger::logWorldState(){
-    SD.Printf("NEW DATA POINT\n");
-    SD.Printf("TIME: %f\n", TimeNow());
-    SD.Printf("ROBOT X: %f\n", (*robot).getX());
-    SD.Printf("ROBOT Y: %f\n", (*robot).getY());
-    SD.Printf("ROBOT HEADING: %f\n", (*robot).getHeading());
-    SD.Printf("LEFT LIMIT STATE: %u\n", (*robot).getLimit(RobotLeft));
-    SD.Printf("FRONT LIMIT STATE: %u\n", (*robot).getLimit(RobotFront));
-    SD.Printf("RIGHT LIMIT STATE: %u\n", (*robot).getLimit(RobotRight));
-    SD.Printf("LEFT OPTO VALUE: %f\n", (*robot).getOpto(LeftOpto));
-    SD.Printf("CENTER OPTO VALUE: %f\n", (*robot).getOpto(CenterOpto));
-    SD.Printf("RIGHT OPTO VALUE: %f\n", (*robot).getOpto(RightOpto));
-    SD.Printf("DEADZONE STATUS: %d\n", (*robot).getDeadzoneStatus());
-    SD.Printf("FUEL TYPE: %d\n", (*robot).getFuelType());
+    SD.Printf("\r\nNEW DATA POINT\t");
+    SD.Printf("TIME: %f\t", TimeNow());
+    SD.Printf("ROBOT X: %f\t", (*robot).getX());
+    SD.Printf("ROBOT Y: %f\t", (*robot).getY());
+    SD.Printf("ROBOT HEADING: %f\t", (*robot).getHeading());
+    SD.Printf("LEFT LIMIT STATE: %u\t", (*robot).getLimit(RobotLeft));
+    SD.Printf("FRONT LIMIT STATE: %u\t", (*robot).getLimit(RobotFront));
+    SD.Printf("RIGHT LIMIT STATE: %u\t", (*robot).getLimit(RobotRight));
+    SD.Printf("LEFT OPTO VALUE: %f\t", (*robot).getOpto(LeftOpto));
+    SD.Printf("CENTER OPTO VALUE: %f\t", (*robot).getOpto(CenterOpto));
+    SD.Printf("RIGHT OPTO VALUE: %f\t", (*robot).getOpto(RightOpto));
+    SD.Printf("DEADZONE STATUS: %d\t", (*robot).getDeadzoneStatus());
+    SD.Printf("FUEL TYPE: %d\t", (*robot).getFuelType());
 }
 
 void Logger::logError(StatusCode errorCode){
 
-    SD.Printf("ERROR CODE: %u\n", (int)errorCode);
+    SD.Printf("ERROR CODE: %u\r\n", (int)errorCode);
     SD.Printf("Description: ");
     SD.Printf((errordesc[(int)errorCode].message));
-    SD.Printf("\n");
+    SD.Printf("\r\n");
 }

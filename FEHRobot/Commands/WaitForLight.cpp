@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "WaitForLight.h"
 #include <FEHUtility.h>
 
@@ -7,6 +8,7 @@ WaitForLight::WaitForLight(Robot *robot_)
 }
 
 StatusCode WaitForLight::initialize() {
+    logger -> logMessageScreen("Waiting For Light");
     return Success;
 }
 
@@ -20,5 +22,6 @@ bool WaitForLight::isFinished() {
 }
 
 StatusCode WaitForLight::completion(){
+    logger -> logMessageScreen("Detected Light");
     return Success;
 }

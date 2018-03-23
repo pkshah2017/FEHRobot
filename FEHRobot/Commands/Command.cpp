@@ -2,18 +2,21 @@
 #include "Command.h"
 #include <FEHUtility.h>
 #include <FEHLCD.h>
+#include <typeinfo>
 
 Command::Command()
 {
 }
 
 StatusCode Command::execute() {
+    logger -> logMessage(typeid(this).name());
+    logger -> logMessage("\r\n\r\n");
     StatusCode errorCode = initialize();
     if(errorCode != Success){
         errorCode = initializeFailureRecovery(errorCode);
     }
     while (errorCode == Success && !isFinished()) {
-        logger.logWorldState();
+        logger -> logWorldState();
         StatusCode errorCode = run();
         if(errorCode != Success){
             //logger.printError(errorCode);

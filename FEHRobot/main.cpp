@@ -8,16 +8,19 @@
 #include "Subprograms/Wrench.h"
 #include "SubPrograms/Menu.h"
 
-Robot robot;
-Logger logger(&robot);
+Logger *logger;
 
 int main(void)
 {
+    Robot robot;
+    logger = new Logger(&robot);
     SD.OpenLog();
-    logger.logMessage("Starting Main Program\n");
+    logger -> logMessage("Starting Main Program\r\n");
     RPS.InitializeTouchMenu();
+    logger -> logMessage("Initialized Touch Menu\r\n");
     Menu MainMenuSelction(&robot);
     MainMenuSelction.ChooseOption();
+    delete logger;
     SD.CloseLog();
     return 0;
 }

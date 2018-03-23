@@ -12,7 +12,7 @@
 class Menu
 {
 private:
-    Robot *robot_;
+    Robot *robot;
 
     int  mainMenu();
     void  booltoIcon(FEHIcon::Icon inputIcon, int input);
