@@ -102,3 +102,23 @@ int Robot::setArmPosition(ArmPosition armPosition){
 int Robot::setCrankArmPosition(ArmPosition armPosition){
     crankArm.setArmPosition(armPosition);
 }
+
+void Robot::setLocation(LocationName locationName, float x, float y){
+    rpsLocations.setLocation(locationName, x, y);
+}
+
+void Robot::setLocation(LocationName locationName, Position position){
+    rpsLocations.setLocation(locationName, position);
+}
+
+float Robot::getLocationX(LocationName locationName, Course courseName){
+    return rpsLocations.getLocationX(locationName, courseName);
+}
+
+float Robot::getLocationY(LocationName locationName, Course courseName){
+    return rpsLocations.getLocationY(locationName, courseName);
+}
+
+Position Robot::getLocationPosition(LocationName locationName, Course courseName){
+    return rpsLocations.getLocationPosition(locationName, courseName);
+}

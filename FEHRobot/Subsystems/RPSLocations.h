@@ -8,7 +8,7 @@
 #include "Subsystems/Arm.h"
 
 typedef enum {
-	Exit_Start, Buttons, Jack_Corner, Wrench_Pickup, Bottom_Ramp, Leave_Garage, Crank, Top_Ramp, NUMBER_OF_LOCATIONS
+    Exit_Start, ButtonsLocation, Jack_Corner, Wrench_Pickup, Bottom_Ramp, Leave_Garage, CrankLocation, Top_Ramp, NUMBER_OF_LOCATIONS
 } LocationName;
 
 typedef enum {

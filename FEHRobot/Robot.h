@@ -5,6 +5,7 @@
 #include "Subsystems/Sensors.h"
 #include "Subsystems/Arm.h"
 #include "Subsystems/CrankArm.h"
+#include "Subsystems/RPSLocations.h"
 
 class Robot
 {
@@ -13,6 +14,7 @@ private:
 	Sensors sensors;
     Arm arm;
     CrankArm crankArm;
+    RPSLocations rpsLocations;
 public:
 
     Robot();
@@ -36,6 +38,13 @@ public:
 
     int setArmPosition(ArmPosition armPosition);
     int setCrankArmPosition(ArmPosition ArmPosition);
+
+    void setLocation(LocationName locationName, float x, float y);
+    void setLocation(LocationName locationName, Position position);
+
+    float getLocationX(LocationName locationName, Course courseName);
+    float getLocationY(LocationName locationName, Course courseName);
+    Position getLocationPosition(LocationName locationName, Course courseName);
 };
 
 #endif
