@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "PressButtons.h"
 #include "FEHLCD.h"
 #include "FEHServo.h"
@@ -36,12 +37,7 @@ StatusCode PressButtons::execute(){
         status = Success;
     } else {
         status = E_UnreachableCode;
-        if(status != Success){
-            LCD.Write("ERROR CODE: ");
-            LCD.WriteLine((int)status);
-            LCD.Write("Description: ");
-            //LCD.WriteLine(errordesc[(int)status].message);
-        }
+        logger -> logError(status);
     }
     changeArmPosition.setup(buttonPosition, 1.0f);
     changeArmPosition.execute();
@@ -62,11 +58,18 @@ StatusCode PressButtons::execute(){
      */
     turnForTime.setup(turnIntoButtons, .20f);
     turnForTime.execute();
+
     /*
      * Tap Buttons again
      */
     driveForTime.setup(0, 50, 350);
     driveForTime.execute();
+
+    /*
+     * Hold Buttons again if deadzone is still active
+     */
+    waitForTime.changeDriveTime(robot-> getDeadzoneStatus() != 2 ? 5500 : 0);
+    waitForTime.execute();
 
     /*
      * Back away from buttons
