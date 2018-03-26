@@ -22,6 +22,8 @@ Commands/Command.cpp
 Commands/CommandList.h
 Commands/CenterOnLine.h
 Commands/CenterOnLine.cpp
+Commands/BackupToLine.h
+Commands/BackupToLine.cpp
 Commands/DriveToPosition.h
 Commands/DriveToPosition.cpp
 Commands/DriveToPositionWithHeading.h

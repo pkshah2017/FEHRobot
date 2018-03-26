@@ -16,11 +16,11 @@ StatusCode CenterOnLine::run() {
     StatusCode status = Success;
     updateOptoStates();
     if(leftOptoOnLine){
-        (*robot).drive(90, 25);
+        (*robot).drive(90, 35);
     } else if (rightOptoOnLine){
-        (*robot).drive(270, 25);
+        (*robot).drive(270, 35);
     } else if (!centerOptoOnLine){
-        status = E_UnreachableCode;
+        (*robot).drive(90, 35);
     }
 
     return status;

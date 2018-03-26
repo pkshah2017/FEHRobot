@@ -19,7 +19,7 @@ StatusCode DriveToButtons::execute(){
     /*
      * Drive out of start
      */
-    driveForTime.setup(0, 50, 300);
+    driveForTime.setup(0, 50, 1300);
     driveForTime.execute();
 
     /*
@@ -32,8 +32,14 @@ StatusCode DriveToButtons::execute(){
     SD.Printf("Btn X: %f", robot->getLocationY(ButtonsLocation));
     LCD.WriteRC("Btn Y: ", 8, 1);
     LCD.WriteRC(robot->getLocationY(ButtonsLocation),8,3);
-    driveToPosition.setup(robot->getLocationX(ButtonsLocation), robot->getLocationY(ButtonsLocation), 50);
-    driveToPosition.execute();
+    //driveToPosition.setup(robot->getLocationX(ButtonsLocation), robot->getLocationY(ButtonsLocation), 50);
+    //driveToPosition.execute();
+
+    centerOnLine.execute();
+
+
+    driveForTime.setup(90, 50, 450);
+    driveForTime.execute();
 
     /*
      * Center on the line

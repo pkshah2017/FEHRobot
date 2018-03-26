@@ -20,6 +20,7 @@ private:
     DriveToPosition driveToPosition;
     DriveToPositionWithHeading driveToPositionWithHeading;
     ChangeArmPosition changeArmPosition;
+    BackupToLine backupToLine;
 };
 
 #endif

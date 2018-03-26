@@ -25,6 +25,8 @@ private:
     float currentX;
     float currentY;
     float startTime;
+    bool inPosition;
+    float enteredPositionTime;
 
     virtual StatusCode initialize();
     virtual StatusCode run();

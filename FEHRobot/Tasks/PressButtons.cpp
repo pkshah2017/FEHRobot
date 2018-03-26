@@ -39,7 +39,7 @@ StatusCode PressButtons::execute(){
         status = E_UnreachableCode;
         logger -> logError(status);
     }
-    changeArmPosition.setup(buttonPosition, 1.0f);
+    changeArmPosition.setup(buttonPosition, 3.0f);
     changeArmPosition.execute();
     /*
      * Move To Buttons

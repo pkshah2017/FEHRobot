@@ -54,9 +54,15 @@ float Sensors::getRightOpto() {
 int Sensors::updateRPSState(){
     fuelType = RPS.FuelType();
     deadzoneStatus = RPS.IsDeadzoneActive();
-    robotX = RPS.X();
-    robotY = RPS.Y();
-    robotHeading = RPS.Heading();
+    if(RPS.X() != -1.0f){
+        robotX = RPS.X();
+    }
+    if(RPS.Y() != -1.0f){
+        robotY = RPS.Y();
+    }
+    if(RPS.Heading() != -1.0f){
+        robotHeading = RPS.Heading();
+    }
 }
 
 int Sensors::getFuelType(){

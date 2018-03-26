@@ -8,6 +8,8 @@ DriveToPosition::DriveToPosition(Robot *robot_, float x_, float y_)
 {
     robot = robot_;
     power = 40;
+    enteredPositionTime = 0;
+    inPosition = false;
     StatusCode status = setup(x_, y_);
     if(status != Success){
         LCD.Write("ERROR CODE: ");
@@ -59,7 +61,7 @@ StatusCode DriveToPosition::run() {
     currentY = (*robot).getY();
     float currentHeading = (*robot).getHeading();
 
-  //  logger->logMessage("X: %f", currentX);
+    //  logger->logMessage("X: %f", currentX);
     /*
     LCD.WriteRC("X: ", 1, 1);
     LCD.WriteRC(currentX, 1, 3);
@@ -69,7 +71,7 @@ StatusCode DriveToPosition::run() {
 */
     float deltaX = x - currentX;
     float deltaY = y - currentY;
-/*
+    /*
     LCD.WriteRC("dX: ", 3, 1);
     LCD.WriteRC(deltaX, 3, 3);
 
@@ -88,8 +90,13 @@ StatusCode DriveToPosition::run() {
     }
     heading += 90;
 
-    (*robot).drive(heading, power);
+//    if(!inPosition){
+//        (*robot).drive(heading, power);
+//    } else {
+//        robot->stop();
+//    }
 
+    (*robot).drive(heading, power);
     return Success;
 }
 
@@ -100,7 +107,14 @@ bool DriveToPosition::isFinished() {
 
     float error = sqrt(deltaX * deltaX + deltaY * deltaY);
 
-    return abs(error) <= POSITION_TOLERANCE;
+    bool currentlyInPosition = abs(error) <= POSITION_TOLERANCE;
+//    if(currentlyInPosition && !inPosition){
+//        enteredPositionTime = TimeNow();
+//    }
+//    float timeInPosition = TimeNow() - enteredPositionTime;
+//    bool done = currentlyInPosition && timeInPosition > .50f;
+//    inPosition = currentlyInPosition;
+    return currentlyInPosition;
 }
 
 StatusCode DriveToPosition::completion(){
