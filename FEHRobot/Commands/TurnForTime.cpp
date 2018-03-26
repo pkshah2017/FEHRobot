@@ -40,7 +40,7 @@ StatusCode TurnForTime::changePower(int newPower){
 }
 
 StatusCode TurnForTime::changeDriveTime(int newTime){
-    timeToWait = newTime/1000.0;
+    timeToWait = newTime/1000.0f;
     return Success;
 }
 

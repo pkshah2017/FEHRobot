@@ -16,7 +16,7 @@ StatusCode DriveToEnd::execute(){
     /*
      * Move To Center of Top Level
      */
-    driveToPosition.setup(17.3f, 58.8f);
+    driveToPosition.setup(17.3f, 58.8f, 80);
     driveToPosition.execute();
 
     changeArmPosition.selectArmPosition(ArmUp);
@@ -26,31 +26,31 @@ StatusCode DriveToEnd::execute(){
     /*
      * Rotate Clockwise
      */
-    turnForTime.setup(-25, 1.0f);
+    turnForTime.setup(-50, .4f);
     turnForTime.execute();
 
     /*
      * Go Towards the top of the ramp
      */
-    driveToPosition.setup(31.8f, 41.9f);
+    driveToPosition.setup(31.8f, 41.9f, 80);
     driveToPosition.execute();
 
     /*
      * Move down Ramp
      */
-    driveToPosition.setup(31.8f, 27.0f);
+    driveToPosition.setup(31.8f, 29.0f, 80);
     driveToPosition.execute();
 
     /*
      * Move to outside start
      */
-    driveToPosition.setup(21.0f, 21.5f);
+    driveToPosition.setup(21.0f, 21.5f, 80);
     driveToPosition.execute();
 
     /*
      * Move to start
      */
-    driveToPosition.setup(17.7f, 30.0f);
+    driveToPosition.setup(17.7f, 30.0f, 80);
     driveToPosition.execute();
 
     return Success;
