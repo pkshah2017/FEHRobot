@@ -5,12 +5,18 @@
 #include "FEHBattery.h"
 
 #define MAIN_MENU 0
-#define RUN_ALL 1
-#define TESTING_MENU 2
+#define FULL_RUN 1
+#define TESTING 2
 #define DIAGNOSTIC 3
-#define RPS_CHECK 4
-#define SYSTEM_CHECK 5
-#define OPTO_CHECK 6
+#define RPS_CALIBRATE 4
+
+#define RUN_NORMAL 5
+#define RUN_FAST 6
+#define RUN_SUPER_FAST 7
+
+#define RPS_CHECK 8
+#define SYSTEM_CHECK 9
+#define OPTO_CHECK 10
 
 #define BUTTONS_TASK 0
 #define JACK_TASK 1
@@ -48,9 +54,9 @@ int  Menu::mainMenu()
     mainHeader[0].Select();
     LCD.SetBackgroundColor(BLACK);
 
-    FEHIcon::Icon mainMenu[3];
-    char mainLabels[3][20] = {"Run All","Testing","Diagnostic"};
-    FEHIcon::DrawIconArray(mainMenu, 3, 1, 40, 30, 1, 1, mainLabels, MENU_COLOR, TEXT_COLOR);
+    FEHIcon::Icon mainMenu[4];
+    char mainLabels[4][20] = {"Full Run","Testing","Diagnostic","RPS Calibrate"};
+    FEHIcon::DrawIconArray(mainMenu, 4, 1, 40, 30, 1, 1, mainLabels, MENU_COLOR, TEXT_COLOR);
     LCD.SetFontColor(TEXT_COLOR);
     LCD.WriteAt("BATT:        V", 0, 222);
     LCD.SetFontColor(SUCCESS_COLOR);
@@ -67,7 +73,7 @@ int  Menu::mainMenu()
         if (LCD.Touch(&x, &y))
         {
             /* Check to see if a main menu icon has been touched */
-            for (n=0; n<=2; n++)
+            for (n=0; n<=3; n++)
             {
                 if (mainMenu[n].Pressed(x, y, 0))
                 {
@@ -92,6 +98,7 @@ void  Menu::booltoIcon(FEHIcon::Icon inputIcon, int input)
         inputIcon.ChangeLabelString("False");
     }
 }
+
 void  Menu::updateIcon(FEHIcon::Icon inputIcon, float input)
 {
 
@@ -103,7 +110,6 @@ int  Menu::runAll()
 {
     LCD.Clear(BLACK);
     int currentMenu;
-
 
     buttons.execute();
     jack.execute();
@@ -131,9 +137,9 @@ int  Menu::testingMenu()
     char testingLabels[4][20] = {"Buttons","Jack","Wrench","Crank"};
     FEHIcon::DrawIconArray(testingMenu, 4, 1, 40, 1, 1, 1, testingLabels, MENU_COLOR, TEXT_COLOR);
 
-    int currentMenu=TESTING_MENU, runTask =-1,n =-1;
+    int currentMenu=TESTING, runTask =-1,n =-1;
     float x, y;
-    while(currentMenu==TESTING_MENU)
+    while(currentMenu==TESTING)
     {
         if (LCD.Touch(&x, &y))
         {
@@ -150,21 +156,25 @@ int  Menu::testingMenu()
             {
             case BUTTONS_TASK:
                 LCD.Clear(BLACK);
-                LCD.WriteLine("EXECUTE");
+                LCD.WriteLine("EXECUTE BUTTONS");
                 buttons.execute();
                 currentMenu = MAIN_MENU;
                 break;
             case JACK_TASK:
                 LCD.Clear(BLACK);
-                LCD.WriteLine("EXECUTE");
+                LCD.WriteLine("EXECUTE JACK");
                 jack.execute();
                 currentMenu = MAIN_MENU;
                 break;
             case WRENCH_TASK:
+                LCD.Clear(BLACK);
+                LCD.WriteLine("EXECUTE WRENCH");
                 wrench.execute();
                 currentMenu = MAIN_MENU;
                 break;
             case CRANK_TASK:
+                LCD.Clear(BLACK);
+                LCD.WriteLine("EXECUTE CRANK");
                 crank.execute();
                 currentMenu = MAIN_MENU;
                 break;
@@ -179,6 +189,68 @@ int  Menu::testingMenu()
     }
     return currentMenu;
 }
+
+int  Menu::fullRunMenu()
+{
+    LCD.Clear(BLACK);
+
+    /* Create icons for DC motors menu */
+    FEHIcon::Icon fullRunHeader[1];
+    char fullRunHeaderLabel[1][20] = {"Full Run"};
+    FEHIcon::DrawIconArray(fullRunHeader, 1, 1, 1, 201, 1, 1, fullRunHeaderLabel, MENU_COLOR, TEXT_COLOR);
+
+    FEHIcon::Icon Back[1];
+    char backLabel[1][20] = {"<-"};
+    FEHIcon::DrawIconArray(Back, 1, 1, 1, 201, 1, 260, backLabel, MENU_COLOR, TEXT_COLOR);
+
+    FEHIcon::Icon fullRunMenu[3];
+    char fullRunLabels[3][20] = {"Run Normal","Run Fast","Run Super Fast"};
+    FEHIcon::DrawIconArray(fullRunMenu, 4, 1, 40, 1, 1, 1, fullRunLabels, MENU_COLOR, TEXT_COLOR);
+
+    int currentMenu=FULL_RUN, runMode =-1,n =-1;
+    float x, y;
+    while(currentMenu==FULL_RUN)
+    {
+        if (LCD.Touch(&x, &y))
+        {
+            for (n=0; n<=2; n++)
+            {
+                if (testingMenu[n].Pressed(x, y, 0))
+                {
+                    runMode = n;
+                    testingMenu[n].WhilePressed(x, y);
+                    break;
+                }
+            }
+            switch (runMode)
+            {
+            case RUN_NORMAL:
+                LCD.Clear(BLACK);
+                LCD.WriteLine("RUN NORMAL");
+                currentMenu = runAll();
+                break;
+            case RUN_FAST:
+                LCD.Clear(BLACK);
+                LCD.WriteLine("RUN FAST");
+                currentMenu = RUN_SUPER_FAST;
+                break;
+            case RUN_SUPER_FAST:
+                LCD.Clear(BLACK);
+                LCD.WriteLine("RUN SUPER FAST");
+                currentMenu = MAIN_MENU;
+                break;
+            }
+        }
+        /* If back button has been touched, go to main menu */
+        if (Back[0].Pressed(x, y, 0))
+        {
+            Back[0].WhilePressed(x, y);
+            currentMenu = MAIN_MENU;
+        }
+    }
+    return currentMenu;
+}
+
 
 int  Menu::diagnosticMenu(){
     LCD.Clear(BLACK);
@@ -223,6 +295,84 @@ int  Menu::diagnosticMenu(){
     }
     return currentMenu;
 }
+
+int  Menu::RPSCalibrate(){
+    int currentMenu=RPS_CALIBRATE, position =0;
+    LCD.Clear(BLACK);
+    float x,y;
+    FEHIcon::Icon calibrateHeading[1];
+    char calibrateHeaderlabel[1][20] = {"RPS Calibrate"};
+    FEHIcon::DrawIconArray(calibrateHeading, 1, 1, 1, 201, 1, 1, calibrateHeaderlabel, MENU_COLOR, TEXT_COLOR);
+
+    FEHIcon::Icon backBtn[1];
+    char backLabel[1][20] = {"<-"};
+    FEHIcon::DrawIconArray(backBtn, 1, 1, 1, 201, 1, 260, backLabel, MENU_COLOR, TEXT_COLOR);
+    while(currentMenu==RPS_CALIBRATE)
+    {
+        LCD.Touch(&x,&y);
+        (*robot).updateRPSStates();
+        LCD.WriteRC("RPS X: ", 5, 1);
+        LCD.WriteRC((*robot).getX(), 5, 19);
+        LCD.WriteRC("RPS Y:  ", 7, 1);
+        LCD.WriteRC((*robot).getY(), 7, 19);
+        LCD.WriteRC("RPS Heading:  ", 9, 1);
+        LCD.WriteRC((*robot).getHeading(), 9, 20);
+
+        clearSystemCheck();
+        LCD.Touch(&x,&y);
+        Sleep(REFRESH_RATE);
+        if (backBtn[0].Pressed(x, y, 0))
+        {
+            backBtn[0].WhilePressed(x, y);
+            currentMenu = MAIN_MENU;
+        }
+        switch(position){
+        case 0:
+            LCD.WriteRC("Push left button when",12,1);
+            LCD.WriteRC("in RPS position. Ready?",13,1);
+            if(!(*robot).getLimit(RobotLeft)){
+                position++;
+            }
+            break;
+        case 1:
+            LCD.WriteRC("Buttons Position",13,1);
+            if(!(*robot).getLimit(RobotLeft)){
+               // RPSLocations.
+                position++;
+            }
+            break;
+        case 2:
+            LCD.WriteRC("Buttons Position",13,1);
+            if(!(*robot).getLimit(RobotLeft)){
+                //RPSLocations.
+                position++;
+            }
+            break;
+        case 3:
+            LCD.WriteRC("Buttons Position",13,1);
+            if(!(*robot).getLimit(RobotLeft)){
+                //RPSLocations.
+                position++;
+            }
+            break;
+        case 4:
+            LCD.WriteRC("Buttons Position",13,1);
+            if(!(*robot).getLimit(RobotLeft)){
+               // RPSLocations.
+                position++;
+            }
+            break;
+//        case END:
+//            LCD.WriteRC("Calibration Complete",13,1);
+//            if(!(*robot).getLimit(RobotLeft)){
+//                currentMenu = MAIN_MENU;
+//            }
+//            break;
+            }
+    }
+    return currentMenu;
+}
+
 int  Menu::RPSCheck(){
     int currentMenu=RPS_CHECK;
     LCD.Clear(BLACK);
@@ -249,16 +399,20 @@ int  Menu::RPSCheck(){
         {
             Backbtn[0].WhilePressed(x, y);
             currentMenu = DIAGNOSTIC;
-            LCD.WriteRC("RPS OUT ", 7, 1);
+            //LCD.WriteRC("RPS OUT ", 7, 1);
         }
+
+
     }
     return currentMenu;
 }
+
 void  Menu::clearSystemCheck(){
     LCD.SetFontColor(BLACK);
     LCD.FillRectangle(0,200,319,119);
     LCD.SetFontColor(TEXT_COLOR);
 }
+
 int  Menu::systemCheck(){
 
     logger->logMessage("Beginning System Check\r\n");
@@ -389,14 +543,14 @@ int  Menu::systemCheck(){
             LCD.WriteRC("Press Test Motor ",13,1);
             if(LCD.Touch(&x,&y))
             {
-                //                    DriveForTime d((*robot_),0,50,1500);
-                //                    d.execute();
-                //                    d.changeHeading(90);
-                //                    d.execute();
-                //                    d.changeHeading(180);
-                //                    d.execute();
-                //                    d.changeHeading(270);
-                //                    d.execute();
+                DriveForTime d(robot,0,50,1500);
+                d.execute();
+                d.changeHeading(90);
+                d.execute();
+                d.changeHeading(180);
+                d.execute();
+                d.changeHeading(270);
+                d.execute();
                 currentCheck++;
             }
             break;
@@ -411,6 +565,13 @@ int  Menu::systemCheck(){
                 currentCheck++;
                 successCount++;
             }
+            break;
+        case 8:
+            LCD.WriteRC("Check Complete",13,1);
+            LCD.SetFontColor(SUCCESS_COLOR);
+            LCD.WriteRC(successCount,13, 20);
+            LCD.WriteRC("/",13,22);
+            LCD.WriteRC(6,13, 20);
             break;
         }
     }
@@ -453,7 +614,6 @@ int  Menu::optoCheck(){
 void Menu::ChooseOption()
 {
     int currentMenu=MAIN_MENU;
-    //RPS.InitializeTouchMenu();
     while (true)
     {
         switch (currentMenu)
@@ -461,15 +621,17 @@ void Menu::ChooseOption()
         case MAIN_MENU:
             currentMenu = mainMenu();
             break;
-        case RUN_ALL:
+        case RUN_NORMAL:
             currentMenu = runAll();
             break;
-        case TESTING_MENU:
+        case TESTING:
             currentMenu = testingMenu();
             break;
         case DIAGNOSTIC:
             currentMenu = diagnosticMenu();
             break;
+        case RPS_CALIBRATE:
+            currentMenu = RPSCalibrate();
         case RPS_CHECK:
             currentMenu = RPSCheck();
             break;

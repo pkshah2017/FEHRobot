@@ -20,6 +20,7 @@ private:
     int  runAll();
     int  testingMenu();
     int  diagnosticMenu();
+    int RPSCalibrate();
     int  RPSCheck();
     void  clearSystemCheck();
     int  systemCheck();
