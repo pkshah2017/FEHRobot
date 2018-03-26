@@ -3,7 +3,8 @@
 DriveToButtons::DriveToButtons(Robot *robot_):
     waitForLight(robot_),
     driveForTime(robot_, 0, 50, 1350),
-    centerOnLine(robot_)
+    centerOnLine(robot_),
+    driveToPosition(robot_, 0.0f, 0.0f)
 {
     robot = robot_;
 }
@@ -17,14 +18,14 @@ StatusCode DriveToButtons::execute(){
     /*
      * Drive out of start
      */
-    driveForTime.setup(0, 50, 1300);
+    driveForTime.setup(0, 50, 300);
     driveForTime.execute();
 
     /*
      * Drive to buttons
      */
-    driveForTime.setup(90, 50, 1400);
-    driveForTime.execute();
+    driveToPosition.setup(24.8f, 20.7f, 50);
+    driveToPosition.execute();
 
     /*
      * Center on the line

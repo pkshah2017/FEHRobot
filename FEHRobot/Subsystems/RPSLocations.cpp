@@ -95,14 +95,7 @@ Position *allPositions[NUMBER_OF_COURSES] = {
 
 RPSLocations::RPSLocations()
 {
-    //    addCourseALocations();
-    //    addCourseBLocations();
-    //    addCourseCLocations();
-    //    addCourseDLocations();
-    //    addCourseELocations();
-    //    addCourseFLocations();
-    //    addCourseGLocations();
-    //    addCourseHLocations();
+    addAllCourseLocations();
 }
 
 void RPSLocations::addAllCourseLocations(){
@@ -140,17 +133,11 @@ void RPSLocations::setLocation(LocationName locationName, Position position){
 }
 
 float RPSLocations::getLocationX(LocationName locationName, Course courseName) {
-    int courseIndex = static_cast<int>(courseName);
-    int locationIndex = static_cast<int>(locationName);
-
-    return locations[courseIndex * NUMBER_OF_COURSES + locationIndex].position.x;
+    return getLocationPosition(locationName, courseName).x;
 }
 
 float RPSLocations::getLocationY(LocationName locationName, Course courseName) {
-    int courseIndex = static_cast<int>(courseName);
-    int locationIndex = static_cast<int>(locationName);
-
-    return locations[courseIndex * NUMBER_OF_COURSES + locationIndex].position.x;
+    return getLocationPosition(locationName, courseName).y;
 }
 
 Position RPSLocations::getLocationPosition(LocationName locationName, Course courseName) {

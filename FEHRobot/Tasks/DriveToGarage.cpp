@@ -6,7 +6,7 @@ DriveToGarage::DriveToGarage(Robot *robot_):
     driveTilBump(robot_, 230, 50, RobotRight),
     driveToPosition(robot_, 0, 0),
     changeArmPosition(robot_, ArmUp, 500),
-    turnForTime(robot, 25, 1100),
+    turnForTime(robot_, 25, 0.0f),
     driveToLine(robot_, 35)
 {
     robot = robot_;
@@ -41,7 +41,7 @@ StatusCode DriveToGarage::execute(){
     /*
      * Become parallel with garage door
      */
-    turnForTime.setup(25, 1200);
+    turnForTime.setup(25, 1.20f);
     turnForTime.execute();
 
     /*

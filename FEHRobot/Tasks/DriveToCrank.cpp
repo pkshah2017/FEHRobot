@@ -24,8 +24,8 @@ StatusCode DriveToCrank::execute(){
      * Go To Crank
      */
 
-    driveToPosition.changeXSetpoint(27.6f);
-    driveToPosition.changeYSetpoint(63.8f);
+    driveToPosition.changeXSetpoint(26.0f);
+    driveToPosition.changeYSetpoint(64.4f);
     driveToPosition.execute();
     /*
      * DO NOT delete this

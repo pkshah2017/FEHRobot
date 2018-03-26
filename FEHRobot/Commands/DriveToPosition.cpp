@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "DriveToPosition.h"
 #include <FEHUtility.h>
 #include <math.h>
@@ -6,6 +7,7 @@
 DriveToPosition::DriveToPosition(Robot *robot_, float x_, float y_)
 {
     robot = robot_;
+    power = 40;
     StatusCode status = setup(x_, y_);
     if(status != Success){
         LCD.Write("ERROR CODE: ");
@@ -20,6 +22,16 @@ StatusCode DriveToPosition::setup(float newX, float newY){
     if(status == Success){
         status = changeYSetpoint(newY);
     }
+    power = 40;
+    return status;
+}
+
+StatusCode DriveToPosition::setup(float newX, float newY, int power_){
+    StatusCode status = changeXSetpoint(newX);
+    if(status == Success){
+        status = changeYSetpoint(newY);
+    }
+    power = power_;
     return status;
 }
 
@@ -48,6 +60,7 @@ StatusCode DriveToPosition::run() {
     currentY = (*robot).getY();
     float currentHeading = (*robot).getHeading();
 
+  //  logger->logMessage("X: %f", currentX);
     LCD.WriteRC("X: ", 1, 1);
     LCD.WriteRC(currentX, 1, 3);
 
@@ -75,7 +88,7 @@ StatusCode DriveToPosition::run() {
     }
     heading += 90;
 
-    (*robot).drive(heading, 30);
+    (*robot).drive(heading, power);
 
     return Success;
 }

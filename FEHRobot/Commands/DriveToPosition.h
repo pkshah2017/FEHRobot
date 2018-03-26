@@ -11,6 +11,7 @@ public:
     DriveToPosition(Robot *robot_, float x_, float y_);
 
     StatusCode setup(float newX, float newY);
+    StatusCode setup(float newX, float newY, int power);
 
     StatusCode changeXSetpoint(float x_);
     StatusCode changeYSetpoint(float y_);
@@ -18,6 +19,7 @@ public:
     virtual const char* getCommandName();
 private:
     Robot *robot;
+    int power;
     float x;
     float y;
     float currentX;

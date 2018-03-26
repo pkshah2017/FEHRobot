@@ -8,6 +8,7 @@ CenterOnLine::CenterOnLine(Robot *robot_)
 }
 
 StatusCode CenterOnLine::initialize() {
+    updateOptoStates();
     return Success;
 }
 

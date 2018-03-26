@@ -19,7 +19,7 @@ StatusCode DriveToJack::execute(){
     //driveForTime.execute();
     driveToPosition.setup(12.0f,21.5f);
     driveToPosition.execute();
-    driveToPosition.setup(9.0f,15.0f);
+    driveToPosition.setup(8.0f,16.0f);
     driveToPosition.execute();
 
     /*

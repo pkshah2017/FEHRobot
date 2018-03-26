@@ -18,6 +18,7 @@ private:
     WaitForLight waitForLight;
     DriveForTime driveForTime;
     CenterOnLine centerOnLine;
+    DriveToPosition driveToPosition;
 };
 
 #endif
