@@ -42,6 +42,11 @@ public:
 	float getLocationX(LocationName locationName, Course courseName);
 	float getLocationY(LocationName locationName, Course courseName);
     Position getLocationPosition(LocationName locationName, Course courseName);
+
+
+    float getLocationX(LocationName locationName);
+    float getLocationY(LocationName locationName);
+    Position getLocationPosition(LocationName locationName);
 };
 
 #endif

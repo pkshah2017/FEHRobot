@@ -18,6 +18,7 @@ private:
     void  booltoIcon(FEHIcon::Icon inputIcon, int input);
     void  updateIcon(FEHIcon::Icon inputIcon, float input);
     int  runAll();
+    int  fullRunMenu();
     int  testingMenu();
     int  diagnosticMenu();
     int RPSCalibrate();

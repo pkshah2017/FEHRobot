@@ -134,3 +134,15 @@ float Robot::getLocationY(LocationName locationName, Course courseName){
 Position Robot::getLocationPosition(LocationName locationName, Course courseName){
     return rpsLocations.getLocationPosition(locationName, courseName);
 }
+
+float Robot::getLocationX(LocationName locationName){
+    return rpsLocations.getLocationX(locationName);
+}
+
+float Robot::getLocationY(LocationName locationName){
+    return rpsLocations.getLocationY(locationName);
+}
+
+Position Robot::getLocationPosition(LocationName locationName) {
+    return rpsLocations.getLocationPosition(locationName);
+}

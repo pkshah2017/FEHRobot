@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "DriveToButtons.h"
 
 DriveToButtons::DriveToButtons(Robot *robot_):
@@ -24,7 +25,14 @@ StatusCode DriveToButtons::execute(){
     /*
      * Drive to buttons
      */
-    driveToPosition.setup(24.8f, 20.7f, 50);
+    SD.Printf("Btn X: %f", robot->getLocationX(ButtonsLocation));
+    LCD.WriteRC("Btn X: ", 7, 1);
+    LCD.WriteRC(robot->getLocationX(ButtonsLocation),7,3);
+
+    SD.Printf("Btn X: %f", robot->getLocationY(ButtonsLocation));
+    LCD.WriteRC("Btn Y: ", 8, 1);
+    LCD.WriteRC(robot->getLocationY(ButtonsLocation),8,3);
+    driveToPosition.setup(robot->getLocationX(ButtonsLocation), robot->getLocationY(ButtonsLocation), 50);
     driveToPosition.execute();
 
     /*

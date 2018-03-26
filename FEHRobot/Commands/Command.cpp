@@ -17,7 +17,7 @@ StatusCode Command::execute() {
         errorCode = initializeFailureRecovery(errorCode);
     }
     while (errorCode == Success && !isFinished()) {
-        logger -> logWorldState();
+        //logger -> logWorldState();
         StatusCode errorCode = run();
         if(errorCode != Success){
             //logger.printError(errorCode);

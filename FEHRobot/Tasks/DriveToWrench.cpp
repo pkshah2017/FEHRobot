@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "DriveToWrench.h"
 #include "FEHLCD.h"
 
@@ -18,8 +19,21 @@ StatusCode DriveToWrench::execute(){
     //driveToPosition.setup(7.5f, 21.0f);
     //driveToPosition.execute();
     (*robot).updateRPSStates();
-    driveToPositionWithHeading.setup(7.5f, 19.75f, 0);
-    driveToPositionWithHeading.execute();
+
+
+    /*
+    SD.Printf("Btn X: %f", robot->getLocationX(Wrench_Pickup));
+    LCD.WriteRC("Btn X: ", 7, 1);
+    LCD.WriteRC(robot->getLocationX(Wrench_Pickup),7,3);
+
+    SD.Printf("Btn X: %f", robot->getLocationY(Wrench_Pickup));
+    LCD.WriteRC("Btn Y: ", 8, 1);
+    LCD.WriteRC(robot->getLocationY(Wrench_Pickup),8,3);
+    */
+    driveToPosition.setup(robot->getLocationX(Wrench_Pickup), robot->getLocationY(Wrench_Pickup), 50);
+    driveToPosition.execute();
+    //driveToPositionWithHeading.setup(7.5f, 19.75f, 0);
+    //driveToPositionWithHeading.execute();
     (*robot).updateRPSStates();
     LCD.WriteRC("LOCATION X and Y: ", 6, 1);
     LCD.WriteRC((*robot).getX(), 7, 1);

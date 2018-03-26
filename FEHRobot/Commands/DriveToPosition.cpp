@@ -50,7 +50,6 @@ StatusCode DriveToPosition::initialize() {
     currentX = (*robot).getX();
     currentY = (*robot).getY();
 
-    LCD.Clear();
     return Success;
 }
 
@@ -61,21 +60,22 @@ StatusCode DriveToPosition::run() {
     float currentHeading = (*robot).getHeading();
 
   //  logger->logMessage("X: %f", currentX);
+    /*
     LCD.WriteRC("X: ", 1, 1);
     LCD.WriteRC(currentX, 1, 3);
 
     LCD.WriteRC("Y: ", 2, 1);
     LCD.WriteRC(currentY, 2, 3);
-
+*/
     float deltaX = x - currentX;
     float deltaY = y - currentY;
-
+/*
     LCD.WriteRC("dX: ", 3, 1);
     LCD.WriteRC(deltaX, 3, 3);
 
     LCD.WriteRC("dY: ", 4, 1);
     LCD.WriteRC(deltaY, 4, 3);
-
+*/
     float error = sqrt(deltaX * deltaX + deltaY * deltaY);
     float heading = atan(deltaY/deltaX) * 180 / PI;
     heading = ((int)(heading - currentHeading + 360)) % 360;

@@ -146,3 +146,24 @@ Position RPSLocations::getLocationPosition(LocationName locationName, Course cou
 
     return locations[courseIndex * NUMBER_OF_COURSES + locationIndex].position;
 }
+
+float RPSLocations::getLocationX(LocationName locationName) {
+    int courseIndex = RPS.CurrentRegion();
+    Course currentCourse = static_cast<Course>(courseIndex);
+
+    return getLocationPosition(locationName, currentCourse).x;
+}
+
+float RPSLocations::getLocationY(LocationName locationName) {
+    int courseIndex = RPS.CurrentRegion();
+    Course currentCourse = static_cast<Course>(courseIndex);
+
+    return getLocationPosition(locationName, currentCourse).y;
+}
+
+Position RPSLocations::getLocationPosition(LocationName locationName) {
+    int courseIndex = RPS.CurrentRegion();
+    Course currentCourse = static_cast<Course>(courseIndex);
+
+    return getLocationPosition(locationName, currentCourse);
+}
