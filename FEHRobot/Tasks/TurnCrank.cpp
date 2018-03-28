@@ -19,7 +19,7 @@ StatusCode TurnCrank::execute(){
     ArmPosition endPosition = fuelType == 1 ? ArmLeft : ArmRight;
     changeCrankArmPosition.setup(endPosition, .5f);
     changeCrankArmPosition.execute();
-    Sleep(500);
+    Sleep(750);
 
     return Success;
 }

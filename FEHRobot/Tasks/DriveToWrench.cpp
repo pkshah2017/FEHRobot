@@ -35,18 +35,25 @@ StatusCode DriveToWrench::execute(){
     //driveToPosition.setup(robot->getLocationX(Wrench_Pickup), robot->getLocationY(Wrench_Pickup), 50);
     //driveToPosition.execute();
 
+
+    logger -> logMessage("Moving towards wrench");
     driveForTime.setup(193, 40, 2.35f);
     driveForTime.execute();
 
+
+    logger -> logMessage("Lining up with wrench line");
     backupToLine.execute();
 
+    logger -> logMessage("Move away from wrench");
+    driveForTime.setup(90, 40, .35f);
+    driveForTime.execute();
 
     //driveToPositionWithHeading.setup(7.5f, 19.75f, 0);
     //driveToPositionWithHeading.execute();
-    (*robot).updateRPSStates();
-    LCD.WriteRC("LOCATION X and Y: ", 6, 1);
-    LCD.WriteRC((*robot).getX(), 7, 1);
-    LCD.WriteRC((*robot).getY(), 8, 1);
+    //(*robot).updateRPSStates();
+    //LCD.WriteRC("LOCATION X and Y: ", 6, 1);
+    //LCD.WriteRC((*robot).getX(), 7, 1);
+    //LCD.WriteRC((*robot).getY(), 8, 1);
 
 
     return Success;

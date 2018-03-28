@@ -17,25 +17,35 @@ PickUpWrench::PickUpWrench(Robot *robot_):
 
 StatusCode PickUpWrench::execute(){
     /*
-     * Change the arm position to grab wrench
-     */
-    changeArmPosition.setup(ArmRight, 2.0f);
-    changeArmPosition.execute();
-    /*
      * Change the arm position to slightly raised
      */
-    changeArmPosition.setup(ArmSlightlyRaised, 0.0f);
+    changeArmPosition.setup(ArmSlightlyRaised, 2.0f);
     changeArmPosition.execute();
+
     /*
-     * Back away from wrench stand
+     * Move toward wrench
      */
-    driveForTime.setup(90, 50, 500);
+    driveForTime.setup(270, 50, 250);
     driveForTime.execute();
+
+    /*
+     * Change the arm position to grab wrench
+     */
+    changeArmPosition.setup(ArmRight, 0.75f);
+    changeArmPosition.execute();
+
     /*
      * Raise arm to pickup wrench
      */
     changeArmPosition.setup(ArmUp, 2.0f);
     changeArmPosition.execute();
+
+    /*
+     * Back away from wrench stand
+     */
+    driveForTime.setup(90, 50, 500);
+    driveForTime.execute();
+
 
     return Success;
 }

@@ -19,13 +19,13 @@ StatusCode BackupToLine::changePower(int newPower){
 }
 
 StatusCode BackupToLine::initialize() {
-    StatusCode status = updateLineFollowerState(2.5f, 2.2f, 1.8f);
+    StatusCode status = updateLineFollowerState(2.5f, 2.2f, 1.5f);
 
     return status;
 }
 
 StatusCode BackupToLine::run() {
-    StatusCode status = updateLineFollowerState(2.5f, 2.2f, 1.8f);
+    StatusCode status = updateLineFollowerState(2.5f, 2.2f, 1.5f);
 
     if(status == Success){
         switch(lineFollowStatus){
@@ -37,7 +37,8 @@ StatusCode BackupToLine::run() {
             (*robot).stop();
             break;
         case ON_OFF_OFF:
-            (*robot).turn(-25);
+            (*robot).driveAndTurn(273, 25, -25);
+                 //   .turn(-25);
             break;
         case OFF_ON_ON:
             return E_UnreachableCode;

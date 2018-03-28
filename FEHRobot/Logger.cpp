@@ -41,6 +41,7 @@ void Logger::logMessageScreen(const char *message){
 
 void Logger::logMessage(char *message){
     SD.Printf(message);
+    SD.Printf("\r\n");
 }
 
 void Logger::logWorldState(){

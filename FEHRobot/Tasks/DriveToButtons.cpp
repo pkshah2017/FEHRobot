@@ -19,31 +19,37 @@ StatusCode DriveToButtons::execute(){
     /*
      * Drive out of start
      */
+    logger -> logMessage("Driving out of Start");
     driveForTime.setup(0, 50, 1300);
     driveForTime.execute();
 
     /*
      * Drive to buttons
      */
-    SD.Printf("Btn X: %f", robot->getLocationX(ButtonsLocation));
-    LCD.WriteRC("Btn X: ", 7, 1);
-    LCD.WriteRC(robot->getLocationX(ButtonsLocation),7,3);
 
-    SD.Printf("Btn X: %f", robot->getLocationY(ButtonsLocation));
-    LCD.WriteRC("Btn Y: ", 8, 1);
-    LCD.WriteRC(robot->getLocationY(ButtonsLocation),8,3);
+    //SD.Printf("Btn X: %f", robot->getLocationX(ButtonsLocation));
+    //LCD.WriteRC("Btn X: ", 7, 1);
+    //LCD.WriteRC(robot->getLocationX(ButtonsLocation),7,3);
+
+    //SD.Printf("Btn X: %f", robot->getLocationY(ButtonsLocation));
+    //LCD.WriteRC("Btn Y: ", 8, 1);
+    //LCD.WriteRC(robot->getLocationY(ButtonsLocation),8,3);
     //driveToPosition.setup(robot->getLocationX(ButtonsLocation), robot->getLocationY(ButtonsLocation), 50);
     //driveToPosition.execute();
 
+    logger -> logMessage("Moving left to the button first line");
     centerOnLine.execute();
 
 
-    driveForTime.setup(90, 50, 450);
+    logger -> logMessage("Moving left over the button first line");
+    driveForTime.setup(90, 45, 450);
     driveForTime.execute();
 
     /*
      * Center on the line
      */
+
+    logger -> logMessage("Centering on button line");
     centerOnLine.execute();
 
     return Success;

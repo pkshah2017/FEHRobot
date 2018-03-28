@@ -24,12 +24,14 @@ StatusCode PressButtons::execute(){
     /*
      * Change the arm position to press the button
      */
+
+    logger -> logMessage("Changing Arm Position");
     ArmPosition buttonPosition = ArmRight;
 
     int turnIntoButtons =0;
     if(status == L_Red){
         buttonPosition = ArmRight;
-        turnIntoButtons = -25;
+        turnIntoButtons = -50;
         status = Success;
     } else if(status == L_Blue){
         buttonPosition = ArmLeft;
@@ -39,29 +41,35 @@ StatusCode PressButtons::execute(){
         status = E_UnreachableCode;
         logger -> logError(status);
     }
-    changeArmPosition.setup(buttonPosition, 3.0f);
+    changeArmPosition.setup(buttonPosition, 1.75f);
     changeArmPosition.execute();
     /*
      * Move To Buttons
      */
-    driveForTime.setup(0, 70, 350);
+    logger -> logMessage("Moving forward to press buttons");
+    driveForTime.setup(buttonPosition == ArmLeft ? 0 : 345, 70, 350);
     driveForTime.execute();
 
     /*
      * Hold Buttons
      */
+
+    logger -> logMessage("Holding buttons for 5 seconds");
     waitForTime.changeDriveTime(5000);
     waitForTime.execute();
 
     /*
      * Turn to straighten out
      */
-    turnForTime.setup(turnIntoButtons, .20f);
+
+    logger -> logMessage("Turning out of buttons");
+    turnForTime.setup(turnIntoButtons, .25f);
     turnForTime.execute();
 
     /*
      * Tap Buttons again
      */
+    logger -> logMessage("Hitting buttons again");
     driveForTime.setup(0, 50, 350);
     driveForTime.execute();
 
@@ -74,12 +82,15 @@ StatusCode PressButtons::execute(){
     /*
      * Back away from buttons
      */
+    logger -> logMessage("Backing away from buttons");
     driveForTime.setup(180, 50, 250);
     driveForTime.execute();
 
     /*
      * Raise Arm
      */
+
+    logger -> logMessage("Raising arms again");
     changeArmPosition.setup(ArmUp, 0.0f);
     changeArmPosition.execute();
 

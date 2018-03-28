@@ -16,11 +16,11 @@ StatusCode CenterOnLine::run() {
     StatusCode status = Success;
     updateOptoStates();
     if(leftOptoOnLine){
-        (*robot).drive(90, 35);
+        (*robot).drive(90, 45);
     } else if (rightOptoOnLine){
-        (*robot).drive(270, 35);
+        (*robot).drive(270, 45);
     } else if (!centerOptoOnLine){
-        (*robot).drive(90, 35);
+        (*robot).drive(90, 45);
     }
 
     return status;
@@ -43,19 +43,19 @@ const char * CenterOnLine::getCommandName(){
 bool CenterOnLine::checkLeftOpto(){
     LCD.WriteRC("Left Opto Value: ", 1, 1);
     LCD.WriteRC((*robot).getOpto(LeftOpto), 1, 18);
-    return (*robot).getOpto(LeftOpto) > 2.5;
+    return (*robot).getOpto(LeftOpto) > 2.5f;
 }
 
 bool CenterOnLine::checkCenterOpto(){
     LCD.WriteRC("Center Opto Value: ", 2, 1);
     LCD.WriteRC((*robot).getOpto(CenterOpto), 2, 19);
-    return (*robot).getOpto(CenterOpto) > 2.4;
+    return (*robot).getOpto(CenterOpto) > 2.2f;
 }
 
 bool CenterOnLine::checkRightOpto(){
     LCD.WriteRC("Right Opto Value: ", 3, 1);
     LCD.WriteRC((*robot).getOpto(RightOpto), 3, 19);
-    return (*robot).getOpto(RightOpto) > 2.25;
+    return (*robot).getOpto(RightOpto) > 1.9f;
 }
 
 void CenterOnLine::updateOptoStates(){

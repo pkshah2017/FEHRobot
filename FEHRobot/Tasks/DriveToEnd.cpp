@@ -32,25 +32,25 @@ StatusCode DriveToEnd::execute(){
     /*
      * Go Towards the top of the ramp
      */
-    driveToPosition.setup(31.8f, 41.9f, 80);
+    driveToPosition.setup(31.8f, 41.9f, 60);
     driveToPosition.execute();
 
     /*
      * Move down Ramp
      */
-    driveToPosition.setup(31.8f, 29.0f, 80);
+    driveToPosition.setup(31.8f, 29.0f, 60);
     driveToPosition.execute();
 
     /*
      * Move to outside start
      */
-    driveToPosition.setup(21.0f, 21.5f, 80);
+    driveToPosition.setup(21.0f, 21.5f, 60);
     driveToPosition.execute();
 
     /*
      * Move to start
      */
-    driveToPosition.setup(17.7f, 30.0f, 80);
+    driveToPosition.setup(17.7f, 30.0f, 60);
     driveToPosition.execute();
 
     return Success;
