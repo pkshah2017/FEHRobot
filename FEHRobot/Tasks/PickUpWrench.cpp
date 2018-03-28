@@ -25,8 +25,10 @@ StatusCode PickUpWrench::execute(){
     /*
      * Move toward wrench
      */
-    driveForTime.setup(270, 50, 250);
-    driveForTime.execute();
+    driveTilBump.setup(270, 50, RobotRight);
+    driveTilBump.execute();
+   // driveForTime.setup(270, 50, 250);
+   // driveForTime.execute();
 
     /*
      * Change the arm position to grab wrench

@@ -28,7 +28,7 @@ StatusCode PressButtons::execute(){
     logger -> logMessage("Changing Arm Position");
     ArmPosition buttonPosition = ArmRight;
 
-    int turnIntoButtons =0;
+    int turnIntoButtons = 0;
     if(status == L_Red){
         buttonPosition = ArmRight;
         turnIntoButtons = -50;
@@ -47,7 +47,7 @@ StatusCode PressButtons::execute(){
      * Move To Buttons
      */
     logger -> logMessage("Moving forward to press buttons");
-    driveForTime.setup(buttonPosition == ArmLeft ? 0 : 345, 70, 350);
+    driveForTime.setup(buttonPosition == ArmLeft ? 355 : 345, 70, 350);
     driveForTime.execute();
 
     /*
