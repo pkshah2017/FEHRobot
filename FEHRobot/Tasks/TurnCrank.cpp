@@ -17,7 +17,7 @@ StatusCode TurnCrank::execute(){
     (*robot).updateRPSStates();
     int fuelType = (*robot).getFuelType();
     ArmPosition endPosition = fuelType == 1 ? ArmLeft : ArmRight;
-    changeCrankArmPosition.setup(endPosition, .5f);
+    changeCrankArmPosition.setup(endPosition, 1.0f);
     changeCrankArmPosition.execute();
 
     Sleep(300);

@@ -10,5 +10,6 @@
 #include "Commands/LineFollowForTime.h"
 #include "Commands/ReadButtonLight.h"
 #include "Commands/TurnForTime.h"
+#include "Commands/TurnToHeadingZero.h"
 #include "Commands/WaitForLight.h"
 #include "Commands/WaitForTime.h"

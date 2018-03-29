@@ -9,9 +9,9 @@ Command::Command()
 }
 
 StatusCode Command::execute() {
-    logger -> logMessage("Beginning Command: ");
+    logger -> logMessage("\r\nBeginning Command: ");
     logger -> logMessage(getCommandName());
-    logger -> logMessage("\r\n\r\n");
+    logger -> logMessage("\r\n");
     StatusCode errorCode = initialize();
     if(errorCode != Success){
         errorCode = initializeFailureRecovery(errorCode);
@@ -25,7 +25,11 @@ StatusCode Command::execute() {
         }
 		Sleep(REFRESH_RATE);
 	}
+    logger -> logWorldState();
     errorCode = completion();
+    logger -> logMessage("\r\nCompleted Command: ");
+    logger -> logMessage(getCommandName());
+    logger -> logMessage("\r\n");
     return errorCode;
 }
 

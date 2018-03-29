@@ -31,12 +31,14 @@ void Logger::logMessage(const char *message){
     // SD.Printf(messageLength);
     //    SD.Printf(" ");
     SD.Printf(message);
+    SD.Printf("\r\n");
 }
 
 
 void Logger::logMessageScreen(const char *message){
     LCD.WriteLine(message);
     SD.Printf(message);
+    SD.Printf("\r\n");
 }
 
 void Logger::logMessage(char *message){

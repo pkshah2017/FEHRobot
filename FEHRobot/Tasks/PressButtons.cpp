@@ -51,16 +51,18 @@ StatusCode PressButtons::execute(){
      * Move To Buttons
      */
     logger -> logMessage("Moving forward to press buttons");
+    driveForTime.setup(buttonPosition == ArmLeft ? 30 : 330, 70, 450);
+    driveForTime.execute();
 
+    /*
     float startTime = TimeNow();
     while((TimeNow()-startTime<.40)){
-        //driveForTime.setup(buttonPosition == ArmLeft ? 355 : 355, 70, 350);
-        //driveForTime.execute();
 
-        (*robot).drive(356, 40);
-        centerOnLine.setup(15);
-        centerOnLine.execute();
-    }
+
+       // (*robot).drive(356, 40);
+        //centerOnLine.setup(15);
+        //centerOnLine.execute();
+    }*/
 
     /*
      * Hold Buttons
@@ -69,6 +71,7 @@ StatusCode PressButtons::execute(){
     logger -> logMessage("Holding buttons for 5 seconds");
     //waitForTime.changeDriveTime(5000);
     //waitForTime.execute();
+    /*
     startTime = TimeNow();
     while((TimeNow()-startTime<.5f)&&!(robot-> getDeadzoneStatus())){
         LCD.WriteRC(robot-> getDeadzoneStatus(),10,2);
@@ -77,28 +80,29 @@ StatusCode PressButtons::execute(){
         (*robot).driveAndTurn(0, 30, turnPower);
         (*robot).drive(0, 40);
 
-    }
+    }*/
+
 
     /*
      * Turn to straighten out
      */
 
-    logger -> logMessage("Turning out of buttons");
-    turnForTime.setup(turnIntoButtons, .05f);
-    turnForTime.execute();
+    //logger -> logMessage("Turning out of buttons");
+    //turnForTime.setup(turnIntoButtons, .05f);
+    //turnForTime.execute();
 
     /*
      * Tap Buttons again
      */
-    logger -> logMessage("Hitting buttons again");
-    driveForTime.setup(0, 50, 500);
-    driveForTime.execute();
+    //logger -> logMessage("Hitting buttons again");
+    //driveForTime.setup(0, 50, 500);
+    //driveForTime.execute();
 
     /*
      * Hold Buttons again if deadzone is still active
      */
-    waitForTime.changeDriveTime(robot-> getDeadzoneStatus() != 2 ? 00 : 0);
-    waitForTime.execute();
+   // waitForTime.changeDriveTime(robot-> getDeadzoneStatus() != 2 ? 00 : 0);
+    //waitForTime.execute();
 
     /*
      * Back away from buttons

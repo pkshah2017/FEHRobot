@@ -11,6 +11,13 @@ DriveToCrank::DriveToCrank(Robot *robot_):
 }
 
 StatusCode DriveToCrank::execute(){
+
+    /*
+     * Exit garage
+     */
+    driveForTime.setup(90, 60, 1600);
+    driveForTime.execute();
+
     /*
      * Setup to turn the crank
      */
@@ -25,9 +32,14 @@ StatusCode DriveToCrank::execute(){
      * Go To Crank
      */
 
-    driveToPosition.changeXSetpoint(26.0f);
-    driveToPosition.changeYSetpoint(64.4f);
-    driveToPosition.execute();
+    //driveToPosition.changeXSetpoint(26.0f);
+    //driveToPosition.changeYSetpoint(64.4f);
+    //driveToPosition.execute();
+
+    //driveForTime.setup(90,70,1.0f);
+    //driveForTime.execute();
+    driveForTime.setup(180,70,1.0f);
+    driveForTime.execute();
 
     turnForTime.setup(-40,100);
     turnForTime.execute();

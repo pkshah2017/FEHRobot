@@ -24,12 +24,12 @@ StatusCode DriveToGarage::execute(){
     /*
     move towards ramp
     */
-    driveForTime.setup(180, 100, 1100);
+    driveForTime.setup(180, 100, 1250);
     driveForTime.execute();
     /*
      * Move To Ramp
      */
-    driveForTime.setup(245, 100, 400);
+    driveForTime.setup(260, 100, 400);
     driveForTime.execute();
 
     driveForTime.setup(180, 100, 500);
@@ -38,18 +38,18 @@ StatusCode DriveToGarage::execute(){
     /*
      * Go up ramp
      */
-    driveForTime.setup(175, 100, 3000);
+    driveForTime.setup(177, 100, 3000);
     driveForTime.execute();
 
     /*
      * Go towards garage
      */
-    driveForTime.setup(182, 100, 900);
+    driveForTime.setup(180, 100, 800);
     driveForTime.execute();
     /*
      * Back away slightly
      */
-    driveForTime.setup(0, 50, 200);
+   driveForTime.setup(0, 50, 200);
     driveForTime.execute();
     /*
      * Become parallel with garage door
@@ -57,10 +57,11 @@ StatusCode DriveToGarage::execute(){
     turnForTime.setup(50, .50f);
     turnForTime.execute();
 
+
     /*
      * Move towards garage while parallel
      */
-    driveForTime.setup(190, 70, 900);
+    driveForTime.setup(240, 70, 600);
     driveForTime.execute();
 
     /*

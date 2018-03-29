@@ -32,6 +32,8 @@ Commands/LineFollowForTime.h
 Commands/LineFollowForTime.cpp
 Commands/TurnForTime.h
 Commands/TurnForTime.cpp
+Commands/TurnToHeadingZero.h
+Commands/TurnToHeadingZero.cpp
 Commands/DriveTilBump.h
 Commands/DriveTilBump.cpp
 Commands/DriveToLine.h
