@@ -50,8 +50,9 @@ StatusCode PressButtons::execute(){
     /*
      * Move To Buttons
      */
+
     logger -> logMessage("Moving forward to press buttons");
-    driveForTime.setup(buttonPosition == ArmLeft ? 30 : 330, 70, 450);
+    driveForTime.setup(buttonPosition == ArmLeft ? 30 : 330, 70, 500);
     driveForTime.execute();
 
     /*

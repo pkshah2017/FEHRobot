@@ -15,7 +15,7 @@ StatusCode DriveToCrank::execute(){
     /*
      * Exit garage
      */
-    driveForTime.setup(90, 60, 1600);
+    driveForTime.setup(90, 60, 1450);
     driveForTime.execute();
 
     /*

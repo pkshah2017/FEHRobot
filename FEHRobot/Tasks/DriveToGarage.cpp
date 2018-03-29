@@ -29,23 +29,29 @@ StatusCode DriveToGarage::execute(){
     /*
      * Move To Ramp
      */
-    driveForTime.setup(260, 100, 400);
+    driveForTime.setup(264, 100, 600);
     driveForTime.execute();
 
-    driveForTime.setup(180, 100, 500);
+    driveForTime.setup(180, 100, 900);
     driveForTime.execute();
 
     /*
      * Go up ramp
      */
-    driveForTime.setup(177, 100, 3000);
+    driveForTime.setup(177, 100, 2600);
     driveForTime.execute();
 
     /*
      * Go towards garage
      */
-    driveForTime.setup(180, 100, 800);
+    driveForTime.setup(179, 100, 400);
     driveForTime.execute();
+
+    float startTime = TimeNow();
+    while(TimeNow()-startTime<.8){
+    (*robot).driveAndTurn(170, 90, 10);
+    }
+
     /*
      * Back away slightly
      */
@@ -61,7 +67,7 @@ StatusCode DriveToGarage::execute(){
     /*
      * Move towards garage while parallel
      */
-    driveForTime.setup(240, 70, 600);
+    driveForTime.setup(240, 70, 750);
     driveForTime.execute();
 
     /*
