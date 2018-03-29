@@ -16,9 +16,9 @@ StatusCode DriveToJack::execute(){
     /*
      * Drive towards wrench/start/jack
      */
-    logger -> logMessage("Driving towards center of lower level");
-    driveForTime.setup(270, 50, 2700);
-    driveForTime.execute();
+    //logger -> logMessage("Driving towards center of lower level");
+    //driveForTime.setup(270, 50, 2700);
+    //driveForTime.execute();
     //driveToPosition.setup(12.0f,21.5f);
     //driveToPosition.execute();
     //driveToPosition.setup(8.0f,16.0f);
@@ -29,9 +29,10 @@ StatusCode DriveToJack::execute(){
      */
 
     logger -> logMessage("Driving to the wall");
-    driveForTime.setup(340, 80, 1800);
+    driveForTime.setup(0, 100, 200);
     driveForTime.execute();
-
+    driveForTime.setup(350, 80, 1200);
+    driveForTime.execute();
 
     logger -> logMessage("Backing away from wall");
     driveForTime.setup(180, 50, 100);

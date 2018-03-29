@@ -25,7 +25,7 @@ StatusCode DropOffWrench::execute(){
     /*
      * Enter garage
      */
-    driveForTime.setup(270, 60, 1000);
+    driveForTime.setup(270, 60, 1200);
     driveForTime.execute();
 
     /*

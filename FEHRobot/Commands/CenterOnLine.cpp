@@ -2,10 +2,17 @@
 #include <FEHUtility.h>
 #include <FEHLCD.h>
 
-CenterOnLine::CenterOnLine(Robot *robot_)
+CenterOnLine::CenterOnLine(Robot *robot_, int power_)
 {
+    power = power_;
     robot = robot_;
 }
+
+StatusCode CenterOnLine::setup(int newPower){
+    power = newPower;
+    return Success;
+}
+
 
 StatusCode CenterOnLine::initialize() {
     updateOptoStates();
@@ -16,18 +23,19 @@ StatusCode CenterOnLine::run() {
     StatusCode status = Success;
     updateOptoStates();
     if(leftOptoOnLine){
-        (*robot).drive(90, 45);
+        (*robot).drive(90, power);
     } else if (rightOptoOnLine){
-        (*robot).drive(270, 45);
+        (*robot).drive(270, power);
     } else if (!centerOptoOnLine){
-        (*robot).drive(90, 45);
+        (*robot).drive(90, power);
     }
 
     return status;
 }
 
 bool CenterOnLine::isFinished() {
-    return centerOptoOnLine && !leftOptoOnLine && !rightOptoOnLine;
+
+    return (centerOptoOnLine && !leftOptoOnLine && !rightOptoOnLine);
 }
 
 StatusCode CenterOnLine::completion(){
@@ -43,7 +51,7 @@ const char * CenterOnLine::getCommandName(){
 bool CenterOnLine::checkLeftOpto(){
     LCD.WriteRC("Left Opto Value: ", 1, 1);
     LCD.WriteRC((*robot).getOpto(LeftOpto), 1, 18);
-    return (*robot).getOpto(LeftOpto) > 2.5f;
+    return (*robot).getOpto(LeftOpto) > 2.35f;
 }
 
 bool CenterOnLine::checkCenterOpto(){
@@ -55,7 +63,7 @@ bool CenterOnLine::checkCenterOpto(){
 bool CenterOnLine::checkRightOpto(){
     LCD.WriteRC("Right Opto Value: ", 3, 1);
     LCD.WriteRC((*robot).getOpto(RightOpto), 3, 19);
-    return (*robot).getOpto(RightOpto) > 1.9f;
+    return (*robot).getOpto(RightOpto) > 1.7f;
 }
 
 void CenterOnLine::updateOptoStates(){

@@ -18,6 +18,7 @@ private:
     WaitForLight waitForLight;
     DriveForTime driveForTime;
     DriveToPosition driveToPosition;
+    DriveTilBump driveTilBump;
     DriveToPositionWithHeading driveToPositionWithHeading;
     ChangeArmPosition changeArmPosition;
     BackupToLine backupToLine;

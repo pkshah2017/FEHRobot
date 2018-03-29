@@ -1,11 +1,14 @@
 #include "Logger.h"
 #include "DriveToButtons.h"
+#include "Constants.h"
 
 DriveToButtons::DriveToButtons(Robot *robot_):
     waitForLight(robot_),
     driveForTime(robot_, 0, 50, 1350),
-    centerOnLine(robot_),
+    centerOnLine(robot_,45),
+    changeArmPosition(robot_, ArmUp, 0),
     driveToPosition(robot_, 0.0f, 0.0f)
+
 {
     robot = robot_;
 }
@@ -22,7 +25,11 @@ StatusCode DriveToButtons::execute(){
     logger -> logMessage("Driving out of Start");
     driveForTime.setup(0, 50, 1300);
     driveForTime.execute();
-
+    /*
+     * fix arm position
+     */
+    changeArmPosition.setup(ArmUp, 0.0f);
+    changeArmPosition.execute();
     /*
      * Drive to buttons
      */
@@ -39,7 +46,7 @@ StatusCode DriveToButtons::execute(){
 
     logger -> logMessage("Moving left to the button first line");
     centerOnLine.execute();
-
+    centerOnLine.execute();
 
     logger -> logMessage("Moving left over the button first line");
     driveForTime.setup(90, 45, 450);

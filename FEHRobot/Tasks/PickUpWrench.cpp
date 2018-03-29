@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "PickUpWrench.h"
 #include "FEHLCD.h"
 #include <FEHUtility.h>
@@ -19,34 +20,39 @@ StatusCode PickUpWrench::execute(){
     /*
      * Change the arm position to slightly raised
      */
-    changeArmPosition.setup(ArmSlightlyRaised, 2.0f);
-    changeArmPosition.execute();
+    //changeArmPosition.setup(ArmSlightlyRaised, 2.0f);
+    //changeArmPosition.execute();
 
     /*
      * Move toward wrench
      */
-    driveTilBump.setup(270, 50, RobotRight);
-    driveTilBump.execute();
-   // driveForTime.setup(270, 50, 250);
-   // driveForTime.execute();
+    //logger->logMessage("Moving towards the wrench \r\n");
+   // driveTilBump.setup(270, 50, RobotRight);
+   // driveTilBump.execute();
+    //driveForTime.setup(270, 50, 350);
+    //driveForTime.execute();
 
     /*
      * Change the arm position to grab wrench
      */
-    changeArmPosition.setup(ArmRight, 0.75f);
+    changeArmPosition.setup(ArmRight, 1.5f);
     changeArmPosition.execute();
-
+    Sleep(.5);
+    driveForTime.setup(180,40,400);
+    driveForTime.execute();
+    driveForTime.setup(0,40,200);
+    driveForTime.execute();
     /*
      * Raise arm to pickup wrench
      */
-    changeArmPosition.setup(ArmUp, 2.0f);
+    changeArmPosition.setup(ArmUp, 0.0f);
     changeArmPosition.execute();
 
     /*
      * Back away from wrench stand
      */
-    driveForTime.setup(90, 50, 500);
-    driveForTime.execute();
+   driveForTime.setup(90, 40, 200);
+   driveForTime.execute();
 
 
     return Success;

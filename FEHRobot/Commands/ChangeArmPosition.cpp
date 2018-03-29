@@ -14,7 +14,7 @@ ChangeArmPosition::ChangeArmPosition(Robot *robot_, ArmPosition armPosition_, fl
 
 ChangeArmPosition::ChangeArmPosition(Robot *robot_, ArmPosition armPosition_, int ms)
 {
-    constructor(robot_, armPosition_, ms/1000.0);
+    constructor(robot_, armPosition_, ms/1000.0f);
 }
 
 StatusCode ChangeArmPosition::constructor(Robot *robot_, ArmPosition armPosition_, float sec_){
@@ -51,7 +51,7 @@ StatusCode ChangeArmPosition::selectArmPosition(ArmPosition armPosition_){
 }
 
 StatusCode ChangeArmPosition::selectWaitTime(int ms){
-    timeToWait = ms/1000.0;
+    timeToWait = ms/1000.0f;
     return Success;
 }
 

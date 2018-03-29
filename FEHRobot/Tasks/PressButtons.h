@@ -19,6 +19,7 @@ private:
     DriveForTime driveForTime;
     TurnForTime turnForTime;
     WaitForTime waitForTime;
+    CenterOnLine centerOnLine;
     ChangeArmPosition changeArmPosition;
     DriveToPosition driveToPosition;
 };

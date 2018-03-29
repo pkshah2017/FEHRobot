@@ -5,6 +5,8 @@
 #include "Robot.h"
 #include "Tasks/DriveToJack.h"
 #include "Tasks/LiftJack.h"
+#include "Tasks/DriveToGarage.h"
+#include "Tasks/DropOffWrench.h"
 
 class Jack :
     public Subprogram
@@ -15,7 +17,9 @@ private:
     Robot *robot;
 
     DriveToJack driveToJack;
-    LiftJack liftJack;
+    LiftJack liftJack;    
+    DriveToGarage driveToGarage;
+    DropOffWrench dropOffWrench;
 };
 
 #endif

@@ -9,6 +9,7 @@ PressButtons::PressButtons(Robot *robot_):
     driveForTime(robot_, 0, 50, 0),
     turnForTime(robot_, -25, 250),
     waitForTime(robot_, 2000),
+    centerOnLine(robot_, 45),
     changeArmPosition(robot_, ArmRight, 1000),
     driveToPosition(robot_, 0, 0)
 {
@@ -28,14 +29,16 @@ StatusCode PressButtons::execute(){
     logger -> logMessage("Changing Arm Position");
     ArmPosition buttonPosition = ArmRight;
 
-    int turnIntoButtons = 0;
+    int turnIntoButtons = 0, turnPower =0;
     if(status == L_Red){
         buttonPosition = ArmRight;
         turnIntoButtons = -50;
+        turnPower = -3;
         status = Success;
     } else if(status == L_Blue){
         buttonPosition = ArmLeft;
-        turnIntoButtons = 25;
+        turnIntoButtons = 40;
+        turnPower = 2;
         status = Success;
     } else {
         status = E_UnreachableCode;
@@ -43,34 +46,52 @@ StatusCode PressButtons::execute(){
     }
     changeArmPosition.setup(buttonPosition, 1.75f);
     changeArmPosition.execute();
+    Sleep(300);
     /*
      * Move To Buttons
      */
     logger -> logMessage("Moving forward to press buttons");
-    driveForTime.setup(buttonPosition == ArmLeft ? 355 : 345, 70, 350);
-    driveForTime.execute();
+
+    float startTime = TimeNow();
+    while((TimeNow()-startTime<.40)){
+        //driveForTime.setup(buttonPosition == ArmLeft ? 355 : 355, 70, 350);
+        //driveForTime.execute();
+
+        (*robot).drive(356, 40);
+        centerOnLine.setup(15);
+        centerOnLine.execute();
+    }
 
     /*
      * Hold Buttons
      */
 
     logger -> logMessage("Holding buttons for 5 seconds");
-    waitForTime.changeDriveTime(5000);
-    waitForTime.execute();
+    //waitForTime.changeDriveTime(5000);
+    //waitForTime.execute();
+    startTime = TimeNow();
+    while((TimeNow()-startTime<.5f)&&!(robot-> getDeadzoneStatus())){
+        LCD.WriteRC(robot-> getDeadzoneStatus(),10,2);
+        //driveForTime.setup(0, 20, 100);
+        //driveForTime.execute();
+        (*robot).driveAndTurn(0, 30, turnPower);
+        (*robot).drive(0, 40);
+
+    }
 
     /*
      * Turn to straighten out
      */
 
     logger -> logMessage("Turning out of buttons");
-    turnForTime.setup(turnIntoButtons, .25f);
+    turnForTime.setup(turnIntoButtons, .05f);
     turnForTime.execute();
 
     /*
      * Tap Buttons again
      */
     logger -> logMessage("Hitting buttons again");
-    driveForTime.setup(0, 50, 350);
+    driveForTime.setup(0, 50, 500);
     driveForTime.execute();
 
     /*
@@ -83,7 +104,7 @@ StatusCode PressButtons::execute(){
      * Back away from buttons
      */
     logger -> logMessage("Backing away from buttons");
-    driveForTime.setup(180, 50, 250);
+    driveForTime.setup(180, 50, 200);
     driveForTime.execute();
 
     /*

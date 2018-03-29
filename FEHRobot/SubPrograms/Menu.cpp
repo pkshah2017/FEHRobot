@@ -111,9 +111,9 @@ int  Menu::runAll()
     LCD.Clear(BLACK);
     int currentMenu;
 
-    buttons.execute();
-    jack.execute();
+    buttons.execute();    
     wrench.execute();
+    jack.execute();
     crank.execute();
 
     currentMenu = MAIN_MENU;

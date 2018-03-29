@@ -10,7 +10,7 @@
 #define ARM_RIGHT_ANGLE 0
 #define ARM_UP_ANGLE 80
 #define ARM_ANGLED_RIGHT_ANGLE 45
-#define ARM_SLIGHTLY_RAISED_ANGLE 5
+#define ARM_SLIGHTLY_RAISED_ANGLE 8
 
 //Arm Position Names
 typedef enum {

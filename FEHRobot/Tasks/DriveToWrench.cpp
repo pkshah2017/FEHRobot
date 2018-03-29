@@ -7,7 +7,8 @@ DriveToWrench::DriveToWrench(Robot *robot_):
     driveForTime(robot_, 0, 50, 1350),
     driveToPosition(robot_, 0, 0),
     changeArmPosition(robot_, ArmUp, 500),
-    driveToPositionWithHeading(robot_, 0, 0, 315),
+    driveToPositionWithHeading(robot_, 0, 0, 315),    
+    driveTilBump(robot_, 270, 50, RobotLeft),
     backupToLine(robot_, 30)
 {
     robot = robot_;
@@ -37,16 +38,19 @@ StatusCode DriveToWrench::execute(){
 
 
     logger -> logMessage("Moving towards wrench");
-    driveForTime.setup(193, 40, 2.35f);
+    //driveForTime.setup(193, 40, 2.35f);
+    //driveForTime.execute();
+    driveForTime.setup(276, 80, 1.2f);
     driveForTime.execute();
+    driveTilBump.setup(273, 60, RobotRight);
+    driveTilBump.execute();
 
+    //logger -> logMessage("Lining up with wrench line");
+    //backupToLine.execute();
 
-    logger -> logMessage("Lining up with wrench line");
-    backupToLine.execute();
-
-    logger -> logMessage("Move away from wrench");
-    driveForTime.setup(90, 40, .35f);
-    driveForTime.execute();
+    //logger -> logMessage("Move away from wrench");
+    //driveForTime.setup(90, 40, .35f);
+    //driveForTime.execute();
 
     //driveToPositionWithHeading.setup(7.5f, 19.75f, 0);
     //driveToPositionWithHeading.execute();
