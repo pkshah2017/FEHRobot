@@ -38,14 +38,18 @@ StatusCode PickUpWrench::execute(){
     changeArmPosition.setup(ArmRight, 1.5f);
     changeArmPosition.execute();
     Sleep(.3f);
-    //driveForTime.setup(180,40,400);
-    //driveForTime.execute();
-    //driveForTime.setup(0,40,200);
-    //driveForTime.execute();
+    driveForTime.setup(180,40,100);
+    driveForTime.execute();
+    driveForTime.setup(0,40,100);
+    driveForTime.execute();
+    driveForTime.setup(90,40,100);
+    driveForTime.execute();
+    driveForTime.setup(270,40,100);
+    driveForTime.execute();
     /*
      * Raise arm to pickup wrench
      */
-    changeArmPosition.setup(ArmUp, 0.1f);
+    changeArmPosition.setup(ArmUp, 0.0f);
     changeArmPosition.execute();
 
     /*

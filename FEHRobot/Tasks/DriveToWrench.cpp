@@ -36,12 +36,13 @@ StatusCode DriveToWrench::execute(){
 
     //driveToPosition.setup(robot->getLocationX(Wrench_Pickup), robot->getLocationY(Wrench_Pickup), 50);
     //driveToPosition.execute();
-
+    driveForTime.setup(90, 80, 0.8f);
+    driveForTime.execute();
 
     logger -> logMessage("Moving towards wrench");
     //driveForTime.setup(193, 40, 2.35f);
     //driveForTime.execute();
-    driveForTime.setup(279, 80, 1.2f);
+    driveForTime.setup(277, 80, 1.2f);
     driveForTime.execute();
 
 
