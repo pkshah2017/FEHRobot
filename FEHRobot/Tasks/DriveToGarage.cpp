@@ -82,7 +82,6 @@ StatusCode DriveToGarage::execute(){
     driveToLine.changePower(45);
     driveToLine.execute();
 
-    Sleep(300);
 
     return Success;
 }

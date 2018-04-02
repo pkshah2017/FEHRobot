@@ -5,15 +5,35 @@ DriveToCrank::DriveToCrank(Robot *robot_):
     driveToPosition(robot_, 0, 0),    
     turnForTime(robot_, -25, 250),
     driveToPositionWithHeading(robot_,0,0,45),
-    changeCrankArmPosition(robot_, ArmUp, 500)
+    changeCrankArmPosition(robot_, ArmUp, 500),
+    changeArmPosition(robot_, ArmUp, 500)
 {
     robot = robot_;
 }
 
 StatusCode DriveToCrank::execute(){
 
+
     /*
      * Exit garage
+     */
+    driveForTime.setup(90, 60, 400);
+    driveForTime.execute();
+
+    /*
+     * Move Arm up
+     */
+    changeArmPosition.setup(ArmUp, .5f);
+    changeArmPosition.execute();
+
+    /*
+     * Go back into garage
+     */
+    driveForTime.setup(270, 60, 400);
+    driveForTime.execute();
+
+    /*
+     * Leave the Garage
      */
     driveForTime.setup(90, 60, 1510);
     driveForTime.execute();

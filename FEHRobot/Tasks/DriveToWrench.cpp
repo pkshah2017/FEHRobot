@@ -38,18 +38,18 @@ StatusCode DriveToWrench::execute(){
 
     //driveToPosition.setup(robot->getLocationX(Wrench_Pickup), robot->getLocationY(Wrench_Pickup), 50);
     //driveToPosition.execute();
-    driveForTime.setup(90, 80, 0.8f);
+    driveForTime.setup(90, 80, 1.0f);
     driveForTime.execute();
 
     logger -> logMessage("Moving towards wrench");
     //driveForTime.setup(193, 40, 2.35f);
     //driveForTime.execute();
-    driveForTime.setup(277, 80, 1.2f);
+    driveForTime.setup(277, 80, 1.4f);
     driveForTime.execute();
 
 
     logger -> logMessage("Moving in front of wrench");
-    driveToPosition.setup(11.0f, 18.0f, 40);
+    driveToPosition.setup(11.0f, 18.0f, 50);
     driveToPosition.execute();
 
 
