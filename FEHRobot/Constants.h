@@ -36,7 +36,7 @@ typedef enum {
  */
 
 #define REFRESH_RATE 20
-#define TIMEOUT 5000.0
+#define TIMEOUT 7.0
 #define POSITION_TOLERANCE 1.0
 
 //Line Follower States
