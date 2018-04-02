@@ -85,14 +85,14 @@ StatusCode BackupToWhiteLine::updateLineFollowerState(float leftThreshold, float
     else if (right < rightTheshold &&  center < centerThreshold && left > leftThreshold) {
         lineFollowStatus = ON_ON_OFF; // update a new state
     }
-    else if (right > rightTheshold && center > centerThreshold && left < leftThreshold) {
-        lineFollowStatus = OFF_OFF_ON; // update a new state
-    }
     else if (right > rightTheshold && center < centerThreshold && left < leftThreshold) {
         lineFollowStatus = OFF_ON_ON; // update a new state
     }
     else if (right > rightTheshold && center < centerThreshold && left > leftThreshold) {
         lineFollowStatus = OFF_ON_OFF; // update a new state
+    }
+    else if (right > rightTheshold && center > centerThreshold && left < leftThreshold) {
+        lineFollowStatus = OFF_OFF_ON; // update a new state
     }
     else
     {
