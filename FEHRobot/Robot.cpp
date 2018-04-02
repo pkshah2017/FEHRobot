@@ -42,6 +42,9 @@ float Robot::getOpto(OptoSelection optoSelection) {
     case RightOpto:
         result = sensors.getRightOpto();
         break;
+    case CornerOpto:
+        result = sensors.getCornerOpto();
+        break;
     }
 
     return result;

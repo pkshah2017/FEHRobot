@@ -5,9 +5,11 @@
 WaitForLight::WaitForLight(Robot *robot_)
 {
     robot = robot_;
+    startTime = 0.0f;
 }
 
 StatusCode WaitForLight::initialize() {
+    startTime = TimeNow();
     return Success;
 }
 
@@ -17,7 +19,7 @@ StatusCode WaitForLight::run() {
 }
 
 bool WaitForLight::isFinished() {
-    return (*robot).getCDSState() < 1.2;
+    return (*robot).getCDSState() < 1.2 || TimeNow() - startTime > 29.0f;
 }
 
 StatusCode WaitForLight::completion(){

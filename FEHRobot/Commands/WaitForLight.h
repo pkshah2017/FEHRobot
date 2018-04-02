@@ -13,6 +13,7 @@ public:
     virtual const char* getCommandName();
 private:
     Robot *robot;
+    float startTime;
 
     virtual StatusCode initialize();
     virtual StatusCode run();

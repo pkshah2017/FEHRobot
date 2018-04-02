@@ -28,7 +28,7 @@ typedef enum {
 
 //Opto Sensor Names
 typedef enum {
-    LeftOpto, CenterOpto, RightOpto
+    LeftOpto, CenterOpto, RightOpto, CornerOpto
 } OptoSelection;
 
 /*
@@ -41,7 +41,7 @@ typedef enum {
 
 //Line Follower States
 typedef enum {
-    OFF_ON_OFF, ON_ON_OFF, ON_OFF_OFF, OFF_ON_ON, OFF_OFF_ON, OFF_OFF_OFF, ON_ON_ON
+    OFF_ON_OFF, ON_ON_OFF, ON_OFF_OFF, OFF_ON_ON, OFF_OFF_ON, OFF_OFF_OFF, ON_ON_ON, ON_OFF_ON
 } LineFollowerState;
 
 /*
