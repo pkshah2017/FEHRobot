@@ -24,6 +24,8 @@ Commands/CenterOnLine.h
 Commands/CenterOnLine.cpp
 Commands/BackupToLine.h
 Commands/BackupToLine.cpp
+Commands/BackupToWhiteLine.h
+Commands/BackupToWhiteLine.cpp
 Commands/BackupToLineSingleOpto.h
 Commands/BackupToLineSingleOpto.cpp
 Commands/DriveToPosition.h
