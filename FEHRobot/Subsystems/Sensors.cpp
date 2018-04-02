@@ -8,7 +8,8 @@ Sensors::Sensors()
       cdsCell(FEHIO::P0_0),
       leftOpto(FEHIO::P1_4),
       centerOpto(FEHIO::P1_2),
-      rightOpto(FEHIO::P1_0 )
+      rightOpto(FEHIO::P1_0 ),
+      cornerOpto(FEHIO::P1_6)
 {
     updateSensorStates();
 }
@@ -21,6 +22,7 @@ int Sensors::updateSensorStates() {
     leftOptoState = leftOpto.Value();
     centerOptoState = centerOpto.Value();
     rightOptoState = rightOpto.Value();
+    cornerOptoState = cornerOpto.Value();
 }
 
 bool Sensors::getFrontLimit() {
@@ -49,6 +51,10 @@ float Sensors::getCenterOpto() {
 
 float Sensors::getRightOpto() {
     return rightOptoState;
+}
+
+float Sensors::getCornerOpto() {
+    return cornerOptoState;
 }
 
 int Sensors::updateRPSState(){

@@ -15,6 +15,7 @@ private:
     AnalogInputPin leftOpto;
     AnalogInputPin centerOpto;
     AnalogInputPin rightOpto;
+    AnalogInputPin cornerOpto;
 
     bool frontLimitState;
     bool leftLimitState;
@@ -23,6 +24,7 @@ private:
     float leftOptoState;
     float centerOptoState;
     float rightOptoState;
+    float cornerOptoState;
 
     int fuelType;
     int deadzoneStatus;
@@ -41,6 +43,7 @@ public:
     float getLeftOpto();
     float getCenterOpto();
     float getRightOpto();
+    float getCornerOpto();
 
     int updateRPSState();
     int getFuelType();

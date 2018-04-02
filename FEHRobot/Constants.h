@@ -28,7 +28,7 @@ typedef enum {
 
 //Opto Sensor Names
 typedef enum {
-    LeftOpto, CenterOpto, RightOpto
+    LeftOpto, CenterOpto, RightOpto, CornerOpto
 } OptoSelection;
 
 /*
