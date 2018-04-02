@@ -29,22 +29,26 @@ StatusCode BackupToWhiteLine::run() {
 
     if(status == Success){
         switch(lineFollowStatus){
-        case OFF_ON_OFF:
-            //Should never happen
-            return E_UnreachableCode;
-            break;
-        case ON_ON_OFF:
+        case ON_ON_ON:
             (*robot).stop();
             break;
+        case ON_ON_OFF:
+            (*robot).drive(180, power);
+            break;
+        case ON_OFF_ON:
+            (*robot).drive(180, power);
+            break;
         case ON_OFF_OFF:
-            (*robot).driveAndTurn(274, 27, -15);
-                 //   .turn(-25);
+            (*robot).drive(180, power);
             break;
         case OFF_ON_ON:
-            return E_UnreachableCode;
+            (*robot).drive(180, power);
+            break;
+        case OFF_ON_OFF:
+            (*robot).drive(180, power);
             break;
         case OFF_OFF_ON:
-            return E_UnreachableCode;
+            (*robot).drive(180, power);
             break;
         case OFF_OFF_OFF:
             (*robot).drive(180, power);
@@ -55,7 +59,7 @@ StatusCode BackupToWhiteLine::run() {
 }
 
 bool BackupToWhiteLine::isFinished() {
-    return lineFollowStatus == ON_ON_OFF;
+    return lineFollowStatus == ON_ON_ON;
 }
 
 StatusCode BackupToWhiteLine::completion(){
@@ -102,5 +106,5 @@ StatusCode BackupToWhiteLine::updateLineFollowerState(float leftThreshold, float
 }
 
 const char * BackupToWhiteLine::getCommandName(){
-    return "BackupToLine";
+    return "BackupToWhiteLine";
 }

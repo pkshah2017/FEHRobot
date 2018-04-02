@@ -595,11 +595,13 @@ int  Menu::optoCheck(){
         LCD.Touch(&x,&y);
         (*robot).updateSensorStates();
         LCD.WriteRC("Left Opto:  ", 5, 1);
-        LCD.WriteRC((*robot).getOpto(LeftOpto), 5, 19);
+        LCD.WriteRC((*robot).getOpto(LeftOpto), 5, 20);
         LCD.WriteRC("Center Opto:  ", 7, 1);
-        LCD.WriteRC((*robot).getOpto(CenterOpto), 7, 19);
-        LCD.WriteRC("Right Opto :  ", 9, 1);
-        LCD.WriteRC((*robot).getOpto(RightOpto), 9, 20);
+        LCD.WriteRC((*robot).getOpto(CenterOpto), 7, 20);
+        LCD.WriteRC("Right Opto:  ", 9, 1);
+        LCD.WriteRC((*robot).getOpto(RightOpto), 9, 20);        
+        LCD.WriteRC("Corner Opto:  ", 11, 1);
+        LCD.WriteRC((*robot).getOpto(CornerOpto), 11, 20);
         Sleep(REFRESH_RATE);
 
         if (Back[0].Pressed(x, y, 0))

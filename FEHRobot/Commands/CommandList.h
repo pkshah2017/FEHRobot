@@ -1,5 +1,7 @@
 #include "Commands/BackupToLine.h"
 #include "Commands/BackupToLineSingleOpto.h"
+#include "Commands/BackupOffLineSingleOpto.h"
+#include "Commands/BackupToWhiteLine.h"
 #include "Commands/CenterOnLine.h"
 #include "Commands/ChangeArmPosition.h"
 #include "Commands/ChangeCrankArmPosition.h"

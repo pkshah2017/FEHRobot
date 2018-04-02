@@ -22,6 +22,7 @@ private:
     ChangeArmPosition changeArmPosition;
     TurnForTime turnForTime;
     DriveToLine driveToLine;
+    BackupToWhiteLine backupToWhiteLine;
 };
 
 #endif

@@ -21,17 +21,17 @@ StatusCode BackupToLineSingleOpto::changePower(int newPower){
 }
 
 StatusCode BackupToLineSingleOpto::initialize() {
-    StatusCode status = updateLineFollowerState(2.5f);
+    StatusCode status = updateLineFollowerState(2.6f);
 
     return status;
 }
 
 StatusCode BackupToLineSingleOpto::run() {
-    StatusCode status = updateLineFollowerState(2.5f);
+    StatusCode status = updateLineFollowerState(2.6f);
 
     if(status == Success){
         if(!onLine){
-            robot->drive(180, 50);
+            robot->drive(180, power);
         }
     }
     return status;
@@ -51,7 +51,11 @@ StatusCode BackupToLineSingleOpto::updateLineFollowerState(float optoThreshold){
     (*robot).updateSensorStates();
 
     float opto = (*robot).getOpto(CornerOpto);
-    onLine = opto < optoThreshold;
+    LCD.WriteRC("Corner Opto: ", 1, 1);
+    LCD.WriteRC(opto, 1, 13);
+    LCD.WriteRC("Threshold: ", 2, 1);
+    LCD.WriteRC(optoThreshold, 2, 13);
+    onLine = opto > optoThreshold;
 
     return Success;
 }

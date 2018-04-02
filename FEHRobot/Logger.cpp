@@ -61,7 +61,7 @@ void Logger::logWorldState(){
     SD.Printf("LEFT OPTO VALUE: %f\t", (*robot).getOpto(LeftOpto));
     SD.Printf("CENTER OPTO VALUE: %f\t", (*robot).getOpto(CenterOpto));
     SD.Printf("RIGHT OPTO VALUE: %f\t", (*robot).getOpto(RightOpto));
-    SD.Printf("CORNER OPTO VALUE: %f\t", (*robot).getOpto(RightOpto));
+    SD.Printf("CORNER OPTO VALUE: %f\t", (*robot).getOpto(CornerOpto));
     SD.Printf("DEADZONE STATUS: %d\t", (*robot).getDeadzoneStatus());
     SD.Printf("FUEL TYPE: %d\t\r\n", (*robot).getFuelType());
 }

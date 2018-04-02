@@ -27,7 +27,7 @@ StatusCode Command::execute() {
 	}
     logger -> logWorldState();
     errorCode = completion();
-    logger -> logMessage("\r\nCompleted Command: ");
+    logger -> logMessage("Completed Command: ");
     logger -> logMessage(getCommandName());
     logger -> logMessage("\r\n");
     return errorCode;

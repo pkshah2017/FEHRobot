@@ -7,7 +7,8 @@ DriveToGarage::DriveToGarage(Robot *robot_):
     driveToPosition(robot_, 0, 0),
     changeArmPosition(robot_, ArmUp, 500),
     turnForTime(robot_, 25, 0.0f),
-    driveToLine(robot_, 35)
+    driveToLine(robot_, 35),
+    backupToWhiteLine(robot_, 25)
 {
     robot = robot_;
 }
@@ -72,6 +73,9 @@ StatusCode DriveToGarage::execute(){
     driveForTime.setup(300, 70, 200);
     driveForTime.execute();
 
+
+    backupToWhiteLine.changePower(45);
+    backupToWhiteLine.execute();
     /*
      * Lineup arm with garage door
      */

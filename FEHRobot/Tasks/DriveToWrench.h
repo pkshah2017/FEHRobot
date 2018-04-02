@@ -23,6 +23,8 @@ private:
     ChangeArmPosition changeArmPosition;
     BackupToLine backupToLine;
     TurnToHeadingZero turnToHeadingZero;
+    BackupToLineSingleOpto backupToLineSingleOpto;
+    BackupOffLineSingleOpto backupOffLineSingleOpto;
 };
 
 #endif
