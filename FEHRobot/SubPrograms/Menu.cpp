@@ -69,6 +69,16 @@ int  Menu::mainMenu()
         /* Display average battery voltage to screen */
         batteryVoltage = ((batteryVoltage*b)+Battery.Voltage());
         batteryVoltage = batteryVoltage/(++b);
+        if(batteryVoltage>11.3){
+        LCD.SetFontColor(SUCCESS_COLOR);
+        }
+        else if(batteryVoltage<=11.3 && batteryVoltage>11.0){
+        LCD.SetFontColor(TEXT_COLOR);
+        }
+        else
+        {
+            LCD.SetFontColor(ERROR_COLOR);
+        }
         LCD.WriteAt(batteryVoltage, 72, 222);
         if (LCD.Touch(&x, &y))
         {
@@ -203,9 +213,9 @@ int Menu::fullRunMenu()
     char backLabel[1][20] = {"<-"};
     FEHIcon::DrawIconArray(Back, 1, 1, 1, 201, 1, 260, backLabel, MENU_COLOR, TEXT_COLOR);
 
-    FEHIcon::Icon fullRunMenu[3];
-    char fullRunLabels[3][20] = {"Run Normal","Run Fast","Run Super Fast"};
-    FEHIcon::DrawIconArray(fullRunMenu, 3, 1, 40, 1, 1, 1, fullRunLabels, MENU_COLOR, TEXT_COLOR);
+    FEHIcon::Icon fullRunMenu[1];
+    char fullRunLabels[1][20] = {"Run Normal"};
+    FEHIcon::DrawIconArray(fullRunMenu, 1, 1, 40, 1, 1, 1, fullRunLabels, MENU_COLOR, TEXT_COLOR);
 
     int currentMenu=FULL_RUN;
     float x, y;
@@ -219,32 +229,18 @@ int Menu::fullRunMenu()
                 LCD.WriteLine("RUN NORMAL");
                 currentMenu = RUN_NORMAL;
                 fullRunMenu[0].WhilePressed(x, y);
-            }
-            if (fullRunMenu[1].Pressed(x, y, 0))
-            {
-                LCD.Clear(BLACK);
-                LCD.WriteLine("RUN FAST");
-                currentMenu = RUN_FAST;
-                fullRunMenu[1].WhilePressed(x, y);
-            }
-            if (fullRunMenu[2].Pressed(x, y, 0))
-            {
-                LCD.Clear(BLACK);
-                LCD.WriteLine("RUN SUPER FAST");
-                currentMenu = RUN_SUPER_FAST;
-                fullRunMenu[2].WhilePressed(x, y);
-            }
+            }            
+        }
+        /* If back button has been touched, go to main menu */
+        if (Back[0].Pressed(x, y, 0))
+        {
+            Back[0].WhilePressed(x, y);
+            currentMenu = MAIN_MENU;
         }
     }
-    /* If back button has been touched, go to main menu */
-    if (Back[0].Pressed(x, y, 0))
-    {
-        Back[0].WhilePressed(x, y);
-        currentMenu = MAIN_MENU;
-    }
+
 return currentMenu;
 }
-
 
 int  Menu::diagnosticMenu(){
     LCD.Clear(BLACK);
@@ -307,11 +303,11 @@ int  Menu::RPSCalibrate(){
         (*robot).updateRPSStates();
         (*robot).updateSensorStates();
         LCD.WriteRC("RPS X: ", 5, 1);
-        LCD.WriteRC((*robot).getX(), 5, 19);
+        LCD.WriteRC((*robot).getCurrentX(), 5, 19);
         LCD.WriteRC("RPS Y:  ", 7, 1);
-        LCD.WriteRC((*robot).getY(), 7, 19);
+        LCD.WriteRC((*robot).getCurrentY(), 7, 19);
         LCD.WriteRC("RPS Heading:  ", 9, 1);
-        LCD.WriteRC((*robot).getHeading(), 9, 20);
+        LCD.WriteRC((*robot).getCurrentHeading(), 9, 20);
 
         clearSystemCheck();
         LCD.Touch(&x,&y);
@@ -331,14 +327,6 @@ int  Menu::RPSCalibrate(){
             }
             break;
         case 1:
-            LCD.WriteRC("Buttons Position",13,1);
-            if(!(*robot).getLimit(RobotLeft)){
-                robot->setLocation(ButtonsLocation, (*robot).getX(), (*robot).getY());
-                position++;
-                Sleep(500);
-            }
-            break;
-        case 2:
             LCD.WriteRC("Wrench Position",13,1);
             if(!(*robot).getLimit(RobotLeft)){
                 robot->setLocation(Wrench_Pickup, (*robot).getX(), (*robot).getY());
@@ -346,28 +334,21 @@ int  Menu::RPSCalibrate(){
                 Sleep(500);
             }
             break;
+        case 2:
+            LCD.WriteRC("Buttons Position",13,1);
+            if(!(*robot).getLimit(RobotLeft)){
+                robot->setLocation(ButtonsLocation, (*robot).getX(), (*robot).getY());
+                position++;
+                Sleep(500);
+            }
+            break;
         case 3:
-            LCD.WriteRC("Buttons Position3",13,1);
+            LCD.WriteRC("Go to RUN menu?",13,1);
             if(!(*robot).getLimit(RobotLeft)){
-                //RPSLocations.
-                position++;
-                Sleep(500);
+                currentMenu = FULL_RUN;
+                //Sleep(500);
             }
             break;
-        case 4:
-            LCD.WriteRC("Buttons Position4",13,1);
-            if(!(*robot).getLimit(RobotLeft)){
-                // RPSLocations.
-                position++;
-                Sleep(500);
-            }
-            break;
-            //        case END:
-            //            LCD.WriteRC("Calibration Complete",13,1);
-            //            if(!(*robot).getLimit(RobotLeft)){
-            //                currentMenu = MAIN_MENU;
-            //            }
-            //            break;
         }
     }
     return currentMenu;
@@ -637,6 +618,7 @@ void Menu::ChooseOption()
             break;
         case RPS_CALIBRATE:
             currentMenu = RPSCalibrate();
+            break;
         case RPS_CHECK:
             currentMenu = RPSCheck();
             break;

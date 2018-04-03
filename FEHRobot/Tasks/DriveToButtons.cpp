@@ -5,7 +5,8 @@
 DriveToButtons::DriveToButtons(Robot *robot_):
     waitForLight(robot_),
     driveForTime(robot_, 0, 50, 1350),
-    centerOnLine(robot_,45),
+    centerOnLine(robot_,43),
+    turnForTime(robot_,45,.05f),
     changeArmPosition(robot_, ArmUp, 0),
     driveToPosition(robot_, 0.0f, 0.0f)
 
@@ -44,13 +45,24 @@ StatusCode DriveToButtons::execute(){
     //driveToPosition.setup(robot->getLocationX(ButtonsLocation), robot->getLocationY(ButtonsLocation), 50);
     //driveToPosition.execute();
 
+
+    turnForTime.setup(-30,50);
+    turnForTime.execute();
+    Sleep(50);
+
     logger -> logMessage("Moving left to the button first line");
     centerOnLine.execute();
    // centerOnLine.execute();
 
+    turnForTime.setup(-30,100);
+    turnForTime.execute();
+    Sleep(50);
     logger -> logMessage("Moving left over the button first line");
     driveForTime.setup(90, 45, 450);
     driveForTime.execute();
+    turnForTime.setup(-30,50);
+    turnForTime.execute();
+    Sleep(50);
 
     /*
      * Center on the line

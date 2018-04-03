@@ -39,7 +39,7 @@ StatusCode DriveToGarage::execute(){
     /*
      * Go up ramp
      */
-    driveForTime.setup(177, 100, 2500);
+    driveForTime.setup(183, 100, 2500);
     driveForTime.execute();
 
     /*

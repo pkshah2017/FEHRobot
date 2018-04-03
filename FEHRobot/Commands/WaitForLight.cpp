@@ -23,6 +23,7 @@ bool WaitForLight::isFinished() {
 }
 
 StatusCode WaitForLight::completion(){
+    logger->resetRunStartTime();
     return Success;
 }
 

@@ -18,6 +18,7 @@ private:
     WaitForLight waitForLight;
     DriveForTime driveForTime;
     CenterOnLine centerOnLine;
+    TurnForTime turnForTime;
     ChangeArmPosition changeArmPosition;
     DriveToPosition driveToPosition;
 };

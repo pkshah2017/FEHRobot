@@ -23,20 +23,32 @@ StatusCode DriveToCrank::execute(){
     /*
      * Move Arm up
      */
-    changeArmPosition.setup(ArmUp, .5f);
+    changeArmPosition.setup(ArmUp, .20f);
     changeArmPosition.execute();
 
     /*
      * Go back into garage
      */
-    driveForTime.setup(270, 60, 400);
+    driveForTime.setup(270, 60, 600);
     driveForTime.execute();
 
     /*
      * Leave the Garage
      */
-    driveForTime.setup(90, 60, 1510);
-    driveForTime.execute();
+    //driveForTime.setup(90, 60, 1600);
+    //driveForTime.execute();
+
+    float startTime = TimeNow();
+
+    int turnSpeed = -2;
+    if(RPS.CurrentRegionLetter() == 'E' || RPS.CurrentRegionLetter() == 'C'){
+        turnSpeed = -1;
+    }
+
+
+    while(TimeNow()-startTime<1.700){
+    (*robot).driveAndTurn(90, 60, turnSpeed);
+    }
 
     /*
      * Setup to turn the crank

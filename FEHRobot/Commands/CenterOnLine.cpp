@@ -6,13 +6,16 @@ CenterOnLine::CenterOnLine(Robot *robot_, int power_)
 {
     power = power_;
     robot = robot_;
+    isMovingLeft = true;
+    numberOfReversals = 0;
 }
 
 StatusCode CenterOnLine::setup(int newPower){
+    isMovingLeft = true;
+    numberOfReversals = 0;
     power = newPower;
     return Success;
 }
-
 
 StatusCode CenterOnLine::initialize() {
     updateOptoStates();
@@ -24,10 +27,22 @@ StatusCode CenterOnLine::run() {
     updateOptoStates();
     if(leftOptoOnLine){
         (*robot).drive(90, power);
+        if(!isMovingLeft){
+            numberOfReversals++;
+        }
+        isMovingLeft = true;
     } else if (rightOptoOnLine){
         (*robot).drive(270, power);
-    } else if (!centerOptoOnLine){
+        if(isMovingLeft){
+            numberOfReversals++;
+        }
+        isMovingLeft = false;
+    } else {
         (*robot).drive(90, power);
+        if(!isMovingLeft){
+            numberOfReversals++;
+        }
+        isMovingLeft = true;
     }
 
     return status;
@@ -35,7 +50,7 @@ StatusCode CenterOnLine::run() {
 
 bool CenterOnLine::isFinished() {
 
-    return (centerOptoOnLine && !leftOptoOnLine && !rightOptoOnLine);
+    return (centerOptoOnLine && !leftOptoOnLine && !rightOptoOnLine) || numberOfReversals > 5;
 }
 
 StatusCode CenterOnLine::completion(){
@@ -57,7 +72,7 @@ bool CenterOnLine::checkLeftOpto(){
 bool CenterOnLine::checkCenterOpto(){
     LCD.WriteRC("Center Opto Value: ", 2, 1);
     LCD.WriteRC((*robot).getOpto(CenterOpto), 2, 19);
-    return (*robot).getOpto(CenterOpto) > 2.2f;
+    return (*robot).getOpto(CenterOpto) > 1.85f;
 }
 
 bool CenterOnLine::checkRightOpto(){

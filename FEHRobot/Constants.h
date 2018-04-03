@@ -9,7 +9,7 @@
 #define ARM_LEFT_ANGLE 180
 #define ARM_RIGHT_ANGLE 0
 #define ARM_UP_ANGLE 80
-#define ARM_ANGLED_RIGHT_ANGLE 45
+#define ARM_ANGLED_RIGHT_ANGLE 35
 #define ARM_SLIGHTLY_RAISED_ANGLE 8
 
 //Arm Position Names
@@ -37,7 +37,8 @@ typedef enum {
 
 #define REFRESH_RATE 20
 #define TIMEOUT 7.0
-#define POSITION_TOLERANCE 1.0
+#define POSITION_TOLERANCE 1.65
+#define POSITION_LOW_TOLERANCE 2.0
 
 //Line Follower States
 typedef enum {

@@ -19,6 +19,7 @@ struct _errordesc {
 
 Logger::Logger(Robot *robot_){
     robot = robot_;
+    runStartTime = 0.0f;
 }
 
 void Logger::logMessage(const char *message){
@@ -48,7 +49,7 @@ void Logger::logMessage(char *message){
 
 void Logger::logWorldState(){
     SD.Printf("NEW DATA POINT\t");
-    SD.Printf("TIME: %f\t", TimeNow());
+    SD.Printf("TIME: %f\t", TimeNow() - runStartTime);
     SD.Printf("ROBOT ACTUAL X: %f\t", (*robot).getCurrentX());
     SD.Printf("ROBOT ACTUAL Y: %f\t", (*robot).getCurrentY());
     SD.Printf("ROBOT ACTUAL HEADING: %f\t", (*robot).getCurrentHeading());
@@ -72,4 +73,10 @@ void Logger::logError(StatusCode errorCode){
     SD.Printf("Description: ");
     SD.Printf((errordesc[(int)errorCode].message));
     SD.Printf("\r\n");
+}
+
+void Logger::resetRunStartTime(){
+    float startTime = TimeNow();
+    runStartTime = startTime;
+    SD.Printf("Run Start Time: %f\r\n", startTime);
 }

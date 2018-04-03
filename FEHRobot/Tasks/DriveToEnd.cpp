@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "DriveToEnd.h"
 #include "FEHIO.h"
 
@@ -5,8 +6,8 @@ DriveToEnd::DriveToEnd(Robot *robot_):
     waitForLight(robot_),
     driveForTime(robot_, 0, 50, 1350),
     driveToPosition(robot_, 0, 0),
-    changeArmPosition(robot_, ArmUp, 500),
-    changeCrankArmPosition(robot_, ArmUp, 500),
+    changeArmPosition(robot_, ArmUp, 100),
+    changeCrankArmPosition(robot_, ArmUp, 100),
     turnForTime(robot_, 0, 0)
 {
     robot = robot_;
@@ -31,8 +32,12 @@ StatusCode DriveToEnd::execute(){
     changeCrankArmPosition.execute();
 
     float startTime = TimeNow();
-    while(TimeNow()-startTime<1.2){
-    (*robot).driveAndTurn(55, 90, -22);
+    logger->logMessage("Doing Turn and Drive Away");
+    while((TimeNow()-startTime<3.0f) && (*robot).getLimit(RobotLeft)){
+        (*robot).updateSensorStates();
+        logger->logWorldState();
+        (*robot).driveAndTurn(55, 90, -22);
+        Sleep(REFRESH_RATE);
     }
     /*
      * Rotate Clockwise
@@ -53,7 +58,7 @@ StatusCode DriveToEnd::execute(){
      */
     // driveToPosition.setup(31.8f, 29.0f, 60);
     // driveToPosition.execute();
-    driveForTime.setup(0,100,1350);
+    driveForTime.setup(0,100,1450);
     driveForTime.execute();
 
     /*

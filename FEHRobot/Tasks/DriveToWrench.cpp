@@ -11,6 +11,7 @@ DriveToWrench::DriveToWrench(Robot *robot_):
     driveTilBump(robot_, 270, 50, RobotLeft),
     backupToLine(robot_, 30),
     turnToHeadingZero(robot_, 25),
+    turnForTime(robot_,50,50),
     backupToLineSingleOpto(robot_, 40),
     backupOffLineSingleOpto(robot_, 40)
 {
@@ -44,14 +45,17 @@ StatusCode DriveToWrench::execute(){
     logger -> logMessage("Moving towards wrench");
     //driveForTime.setup(193, 40, 2.35f);
     //driveForTime.execute();
-    driveForTime.setup(277, 80, 1.4f);
+    driveForTime.setup(269, 100, 1.3f);
     driveForTime.execute();
 
+  //  logger -> logMessage("Moving away from button panel to wrench");
+  //  driveToPosition.setup(15.6f, 21.6f, 40);
+  //  driveToPosition.execute();
 
     logger -> logMessage("Moving in front of wrench");
-    driveToPosition.setup(11.0f, 18.0f, 50);
+    //driveToPosition.setup(11.0f, 18.0f, 40);
+    driveToPosition.setup(robot->getLocationX(Wrench_Pickup), robot->getLocationY(Wrench_Pickup), 40);
     driveToPosition.execute();
-
 
     logger -> logMessage("Backup onto the wrench line");
     backupToLineSingleOpto.changePower(40);
@@ -61,9 +65,12 @@ StatusCode DriveToWrench::execute(){
     backupOffLineSingleOpto.changePower(40);
     backupOffLineSingleOpto.execute();
 
+    turnForTime.setup(-30,30);
+    turnForTime.execute();
+    Sleep(50);
 
     logger -> logMessage("Final approach of wrench");
-    driveTilBump.setup(273, 60, RobotRight);
+    driveTilBump.setup(272, 60, RobotRight);
     driveTilBump.execute();
 
     logger -> logMessage("Lining up to wrench");

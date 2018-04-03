@@ -16,6 +16,11 @@ private:
     bool centerOptoOnLine;
     bool rightOptoOnLine;
     int power;
+
+    bool isMovingLeft;
+    int numberOfReversals;
+
+
     virtual StatusCode initialize();
     virtual StatusCode run();
     virtual bool isFinished();

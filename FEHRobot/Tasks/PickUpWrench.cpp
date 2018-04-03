@@ -33,24 +33,27 @@ StatusCode PickUpWrench::execute(){
     //driveForTime.execute();
 
     /*
-     * Change the arm position to grab wrench
+     * Change the arm position to grab wrench 'the wiggle'
      */
-    changeArmPosition.setup(ArmRight, 1.5f);
+    changeArmPosition.setup(ArmRight, 1.2f);
     changeArmPosition.execute();
-    Sleep(.3f);
-    driveForTime.setup(180,40,100);
+    driveForTime.setup(0,40,130);
     driveForTime.execute();
-    driveForTime.setup(0,40,100);
-    driveForTime.execute();
-    driveForTime.setup(90,40,100);
+    driveForTime.setup(90,40,114);
     driveForTime.execute();
     driveForTime.setup(270,40,100);
     driveForTime.execute();
+    driveForTime.setup(180,40,90);
+    driveForTime.execute();
+    Sleep(200);
+    //0  90  270 180
+    //Current 4:35 4.3.2018  180,0,90,270
     /*
      * Raise arm to pickup wrench
      */
     changeArmPosition.setup(ArmUp, 0.0f);
     changeArmPosition.execute();
+
 
     /*
      * Back away from wrench stand

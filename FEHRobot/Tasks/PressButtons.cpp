@@ -40,6 +40,9 @@ StatusCode PressButtons::execute(){
         turnIntoButtons = 40;
         turnPower = 2;
         status = Success;
+
+        turnForTime.setup(30,80);
+        turnForTime.execute();
     } else {
         status = E_UnreachableCode;
         logger -> logError(status);
@@ -52,7 +55,7 @@ StatusCode PressButtons::execute(){
      */
 
     logger -> logMessage("Moving forward to press buttons");
-    driveForTime.setup(buttonPosition == ArmLeft ? 30 : 315, 70, 500);
+    driveForTime.setup(buttonPosition == ArmLeft ? 45 : 310, 70, 700);
     driveForTime.execute();
 
     /*
@@ -109,7 +112,7 @@ StatusCode PressButtons::execute(){
      * Back away from buttons
      */
     logger -> logMessage("Backing away from buttons");
-    driveForTime.setup(180, 50, 200);
+    driveForTime.setup(180, 50, 300);
     driveForTime.execute();
 
     /*

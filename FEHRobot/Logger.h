@@ -8,6 +8,8 @@ class Logger
 {
 private:
     Robot *robot;
+
+    float runStartTime;
 public:
     Logger(Robot *robot_);
     void logWorldState();
@@ -15,6 +17,8 @@ public:
     void logMessage(char *message);
     void logMessageScreen(const char *message);
     void logError(StatusCode errorCode);
+
+    void resetRunStartTime();
 };
 
 extern Logger *logger;
