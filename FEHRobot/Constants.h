@@ -9,12 +9,13 @@
 #define ARM_LEFT_ANGLE 180
 #define ARM_RIGHT_ANGLE 0
 #define ARM_UP_ANGLE 80
-#define ARM_ANGLED_RIGHT_ANGLE 35
+#define ARM_VERTICAL_ANGLE 92
+#define ARM_ANGLED_RIGHT_ANGLE 25
 #define ARM_SLIGHTLY_RAISED_ANGLE 8
 
 //Arm Position Names
 typedef enum {
-    ArmLeft, ArmRight, ArmUp, ArmAngledRight, ArmSlightlyRaised
+    ArmLeft, ArmRight, ArmUp, ArmVertical, ArmAngledRight, ArmSlightlyRaised
 } ArmPosition;
 
 //Drive Train Calculation Constants

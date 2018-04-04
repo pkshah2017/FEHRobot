@@ -21,13 +21,13 @@ StatusCode BackupToLineSingleOpto::changePower(int newPower){
 }
 
 StatusCode BackupToLineSingleOpto::initialize() {
-    StatusCode status = updateLineFollowerState(2.6f);
+    StatusCode status = updateLineFollowerState(2.64f);
 
     return status;
 }
 
 StatusCode BackupToLineSingleOpto::run() {
-    StatusCode status = updateLineFollowerState(2.6f);
+    StatusCode status = updateLineFollowerState(2.64f);
 
     if(status == Success){
         if(!onLine){

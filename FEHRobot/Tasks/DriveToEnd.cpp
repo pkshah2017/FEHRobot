@@ -6,8 +6,8 @@ DriveToEnd::DriveToEnd(Robot *robot_):
     waitForLight(robot_),
     driveForTime(robot_, 0, 50, 1350),
     driveToPosition(robot_, 0, 0),
-    changeArmPosition(robot_, ArmUp, 100),
-    changeCrankArmPosition(robot_, ArmUp, 100),
+    changeArmPosition(robot_, ArmUp, .0f),
+    changeCrankArmPosition(robot_, ArmUp, .0f),
     turnForTime(robot_, 0, 0)
 {
     robot = robot_;
@@ -26,17 +26,17 @@ StatusCode DriveToEnd::execute(){
     driveForTime.setup(45,80,500);
     driveForTime.execute();
 
-    changeArmPosition.selectArmPosition(ArmUp);
+    changeArmPosition.selectArmPosition(ArmVertical);
     changeArmPosition.execute();
     changeCrankArmPosition.selectArmPosition(ArmUp);
     changeCrankArmPosition.execute();
 
     float startTime = TimeNow();
     logger->logMessage("Doing Turn and Drive Away");
-    while((TimeNow()-startTime<3.0f) && (*robot).getLimit(RobotLeft)){
+    while((TimeNow()-startTime<1.6f) && (*robot).getLimit(RobotLeft)){
         (*robot).updateSensorStates();
         logger->logWorldState();
-        (*robot).driveAndTurn(55, 90, -22);
+        (*robot).driveAndTurn(59, 90, -22);
         Sleep(REFRESH_RATE);
     }
     /*
@@ -48,8 +48,7 @@ StatusCode DriveToEnd::execute(){
     /*
      * Go Towards the top of the ramp
      */
-    driveForTime.setup(65,90,400);
-    driveForTime.execute();
+
     // driveToPosition.setup(31.8f, 41.9f, 60);
     // driveToPosition.execute();
 
@@ -59,6 +58,9 @@ StatusCode DriveToEnd::execute(){
     // driveToPosition.setup(31.8f, 29.0f, 60);
     // driveToPosition.execute();
     driveForTime.setup(0,100,1450);
+    driveForTime.execute();
+
+    driveForTime.setup(180,100,70);
     driveForTime.execute();
 
     /*

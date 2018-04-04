@@ -65,13 +65,15 @@ StatusCode DriveToWrench::execute(){
     backupOffLineSingleOpto.changePower(40);
     backupOffLineSingleOpto.execute();
 
-    turnForTime.setup(-30,30);
-    turnForTime.execute();
+
     Sleep(50);
 
     logger -> logMessage("Final approach of wrench");
     driveTilBump.setup(272, 60, RobotRight);
     driveTilBump.execute();
+    Sleep(50);
+    turnForTime.setup(30,20);
+    turnForTime.execute();
 
     logger -> logMessage("Lining up to wrench");
    // turnToHeadingZero.setup(15);

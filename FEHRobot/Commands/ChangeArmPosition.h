@@ -22,8 +22,8 @@ public:
 private:
     Robot *robot;
 
-    int startTime;
-    int timeToWait;
+    float startTime;
+    float timeToWait;
     ArmPosition armPosition;
 
     StatusCode constructor(Robot *robot_, ArmPosition armPosition_, float sec);

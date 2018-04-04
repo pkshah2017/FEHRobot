@@ -32,7 +32,7 @@ StatusCode PressButtons::execute(){
     int turnIntoButtons = 0, turnPower =0;
     if(status == L_Red){
         buttonPosition = ArmRight;
-        turnIntoButtons = -50;
+        turnIntoButtons = 50;
         turnPower = -3;
         status = Success;
     } else if(status == L_Blue){
@@ -47,17 +47,22 @@ StatusCode PressButtons::execute(){
         status = E_UnreachableCode;
         logger -> logError(status);
     }
-    changeArmPosition.setup(buttonPosition, 1.75f);
+    changeArmPosition.setup(buttonPosition, .3f);
     changeArmPosition.execute();
-    Sleep(300);
+    //Sleep(300);
     /*
      * Move To Buttons
      */
 
     logger -> logMessage("Moving forward to press buttons");
-    driveForTime.setup(buttonPosition == ArmLeft ? 45 : 310, 70, 700);
+    driveForTime.setup(buttonPosition == ArmLeft ? 45 : 310, 70, 500);
     driveForTime.execute();
 
+    turnForTime.setup(turnIntoButtons, .04f);
+    turnForTime.execute();
+
+    driveForTime.setup(buttonPosition == ArmLeft ? 45 : 310, 70, 200);
+    driveForTime.execute();
     /*
     float startTime = TimeNow();
     while((TimeNow()-startTime<.40)){

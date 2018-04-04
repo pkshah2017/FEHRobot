@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "TurnCrank.h"
 #include "FEHLCD.h"
 #include <FEHUtility.h>
@@ -14,13 +15,14 @@ StatusCode TurnCrank::execute(){
     /*
      * Turn the crank
      */
+    logger->logMessage("Turning the crank");
     (*robot).updateRPSStates();
     int fuelType = (*robot).getFuelType();
     ArmPosition endPosition = fuelType == 1 ? ArmLeft : ArmRight;
-    changeCrankArmPosition.setup(endPosition, 1.0f);
+    changeCrankArmPosition.setup(endPosition, 0.5f);
     changeCrankArmPosition.execute();
 
-    Sleep(300);
+    //Sleep(300);
 
     return Success;
 }

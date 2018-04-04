@@ -31,7 +31,7 @@ StatusCode DriveToJack::execute(){
     logger -> logMessage("Driving to the wall");
     driveForTime.setup(0, 100, 200);
     driveForTime.execute();
-    driveForTime.setup(355, 80, 1300);
+    driveForTime.setup(355, 90, 1150);
     driveForTime.execute();
 
     logger -> logMessage("Backing away from wall");

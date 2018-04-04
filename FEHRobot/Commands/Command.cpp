@@ -14,8 +14,10 @@ StatusCode Command::execute() {
     logger -> logMessage("\r\n");
     StatusCode errorCode = initialize();
     if(errorCode != Success){
+        logger->logMessage("Initialization Error");
         errorCode = initializeFailureRecovery(errorCode);
     }
+    logger->logMessage("Command Initalized");
     while (errorCode == Success && !isFinished()) {
         logger -> logWorldState();
         StatusCode errorCode = run();
@@ -25,6 +27,7 @@ StatusCode Command::execute() {
         }
 		Sleep(REFRESH_RATE);
 	}
+    logger->logMessage("Command Finished");
     logger -> logWorldState();
     errorCode = completion();
     logger -> logMessage("Completed Command: ");

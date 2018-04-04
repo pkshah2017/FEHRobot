@@ -5,8 +5,8 @@ DriveToCrank::DriveToCrank(Robot *robot_):
     driveToPosition(robot_, 0, 0),    
     turnForTime(robot_, -25, 250),
     driveToPositionWithHeading(robot_,0,0,45),
-    changeCrankArmPosition(robot_, ArmUp, 500),
-    changeArmPosition(robot_, ArmUp, 500)
+    changeCrankArmPosition(robot_, ArmUp, 0.0f),
+    changeArmPosition(robot_, ArmUp, 0.0f)
 {
     robot = robot_;
 }
@@ -23,7 +23,7 @@ StatusCode DriveToCrank::execute(){
     /*
      * Move Arm up
      */
-    changeArmPosition.setup(ArmUp, .20f);
+    changeArmPosition.setup(ArmUp, 0.0f);
     changeArmPosition.execute();
 
     /*
@@ -46,7 +46,7 @@ StatusCode DriveToCrank::execute(){
     }
 
 
-    while(TimeNow()-startTime<1.700){
+    while(TimeNow()-startTime<1.640){
     (*robot).driveAndTurn(90, 60, turnSpeed);
     }
 
@@ -57,7 +57,7 @@ StatusCode DriveToCrank::execute(){
     int fuelType = (*robot).getFuelType();
 
     ArmPosition startPosition = fuelType == 1 ? ArmRight : ArmLeft;
-    changeCrankArmPosition.setup(startPosition, .5f);
+    changeCrankArmPosition.setup(startPosition, 0.0f);
     changeCrankArmPosition.execute();
 
     /*
@@ -70,11 +70,11 @@ StatusCode DriveToCrank::execute(){
 
     //driveForTime.setup(90,70,1.0f);
     //driveForTime.execute();
-    driveForTime.setup(180,70,1.2f);
+    driveForTime.setup(180,70,1.15f);
     driveForTime.execute();
 
-    turnForTime.setup(-40,100);
-    turnForTime.execute();
+    //turnForTime.setup(-40,100);
+    //turnForTime.execute();
 
     /*
      * DO NOT delete this

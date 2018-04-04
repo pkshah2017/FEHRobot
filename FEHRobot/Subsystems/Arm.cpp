@@ -18,6 +18,9 @@ int Arm::setArmPosition(ArmPosition armPosition){
     case ArmUp:
         arm.SetDegree(ARM_UP_ANGLE);
         break;
+    case ArmVertical:
+        arm.SetDegree(ARM_VERTICAL_ANGLE);
+        break;
     case ArmAngledRight:
         arm.SetDegree(ARM_ANGLED_RIGHT_ANGLE);
         break;

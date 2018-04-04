@@ -54,7 +54,7 @@ StatusCode DriveToButtons::execute(){
     centerOnLine.execute();
    // centerOnLine.execute();
 
-    turnForTime.setup(-30,100);
+    turnForTime.setup(-30,60);
     turnForTime.execute();
     Sleep(50);
     logger -> logMessage("Moving left over the button first line");

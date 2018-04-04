@@ -16,22 +16,34 @@ DropOffWrench::DropOffWrench(Robot *robot_):
 }
 
 StatusCode DropOffWrench::execute(){
+
+    driveForTime.setup(0, 60, 50);
+    driveForTime.execute();
+
+    driveForTime.setup(90, 60, 200);
+    driveForTime.execute();
+
+
     /*
      * Slightly lower arm
      */
-    changeArmPosition.setup(ArmAngledRight, 300);
+    changeArmPosition.setup(ArmAngledRight, 50);
     changeArmPosition.execute();
+
+    driveForTime.setup(260, 60, 300);
+    driveForTime.execute();
+
 
     /*
      * Enter garage
      */
-    driveForTime.setup(255, 60, 1000);
+    driveForTime.setup(255, 60, 600);
     driveForTime.execute();
 
     /*
      * Lower Arm
      */
-    changeArmPosition.setup(ArmRight, 500);
+    changeArmPosition.setup(ArmRight, 50);
     changeArmPosition.execute();
 
 

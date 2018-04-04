@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "ChangeCrankArmPosition.h"
 #include <FEHUtility.h>
 #include <FEHLCD.h>
@@ -14,7 +15,7 @@ ChangeCrankArmPosition::ChangeCrankArmPosition(Robot *robot_, ArmPosition armPos
 
 ChangeCrankArmPosition::ChangeCrankArmPosition(Robot *robot_, ArmPosition armPosition_, int ms)
 {
-    constructor(robot_, armPosition_, ms/1000.0);
+    constructor(robot_, armPosition_, ms/1000.0f);
 }
 
 StatusCode ChangeCrankArmPosition::constructor(Robot *robot_, ArmPosition armPosition_, float sec_){
@@ -43,7 +44,7 @@ StatusCode ChangeCrankArmPosition::selectArmPosition(ArmPosition armPosition_){
 }
 
 StatusCode ChangeCrankArmPosition::selectWaitTime(int ms){
-    timeToWait = ms/1000.0;
+    timeToWait = ms/1000.0f;
     return Success;
 }
 
@@ -64,6 +65,9 @@ StatusCode ChangeCrankArmPosition::run() {
 }
 
 bool ChangeCrankArmPosition::isFinished() {
+    LCD.Clear();
+    LCD.WriteLine(startTime);
+    LCD.WriteLine(TimeNow() - startTime > timeToWait);
     return TimeNow() - startTime > timeToWait;
 }
 

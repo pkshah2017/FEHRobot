@@ -7,7 +7,7 @@ LiftJack::LiftJack(Robot *robot_):
 }
 
 StatusCode LiftJack::execute(){
-    driveForTime.setup(90, 90, 700);
+    driveForTime.setup(90, 90, 500);
     StatusCode status = driveForTime.execute();
 
     return status;
