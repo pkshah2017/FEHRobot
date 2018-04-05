@@ -13,6 +13,7 @@ private:
     virtual StatusCode runFailureRecovery(StatusCode error);
     virtual bool isFinished() = 0;
     virtual StatusCode completion() = 0;
+    virtual StatusCode completionFailureRecovery(StatusCode error);
 
     StatusCode printError(StatusCode errorCode);
 public:

@@ -16,6 +16,7 @@ public:
 private:
     Robot *robot;
     int power;
+    float startTime;
     bool onLine;
 
     virtual StatusCode initialize();

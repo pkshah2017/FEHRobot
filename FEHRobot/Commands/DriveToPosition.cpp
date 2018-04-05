@@ -51,7 +51,7 @@ StatusCode DriveToPosition::initialize() {
     (*robot).updateRPSStates();
     currentX = (*robot).getX();
     currentY = (*robot).getY();
-
+    startTime = TimeNow();
     return Success;
 }
 
@@ -97,6 +97,10 @@ StatusCode DriveToPosition::run() {
 //    }
 
     (*robot).drive(heading, power);
+
+    if(TimeNow() - startTime > RPS_TIMEOUT){
+        return E_Timeout;
+    }
     return Success;
 }
 
@@ -108,13 +112,14 @@ bool DriveToPosition::isFinished() {
     float error = sqrt(deltaX * deltaX + deltaY * deltaY);
 
     bool currentlyInPosition = abs(error) <= POSITION_TOLERANCE;
+    //bool timeOut = TimeNow() - startTime > RPS_TIMEOUT;
 //    if(currentlyInPosition && !inPosition){
 //        enteredPositionTime = TimeNow();
 //    }
 //    float timeInPosition = TimeNow() - enteredPositionTime;
 //    bool done = currentlyInPosition && timeInPosition > .50f;
 //    inPosition = currentlyInPosition;
-    return currentlyInPosition;
+    return currentlyInPosition ;
 }
 
 StatusCode DriveToPosition::completion(){

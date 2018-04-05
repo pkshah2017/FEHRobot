@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "DriveToGarage.h"
 
 DriveToGarage::DriveToGarage(Robot *robot_):
@@ -70,7 +71,7 @@ StatusCode DriveToGarage::execute(){
      * Move towards garage while parallel
      */
     //worked 100
-    driveForTime.setup(300, 70, 200);
+    driveForTime.setup(300, 70, 230);
     driveForTime.execute();
 
 
@@ -80,8 +81,26 @@ StatusCode DriveToGarage::execute(){
      * Lineup arm with garage door
      */
     driveToLine.changePower(45);
-    driveToLine.execute();
+    StatusCode status = driveToLine.execute();
+    logger->logMessage("Lining up with Garage Status");
+    logger->logError(status);
+    if(status == E_Timeout){
+        logger->logMessage("Lining up with Garage failed");
 
+        logger->logMessage("Moving forward to cross black line");
+       // driveForTime.setup(0, 70, 600);
+       // driveForTime.execute();
+
+        float startTime = TimeNow();
+        //worked 1.2
+        while(TimeNow()-startTime<700){
+        (*robot).driveAndTurn(315, 70, -10);
+        }
+
+        logger->logMessage("Backing up onto the line");
+        driveToLine.changePower(45);
+        StatusCode status = driveToLine.execute();
+    }
 
     return Success;
 }

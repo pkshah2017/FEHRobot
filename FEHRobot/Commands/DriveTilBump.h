@@ -26,6 +26,7 @@ private:
     virtual StatusCode initialize();
     virtual StatusCode run();
     virtual bool isFinished();
+    virtual StatusCode initializeFailureRecovery(StatusCode error);
     virtual StatusCode runFailureRecovery(StatusCode error);
     virtual StatusCode completion();
 };

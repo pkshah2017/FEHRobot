@@ -5,6 +5,7 @@ BackupToLine::BackupToLine(Robot *robot_, int power_)
 {
     robot = robot_;
     StatusCode status = changePower(power_);
+    startTime = 0.0f;
     if(status != Success){
         LCD.Write("ERROR CODE: ");
         LCD.WriteLine((int)status);
@@ -20,13 +21,23 @@ StatusCode BackupToLine::changePower(int newPower){
 
 StatusCode BackupToLine::initialize() {
     StatusCode status = updateLineFollowerState(2.5f, 2.2f, 1.5f);
-
+    startTime = TimeNow();
+    LCD.Clear();
+    LCD.WriteRC("Start Time: ", 1, 1);
+    LCD.WriteRC("Elaps Time: ", 2, 1);
+    LCD.WriteRC("Timeout: ", 3, 1);
     return status;
 }
 
 StatusCode BackupToLine::run() {
     StatusCode status = updateLineFollowerState(2.5f, 2.2f, 1.5f);
 
+    LCD.WriteRC(TimeNow(), 1, 13);
+    LCD.WriteRC(TimeNow() - startTime , 2, 13);
+    LCD.WriteRC(BACKUP_TIMEOUT, 3, 9);
+    if(TimeNow() - startTime >= BACKUP_TIMEOUT){
+        return E_Timeout;
+    }
     if(status == Success){
         switch(lineFollowStatus){
         case OFF_ON_OFF:
@@ -38,7 +49,7 @@ StatusCode BackupToLine::run() {
             break;
         case ON_OFF_OFF:
             (*robot).driveAndTurn(274, 27, -15);
-                 //   .turn(-25);
+            //   .turn(-25);
             break;
         case OFF_ON_ON:
             return E_UnreachableCode;
@@ -51,11 +62,12 @@ StatusCode BackupToLine::run() {
             break;
         }
     }
+
     return status;
 }
 
 bool BackupToLine::isFinished() {
-    return lineFollowStatus == ON_ON_OFF;
+    return lineFollowStatus == ON_ON_OFF ;
 }
 
 StatusCode BackupToLine::completion(){

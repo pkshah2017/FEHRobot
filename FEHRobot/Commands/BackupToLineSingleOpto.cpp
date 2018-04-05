@@ -6,6 +6,7 @@ BackupToLineSingleOpto::BackupToLineSingleOpto(Robot *robot_, int power_)
 {
     robot = robot_;
     StatusCode status = changePower(power_);
+    startTime = 0.0f;
     if(status != Success){
         logger->logError(status);
         LCD.Write("ERROR CODE: ");
@@ -22,12 +23,18 @@ StatusCode BackupToLineSingleOpto::changePower(int newPower){
 
 StatusCode BackupToLineSingleOpto::initialize() {
     StatusCode status = updateLineFollowerState(2.64f);
-
+    startTime = TimeNow();
     return status;
 }
 
 StatusCode BackupToLineSingleOpto::run() {
     StatusCode status = updateLineFollowerState(2.64f);
+
+    if(TimeNow() - startTime >= BACKUP_SINGLE_OPTO_TIMEOUT){
+        LCD.WriteLine("BTLSO has failed");
+        logger->logMessage("BackupToLineSingleOpto run has timed out");
+        return E_Timeout;
+    }
 
     if(status == Success){
         if(!onLine){

@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "DriveToLine.h"
 #include <FEHUtility.h>
 
@@ -5,6 +6,7 @@ DriveToLine::DriveToLine(Robot *robot_, int power_)
 {
     robot = robot_;
     StatusCode status = changePower(power_);
+    startTime = 0.0f;
     if(status != Success){
         LCD.Write("ERROR CODE: ");
         LCD.WriteLine((int)status);
@@ -20,13 +22,19 @@ StatusCode DriveToLine::changePower(int newPower){
 
 StatusCode DriveToLine::initialize() {
     StatusCode status = updateLineFollowerState(2.75, 2.5, 2.3);
-
+    startTime = TimeNow();
+    LCD.Clear();
     return status;
 }
 
 StatusCode DriveToLine::run() {
     StatusCode status = updateLineFollowerState(2.75, 2.5, 2.3);
 
+    if(TimeNow() - startTime >= BUMP_TIMEOUT){
+        LCD.WriteLine("DTL has failed");
+        logger->logMessage("DriveToLine run has timed out");
+        return E_Timeout;
+    }
     if(status == Success){
         switch(lineFollowStatus){
         case OFF_ON_OFF:

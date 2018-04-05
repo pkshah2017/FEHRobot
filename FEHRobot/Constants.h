@@ -37,9 +37,13 @@ typedef enum {
  */
 
 #define REFRESH_RATE 20
-#define TIMEOUT 7.0
-#define POSITION_TOLERANCE 1.65
-#define POSITION_LOW_TOLERANCE 2.0
+#define TIMEOUT 7.0f
+#define RPS_TIMEOUT 5.0f
+#define BUMP_TIMEOUT 1.0f
+#define BACKUP_TIMEOUT 1.0f
+#define BACKUP_SINGLE_OPTO_TIMEOUT 2.0f
+#define POSITION_TOLERANCE 1.65f
+#define POSITION_LOW_TOLERANCE 2.0f
 
 //Line Follower States
 typedef enum {

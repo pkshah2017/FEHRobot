@@ -21,11 +21,12 @@ private:
     DriveTilBump driveTilBump;
     DriveToPositionWithHeading driveToPositionWithHeading;
     ChangeArmPosition changeArmPosition;
-    BackupToLine backupToLine;
     TurnForTime turnForTime;
     TurnToHeadingZero turnToHeadingZero;
     BackupToLineSingleOpto backupToLineSingleOpto;
     BackupOffLineSingleOpto backupOffLineSingleOpto;
+
+    void alignWithWrench();
 };
 
 #endif

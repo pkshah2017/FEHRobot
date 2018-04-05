@@ -7,9 +7,8 @@ DriveToWrench::DriveToWrench(Robot *robot_):
     driveForTime(robot_, 0, 50, 1350),
     driveToPosition(robot_, 0, 0),
     changeArmPosition(robot_, ArmUp, 500),
-    driveToPositionWithHeading(robot_, 0, 0, 315),    
+    driveToPositionWithHeading(robot_, 0, 0, 315),
     driveTilBump(robot_, 270, 50, RobotLeft),
-    backupToLine(robot_, 30),
     turnToHeadingZero(robot_, 25),
     turnForTime(robot_,50,50),
     backupToLineSingleOpto(robot_, 40),
@@ -22,78 +21,93 @@ StatusCode DriveToWrench::execute(){
     /*
      * Drive to wrench
      */
-    //driveToPosition.setup(7.5f, 21.0f);
-    //driveToPosition.execute();
     (*robot).updateRPSStates();
-
-
-    /*
-    SD.Printf("Btn X: %f", robot->getLocationX(Wrench_Pickup));
-    LCD.WriteRC("Btn X: ", 7, 1);
-    LCD.WriteRC(robot->getLocationX(Wrench_Pickup),7,3);
-
-    SD.Printf("Btn X: %f", robot->getLocationY(Wrench_Pickup));
-    LCD.WriteRC("Btn Y: ", 8, 1);
-    LCD.WriteRC(robot->getLocationY(Wrench_Pickup),8,3);
-    */
-
-    //driveToPosition.setup(robot->getLocationX(Wrench_Pickup), robot->getLocationY(Wrench_Pickup), 50);
-    //driveToPosition.execute();
     driveForTime.setup(90, 80, 1.0f);
     driveForTime.execute();
 
     logger -> logMessage("Moving towards wrench");
-    //driveForTime.setup(193, 40, 2.35f);
-    //driveForTime.execute();
     driveForTime.setup(269, 100, 1.3f);
     driveForTime.execute();
 
-  //  logger -> logMessage("Moving away from button panel to wrench");
-  //  driveToPosition.setup(15.6f, 21.6f, 40);
-  //  driveToPosition.execute();
+    alignWithWrench();
 
-    logger -> logMessage("Moving in front of wrench");
-    //driveToPosition.setup(11.0f, 18.0f, 40);
+    return Success;
+}
+
+void DriveToWrench::alignWithWrench(){
+    logger->logMessage("Moving To RPS location in front of line");
     driveToPosition.setup(robot->getLocationX(Wrench_Pickup), robot->getLocationY(Wrench_Pickup), 40);
-    driveToPosition.execute();
+    StatusCode errorStatus = driveToPosition.execute();
+
+    logger->logMessage("Drive To RPS in front of wrench status: ");
+    logger->logError(errorStatus);
+    if (errorStatus == E_Timeout)
+    {
+        logger->logMessage("Recovering from RPS failure");
+        (*robot).stop();
+        Sleep(150);
+        (*robot).updateRPSStates();
+        if(((int)(*robot).getCurrentHeading()>2) && ((int)(*robot).getCurrentHeading()<60))
+        {
+            turnForTime.setup(-30,100+20*((int)(*robot).getCurrentHeading()));
+            turnForTime.execute();
+        }
+        else if(((int)(*robot).getCurrentHeading()<358) && ((int)(*robot).getCurrentHeading()>300))
+        {
+            turnForTime.setup(30,100+20*(360-(int)(*robot).getCurrentHeading()));
+            turnForTime.execute();
+        }
+
+        logger->logMessage("Moving away from potential wrench collision");
+        driveForTime.setup(90, 80, .2f);
+        driveForTime.execute();
+
+        alignWithWrench();
+        return;
+    }
 
     logger -> logMessage("Backup onto the wrench line");
     backupToLineSingleOpto.changePower(40);
-    backupToLineSingleOpto.execute();
+    errorStatus = backupToLineSingleOpto.execute();
+    if(errorStatus == E_Timeout){
+        logger->logMessage("Moving away from potential wrench collision");
+        driveForTime.setup(90, 80, .2f);
+        driveForTime.execute();
+
+        alignWithWrench();
+        return;
+     }
 
     logger -> logMessage("Backup off the wrench line");
     backupOffLineSingleOpto.changePower(40);
     backupOffLineSingleOpto.execute();
 
-
-    Sleep(50);
-
-    logger -> logMessage("Final approach of wrench");
+    logger->logMessage("Trying to hit bump");
     driveTilBump.setup(272, 60, RobotRight);
-    driveTilBump.execute();
+    errorStatus = driveTilBump.execute();
+
+    logger->logMessage("Final approach of wrench status: ");
+    logger->logError(errorStatus);
+    if(errorStatus == E_Timeout)
+    {
+        logger->logMessageScreen("Drive till Bump Failed");
+        logger->logMessage("Recovering from driving til bump of wrench holder failure");
+
+        logger->logMessage("Moving away from potential wrench collision");
+        driveForTime.setup(90, 80, .2f);
+        driveForTime.execute();
+
+        logger->logMessage("Turning to realign RPS");
+        turnForTime.setup(30,70);
+        turnForTime.execute();
+
+        alignWithWrench();
+        return;
+    }
+
     Sleep(50);
     turnForTime.setup(30,20);
     turnForTime.execute();
 
     logger -> logMessage("Lining up to wrench");
-   // turnToHeadingZero.setup(15);
-   // turnToHeadingZero.execute();
-
-    //logger -> logMessage("Lining up with wrench line");
-    //backupToLine.execute();
-
-    //logger -> logMessage("Move away from wrench");
-    //driveForTime.setup(90, 40, .35f);
-    //driveForTime.execute();
-
-    //driveToPositionWithHeading.setup(7.5f, 19.75f, 0);
-    //driveToPositionWithHeading.execute();
-    //(*robot).updateRPSStates();
-    //LCD.WriteRC("LOCATION X and Y: ", 6, 1);
-    //LCD.WriteRC((*robot).getX(), 7, 1);
-    //LCD.WriteRC((*robot).getY(), 8, 1);
-
-
-    return Success;
 }
-

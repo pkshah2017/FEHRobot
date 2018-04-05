@@ -1,3 +1,4 @@
+#include "Logger.h"
 #include "DriveTilBump.h"
 #include <FEHUtility.h>
 
@@ -49,7 +50,8 @@ StatusCode DriveTilBump::initialize() {
 StatusCode DriveTilBump::run() {
     (*robot).drive(heading, power);
     (*robot).updateSensorStates();
-    if(TimeNow() - startTime > TIMEOUT){
+    if(TimeNow() - startTime >=BUMP_TIMEOUT){
+        logger->logMessage("DriveTilBump run failed");
         return E_Timeout;
     }
     return Success;
@@ -62,7 +64,12 @@ StatusCode DriveTilBump::runFailureRecovery(StatusCode error){
     return error;
 }
 
+StatusCode DriveTilBump::initializeFailureRecovery(StatusCode error){
+    return error;
+}
+
 bool DriveTilBump::isFinished() {
+    //bool timeOut = TimeNow() - startTime > BUMP_TIMEOUT;
     return !(*robot).getLimit(direction);
 }
 

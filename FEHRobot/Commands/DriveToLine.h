@@ -16,6 +16,7 @@ public:
 private:
     Robot *robot;
     int power;
+    float startTime;
     LineFollowerState lineFollowStatus;
 
     virtual StatusCode initialize();

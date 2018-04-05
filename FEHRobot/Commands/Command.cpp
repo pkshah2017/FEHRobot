@@ -20,7 +20,7 @@ StatusCode Command::execute() {
     logger->logMessage("Command Initalized");
     while (errorCode == Success && !isFinished()) {
         logger -> logWorldState();
-        StatusCode errorCode = run();
+        errorCode = run();
         if(errorCode != Success){
             //logger.printError(errorCode);
             errorCode = runFailureRecovery(errorCode);
@@ -29,18 +29,32 @@ StatusCode Command::execute() {
 	}
     logger->logMessage("Command Finished");
     logger -> logWorldState();
-    errorCode = completion();
+    if(errorCode == Success){
+        errorCode = completion();
+    } else {
+        errorCode = completionFailureRecovery(errorCode);
+    }
     logger -> logMessage("Completed Command: ");
     logger -> logMessage(getCommandName());
     logger -> logMessage("\r\n");
+    logger->logMessage("Status code at the end of command is");
+    logger->logError(errorCode);
     return errorCode;
 }
 
 StatusCode Command::initializeFailureRecovery(StatusCode errorCode){
+    logger->logMessage("Initalize Failed");
     return printError(errorCode);
 }
 
 StatusCode Command::runFailureRecovery(StatusCode errorCode){
+    logger->logMessage("Run method Failed");
+    return printError(errorCode);
+}
+
+StatusCode Command::completionFailureRecovery(StatusCode errorCode){
+    logger->logMessage("Code prior to Completion Failed");
+    completion();
     return printError(errorCode);
 }
 
