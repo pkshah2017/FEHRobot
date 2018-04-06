@@ -30,7 +30,7 @@ StatusCode DriveToLine::initialize() {
 StatusCode DriveToLine::run() {
     StatusCode status = updateLineFollowerState(2.75, 2.5, 2.3);
 
-    if(TimeNow() - startTime >= BUMP_TIMEOUT){
+    if(TimeNow() - startTime >= BACKUP_TIMEOUT){
         LCD.WriteLine("DTL has failed");
         logger->logMessage("DriveToLine run has timed out");
         return E_Timeout;

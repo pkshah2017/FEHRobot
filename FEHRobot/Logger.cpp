@@ -59,12 +59,14 @@ void Logger::logWorldState(){
     SD.Printf("LEFT LIMIT STATE: %u\t", (*robot).getLimit(RobotLeft));
     SD.Printf("FRONT LIMIT STATE: %u\t", (*robot).getLimit(RobotFront));
     SD.Printf("RIGHT LIMIT STATE: %u\t", (*robot).getLimit(RobotRight));
+    SD.Printf("CDS STATE: %f\t", (*robot).getCDSState());
     SD.Printf("LEFT OPTO VALUE: %f\t", (*robot).getOpto(LeftOpto));
     SD.Printf("CENTER OPTO VALUE: %f\t", (*robot).getOpto(CenterOpto));
     SD.Printf("RIGHT OPTO VALUE: %f\t", (*robot).getOpto(RightOpto));
     SD.Printf("CORNER OPTO VALUE: %f\t", (*robot).getOpto(CornerOpto));
     SD.Printf("DEADZONE STATUS: %d\t", (*robot).getDeadzoneStatus());
     SD.Printf("FUEL TYPE: %d\t\r\n", (*robot).getFuelType());
+
 }
 
 void Logger::logError(StatusCode errorCode){

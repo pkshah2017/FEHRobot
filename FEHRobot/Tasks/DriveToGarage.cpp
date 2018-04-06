@@ -93,7 +93,7 @@ StatusCode DriveToGarage::execute(){
 
         float startTime = TimeNow();
         //worked 1.2
-        while(TimeNow()-startTime<700){
+        while(TimeNow()-startTime<.7f){
         (*robot).driveAndTurn(315, 70, -10);
         }
 

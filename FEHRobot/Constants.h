@@ -40,7 +40,7 @@ typedef enum {
 #define TIMEOUT 7.0f
 #define RPS_TIMEOUT 5.0f
 #define BUMP_TIMEOUT 1.0f
-#define BACKUP_TIMEOUT 1.0f
+#define BACKUP_TIMEOUT 1.14f
 #define BACKUP_SINGLE_OPTO_TIMEOUT 2.0f
 #define POSITION_TOLERANCE 1.65f
 #define POSITION_LOW_TOLERANCE 2.0f

@@ -47,16 +47,16 @@ void DriveToWrench::alignWithWrench(){
         (*robot).stop();
         Sleep(150);
         (*robot).updateRPSStates();
-//        if(((int)(*robot).getCurrentHeading()>2) && ((int)(*robot).getCurrentHeading()<60))
-//        {
-//            turnForTime.setup(-30,100+20*((int)(*robot).getCurrentHeading()));
-//            turnForTime.execute();
-//        }
-//        else if(((int)(*robot).getCurrentHeading()<358) && ((int)(*robot).getCurrentHeading()>300))
-//        {
-//            turnForTime.setup(30,100+20*(360-(int)(*robot).getCurrentHeading()));
-//            turnForTime.execute();
-//        }
+        if(((int)(*robot).getCurrentHeading()>2) && ((int)(*robot).getCurrentHeading()<60))
+        {
+            turnForTime.setup(30,100+10*((int)(*robot).getCurrentHeading()));
+            turnForTime.execute();
+        }
+        else if(((int)(*robot).getCurrentHeading()<358) && ((int)(*robot).getCurrentHeading()>300))
+        {
+            turnForTime.setup(-30,100+10*(360-(int)(*robot).getCurrentHeading()));
+            turnForTime.execute();
+        }
 
         logger->logMessage("Moving away from potential wrench collision");
         driveForTime.setup(90, 80, .2f);
@@ -81,6 +81,9 @@ void DriveToWrench::alignWithWrench(){
     logger -> logMessage("Backup off the wrench line");
     backupOffLineSingleOpto.changePower(40);
     backupOffLineSingleOpto.execute();
+
+    driveForTime.setup(0, 70, 50);
+    driveForTime.execute();
 
     logger->logMessage("Trying to hit bump");
     driveTilBump.setup(272, 60, RobotRight);
