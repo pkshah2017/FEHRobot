@@ -66,19 +66,19 @@ const char * CenterOnLine::getCommandName(){
 bool CenterOnLine::checkLeftOpto(){
     LCD.WriteRC("Left Opto Value: ", 1, 1);
     LCD.WriteRC((*robot).getOpto(LeftOpto), 1, 18);
-    return (*robot).getOpto(LeftOpto) > 2.35f;
+    return (*robot).getOpto(LeftOpto) > 2.15f;
 }
 
 bool CenterOnLine::checkCenterOpto(){
     LCD.WriteRC("Center Opto Value: ", 2, 1);
     LCD.WriteRC((*robot).getOpto(CenterOpto), 2, 19);
-    return (*robot).getOpto(CenterOpto) > 1.85f;
+    return (*robot).getOpto(CenterOpto) > 1.80f;
 }
 
 bool CenterOnLine::checkRightOpto(){
     LCD.WriteRC("Right Opto Value: ", 3, 1);
     LCD.WriteRC((*robot).getOpto(RightOpto), 3, 19);
-    return (*robot).getOpto(RightOpto) > 1.7f;
+    return (*robot).getOpto(RightOpto) > 1.45f;
 }
 
 void CenterOnLine::updateOptoStates(){

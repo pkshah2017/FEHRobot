@@ -21,14 +21,14 @@ StatusCode DriveToLine::changePower(int newPower){
 }
 
 StatusCode DriveToLine::initialize() {
-    StatusCode status = updateLineFollowerState(2.75, 2.5, 2.3);
+    StatusCode status = updateLineFollowerState(2.65, 2.2, 2.1);
     startTime = TimeNow();
     LCD.Clear();
     return status;
 }
 
 StatusCode DriveToLine::run() {
-    StatusCode status = updateLineFollowerState(2.75, 2.5, 2.3);
+    StatusCode status = updateLineFollowerState(2.65, 2.2, 2.1);
 
     if(TimeNow() - startTime >= BACKUP_TIMEOUT){
         LCD.WriteLine("DTL has failed");

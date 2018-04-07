@@ -22,13 +22,13 @@ StatusCode BackupToLineSingleOpto::changePower(int newPower){
 }
 
 StatusCode BackupToLineSingleOpto::initialize() {
-    StatusCode status = updateLineFollowerState(2.64f);
+    StatusCode status = updateLineFollowerState(2.60f);
     startTime = TimeNow();
     return status;
 }
 
 StatusCode BackupToLineSingleOpto::run() {
-    StatusCode status = updateLineFollowerState(2.64f);
+    StatusCode status = updateLineFollowerState(2.60f);
 
     if(TimeNow() - startTime >= BACKUP_SINGLE_OPTO_TIMEOUT){
         LCD.WriteLine("BTLSO has failed");

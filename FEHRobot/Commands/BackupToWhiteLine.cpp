@@ -19,13 +19,13 @@ StatusCode BackupToWhiteLine::changePower(int newPower){
 }
 
 StatusCode BackupToWhiteLine::initialize() {
-    StatusCode status = updateLineFollowerState(2.5f, 2.2f, 1.5f);
+    StatusCode status = updateLineFollowerState(2.4f, 2.2f, 1.7f);
 
     return status;
 }
 
 StatusCode BackupToWhiteLine::run() {
-    StatusCode status = updateLineFollowerState(2.5f, 2.2f, 1.5f);
+    StatusCode status = updateLineFollowerState(2.4f, 2.2f, 1.7f);
 
     if(status == Success){
         switch(lineFollowStatus){

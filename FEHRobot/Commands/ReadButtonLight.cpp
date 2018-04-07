@@ -10,7 +10,8 @@ ReadButtonLight::ReadButtonLight(Robot *robot_)
 StatusCode ReadButtonLight::initialize() {
     (*robot).updateSensorStates();
 
-    if((*robot).getCDSState() < .85){
+    if((*robot).getCDSState() < .70){
+        //original value .85
         buttonColor = L_Red;
     } else {
         buttonColor = L_Blue;
