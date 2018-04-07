@@ -21,13 +21,13 @@ StatusCode BackupOffLineSingleOpto::changePower(int newPower){
 }
 
 StatusCode BackupOffLineSingleOpto::initialize() {
-    StatusCode status = updateLineFollowerState(2.5f);
+    StatusCode status = updateLineFollowerState(2.55f);
 
     return status;
 }
 
 StatusCode BackupOffLineSingleOpto::run() {
-    StatusCode status = updateLineFollowerState(2.5f);
+    StatusCode status = updateLineFollowerState(2.55f);
 
     if(status == Success){
         robot->drive(180, power);

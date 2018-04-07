@@ -82,7 +82,7 @@ void DriveToWrench::alignWithWrench(){
     backupOffLineSingleOpto.changePower(40);
     backupOffLineSingleOpto.execute();
 
-    driveForTime.setup(0, 70, 50);
+    driveForTime.setup(0, 70, 70);
     driveForTime.execute();
 
     logger->logMessage("Trying to hit bump");
