@@ -1,3 +1,6 @@
+/*
+ * This command makes the robot turn for the specified time.
+*/
 #ifndef TURNFORTIME
 #define TURNFORTIME
 

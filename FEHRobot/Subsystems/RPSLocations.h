@@ -1,3 +1,7 @@
+/*
+ * This is the interface to work with RPS locations. This allows us to calibrate 
+ * the different RPS locations for the different courses.
+*/
 #ifndef RPSLOCATIONS
 #define RPSLOCATIONS
 

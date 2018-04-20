@@ -1,3 +1,6 @@
+/*
+ * This command reads the button light color using the CDS sensor and returns the value.
+*/
 #ifndef READBUTTONLIGHT
 #define READBUTTONLIGHT
 

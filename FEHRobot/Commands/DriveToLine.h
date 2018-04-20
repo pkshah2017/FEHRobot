@@ -1,3 +1,6 @@
+/*
+ * This command makes the robot drive in the specified direction until
+*/
 #ifndef DRIVETOLINE
 #define DRIVETOLINE
 

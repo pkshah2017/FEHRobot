@@ -1,3 +1,6 @@
+/*
+ * This command makes the robot wait until the line under the CDS cell turns on. 
+*/
 #ifndef WAITFORLIGHT
 #define WAITFORLIGHT
 

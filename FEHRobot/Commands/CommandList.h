@@ -1,3 +1,6 @@
+/*
+ * A list of all the commands.
+*/
 #include "Commands/BackupToLine.h"
 #include "Commands/BackupToLineSingleOpto.h"
 #include "Commands/BackupOffLineSingleOpto.h"

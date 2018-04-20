@@ -1,3 +1,8 @@
+/*
+ * This command makes the robot drive to the specified RPS location. It uses RPS and drives
+ * in a straight line to the RPS location. It also makes sure the ending RPS heading is 
+ * the one specified. 
+*/
 #ifndef DRIVETOPOSITIONWITHHEADING
 #define DRIVETOPOSITIONWITHHEADING
 

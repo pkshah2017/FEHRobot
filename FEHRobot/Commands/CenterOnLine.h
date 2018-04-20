@@ -1,3 +1,7 @@
+/*
+ * This command makes the robot center on the lines using the front optos. 
+ * This command is used in the DriveToButtons Task.
+*/
 #ifndef CENTERONLINE
 #define CENTERONLINE
 

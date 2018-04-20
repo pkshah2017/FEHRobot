@@ -1,3 +1,6 @@
+/*
+ * This is the digital twin of the physical drive train. 
+*/
 #ifndef DRIVETRAIN
 #define DRIVETRAIN
 

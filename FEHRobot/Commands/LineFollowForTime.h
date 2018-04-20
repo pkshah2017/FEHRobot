@@ -1,3 +1,6 @@
+/*
+ * This command makes the robot follow the line using the center optos for a specified time. 
+*/
 #ifndef LINEFOLLOWFORTIME
 #define LINEFOLLOWFORTIME
 

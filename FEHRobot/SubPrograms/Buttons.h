@@ -1,3 +1,7 @@
+/*
+ * This is the subprogram to handle to buttons. This makes the robot 
+ * leave the start and go to the button board.
+*/
 #ifndef BUTTONS
 #define BUTTONS
 

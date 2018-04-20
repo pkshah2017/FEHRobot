@@ -1,3 +1,7 @@
+/*
+ * This command makes the robot backup until center set of optos is over black line.
+ * This command is used in the DriveToGarage Task.
+*/
 #include "Logger.h"
 #include "DriveToLine.h"
 #include <FEHUtility.h>

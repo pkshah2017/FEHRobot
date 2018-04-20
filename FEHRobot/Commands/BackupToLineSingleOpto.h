@@ -1,3 +1,8 @@
+/*
+ * This command makes the robot backup until center set of optos is over the line.
+ * At the end of this command the robot will be "parallel" to the line.
+ * This command is used in the DriveToGarage Task.
+*/
 #ifndef BACKUPTOLINESINGLEOPTO
 #define BACKUPTOLINESINGLEOPTO
 

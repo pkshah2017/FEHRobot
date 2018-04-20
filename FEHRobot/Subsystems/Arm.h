@@ -1,3 +1,6 @@
+/*
+ * This is the digital twin of the physical front arm. 
+*/
 #ifndef ARM
 #define ARM
 

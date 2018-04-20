@@ -1,3 +1,6 @@
+/*
+ * This is the subprogram to run the menu. It allows for easy debugging of various problems.
+*/
 #ifndef MENU_H
 #define MENU_H
 #include "Robot.h"

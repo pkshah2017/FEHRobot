@@ -1,3 +1,8 @@
+/*
+ * This command makes the robot change the rear arm positon. 
+ * This command will end after the specified time has passed. 
+ * This command is used to change the rear arm position to manipulate the crank.
+*/
 #ifndef CHANGECRANKARMPOSITION
 #define CHANGECRANKARMPOSITION
 

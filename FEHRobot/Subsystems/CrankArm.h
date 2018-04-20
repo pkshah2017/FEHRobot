@@ -1,3 +1,6 @@
+/*
+ * This is the digital twin of the physical rear crank arm. 
+*/
 #ifndef CRANKARM
 #define CRANKARM
 

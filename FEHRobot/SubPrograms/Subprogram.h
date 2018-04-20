@@ -1,3 +1,6 @@
+/*
+ * This is the subprogram abstract class. It allows for the easy adding of tasks to run through them in order.
+*/
 #ifndef SUBPROGRAM
 #define SUBPROGRAM
 

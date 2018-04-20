@@ -1,3 +1,6 @@
+/*
+ * This command makes the robot wait for a certain amount of time. 
+*/
 #ifndef WAITFORTIME
 #define WAITFORTIME
 

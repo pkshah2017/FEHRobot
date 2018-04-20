@@ -1,3 +1,7 @@
+/*
+ * This is the subprogram to handle to crank and end the run. It drive the robot
+ *  to the crank, turns it and goes to press the end button. 
+*/
 #ifndef CRANK
 #define CRANK
 

@@ -1,3 +1,6 @@
+/*
+ * This is the subprogram to handle to jack and drop off the wrench. 
+*/
 #ifndef JACK
 #define JACK
 

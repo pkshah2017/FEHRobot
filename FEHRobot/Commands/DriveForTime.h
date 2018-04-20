@@ -1,3 +1,6 @@
+/*
+ * This command makes the robot drive in the specified direction for the specified amount of time.
+*/
 #ifndef DRIVEFORTIME
 #define DRIVEFORTIME
 

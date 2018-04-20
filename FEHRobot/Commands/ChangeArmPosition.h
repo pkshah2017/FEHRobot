@@ -1,3 +1,8 @@
+/*
+ * This command makes the robot change the front arm positon. 
+ * This command will end after the specified time has passed. 
+ * This command is used to change the arm position to manipulate the wrench.
+*/
 #ifndef CHANGEARMPOSITION
 #define CHANGEARMPOSITION
 

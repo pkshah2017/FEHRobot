@@ -1,3 +1,7 @@
+/*
+ * This command makes the robot backup until center set of optos is over white area.
+ * This command is used in the DriveToGarage Task.
+*/
 #ifndef BACKUPTOWHITELINE
 #define BACKUPTOWHITELINE
 
